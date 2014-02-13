@@ -1,0 +1,78 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+
+<script>
+
+
+function ready()
+{
+	if(document.addEventListener)
+	{
+		document.addEventListener('DOMContentLoaded',function(){
+			
+			alert('ready0');
+			
+			},false);	
+	}
+	else
+	{
+		//方案1和2  哪个快用哪一个
+		var bReady=false;
+		//方案1
+		document.attachEvent('onreadystatechange',function(){
+			if(bReady)return;
+			if(document.readyState=='complete')
+			{
+				bReady=true;
+				alert('ready1');
+				
+			};
+			
+		});
+		
+		//方案2
+		function next()
+		{
+			try{
+		  
+				document.documentElement.doScroll("left");	
+				if(bReady)return;
+				bReady=true;
+				alert('ready2');
+				
+		
+			}
+			catch(e) 
+			{
+				setTimeout(next,1); 
+			}
+		};
+		
+		setTimeout(next,1); 
+			
+	}
+	
+		
+};
+
+
+ready();
+
+
+
+window.onload=function()
+{
+	alert('load');	
+};
+</script>
+
+</head>
+
+<body>
+<img src="http://h.hiphotos.baidu.com/image/h%3D768%3Bcrop%3D0%2C0%2C1024%2C768/sign=40dec9bfa2ec08fa390011a161d55e1f/dbb44aed2e738bd404c1df31a38b87d6267ff9ca.jpg">
+
+</body>
+</html>

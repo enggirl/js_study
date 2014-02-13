@@ -1,0 +1,84 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+*{margin:0;padding:0; background:#}
+ul{width:210px;margin:40px auto;border:1px solid #000;border-bottom:none;border-right:none; overflow:hidden}
+li{width:9px;height:9px;border-bottom:1px solid #000;border-right:1px solid #000; float:left; list-style:none;}
+</style>
+<script>
+window.onload=function()
+{
+   var oUl=document.getElementById('ul1');
+   var colorArr=['00','33','66','99','cc','ff'];
+   var fArr=['ff0000','00ff00','0000ff','ffff00','00ffff','ff00ff','ff0000','00ff00','0000ff','ffff00','00ffff','ff00ff'];
+   
+   for(var i=0;i<12;i++)  //每一行
+   {
+	   for(var j=0;j<3;j++)  //前三个
+	   {
+		   var newLi=document.createElement('li');
+		   oUl.appendChild(newLi);
+		   
+		   if(j==1)  //第二个
+		   {
+			   //还是判断是前六行还是后六行
+			   if(i<6)//前六行
+			   {
+			   newLi.style.background='#'+colorArr[i]+colorArr[i]+colorArr[i];  
+			   }
+			   else
+			   {
+				  newLi.style.background='#'+fArr[i-6];    
+				} 
+		   }   
+		   else
+		   {
+			  //每一行的第一个和第三个都应该是黑的
+			  newLi.style.background='#000';   
+		   }
+	   };
+	   
+	   for(var k=0;k<3;k++)
+	   {
+		   //每一行，分成三块，每一块创建六个
+		   for(var m=0;m<6;m++)
+		   {
+			   var newLi=document.createElement('li');
+		       oUl.appendChild(newLi);  
+			   
+			   var a=colorArr[?];
+			   
+			   
+			   var c=colorArr[i];
+			   var b=colorArr[m];
+			   
+			   newLi.style.background='#'+a+b+c;   
+			} 
+		     
+	   }
+   }	
+};
+</script>
+</head>
+
+<body>
+<ul id="ul1">
+	<!--<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>-->
+</ul>
+
+</body>
+</html>

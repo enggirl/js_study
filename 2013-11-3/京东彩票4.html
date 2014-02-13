@@ -1,0 +1,57 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+*{margin:0;padding:0}
+div{width:400px;height:400px; background:red}
+</style>
+<script>
+window.onload=function()
+{   
+   var arr=[];
+   for(var i=0;i<6;i++)
+   {
+	  var n=rnd(1,32);
+	  //arr[arr.length]=n;
+	  if(!findSame(n,arr))
+	  {
+		 arr[arr.length]=n; 
+	  }
+	  else
+	  {
+		  //如果有相同的  i 减1  for得多走一次
+		  i--;  
+	  }
+   };
+   
+   document.body.innerHTML=arr;
+};
+
+function findSame(n,arr)
+{
+ 	for(var i=0;i<arr.length;i++)
+	{
+		if(arr[i]==n)
+		{
+		   //找到相同的
+		   return true;	
+		}	
+	}
+	
+	//找不到相同的
+	return false;
+};
+
+function rnd(n,m)
+{
+  return parseInt(Math.random()*(m-n+1)+n);	
+}
+</script>
+</head>
+
+<body>
+<div id="box"></div>
+</body>
+</html>

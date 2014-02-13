@@ -1,0 +1,65 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+*{margin:0;padding:0}
+#box{width:750px;height:750px;margin:0 auto; background:#ccc; position:relative}
+#box div{width:200px;height:200px;margin:0 50px 50px 0; background:red; float:left; font-size:100px; color:#fff;}
+</style>
+<script>
+window.onload=function()
+{
+	var oBox=document.getElementById('box');
+	var aDiv=oBox.children;
+	
+	//布局转换
+	var divPosArr=[];
+	for(var i=0;i<aDiv.length;i++)
+	{
+		divPosArr.push({l:aDiv[i].offsetLeft,t:aDiv[i].offsetTop});
+	}	
+	
+	for(var i=0;i<aDiv.length;i++)
+	{
+		aDiv[i].style.position='absolute';
+		aDiv[i].style.top=divPosArr[i].t+'px';
+		aDiv[i].style.left=divPosArr[i].l+'px';
+		aDiv[i].style.margin=0;
+		aDiv[i].innerHTML=i+1;
+		aDiv[i].style.background=rnd('rgb');
+	}	
+};
+
+
+function rnd(n,m)
+{
+	if(n=='rgb')
+	{
+		return 'rgb('+parseInt(Math.random()*256)+','+parseInt(Math.random()*256)+','+parseInt(Math.random()*256)+')'	
+	};
+	
+	return parseInt(Math.random()*(m-n+1)+n);
+};
+
+</script>
+
+</head>
+
+<body>
+
+<div id="box">
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+</div>
+
+</body>
+</html>

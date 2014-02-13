@@ -1,0 +1,82 @@
+
+上周作业：  
+ 三级下拉菜单做完
+ 解决日历的bug  - 
+ 键盘控制DIV 上下左右  定时器
+  碰撞检测：可以双向检测，如果碰上了互换位置，如果没碰上up的时候就回原位
+ 八角拖拽    百度拖拽
+
+
+ bug
+2013  12  29   -   2014  1  29  -  2014 2 29    - 2014  3  1  - 2014 -2 28  
+
+
+
+r:
+存：
+var disX=oEvent.clientX;
+var oldWidh=oBox.offsetWidth;
+
+走：
+var w=oEvent.clientX-disX;
+oBox.style.width=oldWidh+w+'px';
+
+rb:
+var disX=oEvent.clientX;
+var oldWidh=oBox.offsetWidth;
+var disY=oEvent.clientY;
+var oldHeight=oBox.offsetHeight;
+
+var w=oEvent.clientX-disX;
+var h=oEvent.clientY-disY;
+oBox.style.width=oldWidh+w+'px';
+oBox.style.height=oldHeight+h+'px';
+
+l:
+var disX=oEvent.clientX;
+var oldWidh=oBox.offsetWidth;
+var oldLeft=oBox.offsetLeft;
+
+var w=oEvent.clientX-disX;
+oBox.style.width=oldWidh-w+'px';
+oBox.style.left=oldLeft+w+'px';
+
+
+
+
+
+onmousewheel   滚轮事件。IE  chrome
+
+DOMMouseScroll       FF   
+
+
+DOM事件
+1.  以DOM开头的事件
+2.  只能绑定
+3.  区分大小写
+
+
+在绑定事件里面，取消默认不能用return false;
+ev.preventDefault();   不兼容IE低版本
+
+
+
+///
+作业：  拖拽，九宫格，与最近的换位   Math.sqrt(a*a+b*b)
+    :   滚轮
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

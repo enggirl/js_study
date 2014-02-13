@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>智能课堂 - www.zhinengshe.com</title>
+<link href="zns_style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+window.onload=function()
+{
+ var aLi=document.getElementsByTagName('li');
+ for(var i=0;i<aLi.length;i++)
+ {
+	 aLi[i].index=i;
+	aLi[i].onmouseover=function()
+	{
+		//this.className='active';
+		for(var i=0;i<aLi.length;i++)
+		 {
+			 if(i<=this.index)
+			 {
+			  	aLi[i].className='active'; 
+			 }
+			 else
+			 {
+				aLi[i].className='';  
+			 }
+		 };
+	};	
+	aLi[i].onclick=function()
+	{
+		alert('评分成功：'+(this.index+1)+'星');	
+	}; 
+ }
+};
+</script>
+</head>
+
+<body>
+<div id="pingfen">
+	<ul>
+    	<li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+</body>
+</html>

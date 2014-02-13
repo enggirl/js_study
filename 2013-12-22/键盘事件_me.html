@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  <title>Document</title>
+  <style>
+  *{margin:0;padding:0;}
+    div{position:absolute;width:100px;height:100px;background:red;}
+  </style>
+  <script>
+    window.onload = function(){
+      var oDiv = document.getElementsByTagName("div")[0];
+      document.onkeydown = function(ev){
+        var eve = ev || event;
+        console.log(eve.keyCode);
+        //37左,38上 39右 40
+        switch(eve.keyCode){
+          case 37:oDiv.style.left = oDiv.offsetLeft - 10 + 'px';
+              break;
+          case 38:oDiv.style.top = oDiv.offsetTop - 10 + 'px';
+              break;
+          case 39:oDiv.style.left = oDiv.offsetLeft + 10 + 'px';
+              break;
+          case 40:oDiv.style.top = oDiv.offsetTop  + 10 + 'px';
+              break;
+        }
+      }
+    };
+  </script>
+</head>
+<body>
+  <div></div>
+</body>
+</html>

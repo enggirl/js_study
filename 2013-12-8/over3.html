@@ -1,0 +1,44 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+*{margin:0;padding:0}
+div{width:400px;height:400px; background:#ccc;margin:20px;}
+h1{height:50px; background:yellow}
+</style>
+<script>
+window.onload=function()
+{
+	 var oDiv1=document.getElementById('div1');
+	 oDiv1.onmouseover=function(ev)
+	 {
+	    
+		//移入移出H1的时候也会触发
+		//解决方案：如果移入源是子级，就不让触发
+		
+		
+		//自己移入自己也不行。
+		//只有是父级或更上层移入的时候才让触发
+		
+		var oEvent=ev||event;
+		var from=oEvent.fromElement||oEvent.relatedTarget;
+		//  oEvent.relatedTarget  FF
+		
+		
+		alert(from);
+     };
+	
+};
+
+</script>
+</head>
+
+<body>
+<div id="div1">
+	<h1>我是标题</h1>
+</div>
+
+</body>
+</html>

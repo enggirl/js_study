@@ -1,0 +1,67 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+select{width:100px}
+</style>
+<script src="date.js"></script>
+<script>
+window.onload=function()
+{
+    //alert(date.length);
+	var aSe=document.getElementsByTagName('select');
+	
+	//给第一级加数据
+	for(var i=0;i<date.length;i++)
+	{
+		// aSe[0]
+		var json=date[i];
+		var newOption=new Option(json.name,json.name);
+		aSe[0].options[i]=newOption;
+	};
+	
+	aSe[0].onchange=function()
+	{
+		var oneIndex=this.selectedIndex;
+		//aSe[1]   创建第二级
+		var arr=date[oneIndex].sub;
+		for(var i=0;i<arr.length;i++)
+		{
+			var newOption=new Option(arr[i].name,arr[i].name);
+		    aSe[1].options[i]=newOption;	
+		};
+		
+		aSe[1].onchange=function(){
+			 var twoIndex=this.selectedIndex;
+			 if(!date[oneIndex].sub)return;
+			 var arr=date[oneIndex].sub[twoIndex].sub;
+			 console.log(arr);
+			 for(var i=0;i<arr.length;i++)
+				{
+					var newOption=new Option(arr[i].name,arr[i].name);
+					aSe[2].options[i]=newOption;	
+				};
+			 
+		}
+	};
+	
+};
+</script>
+</head>
+
+<body>
+
+<select>
+	
+</select>
+<select>
+	
+</select>
+<select>
+	
+</select>
+
+</body>
+</html>

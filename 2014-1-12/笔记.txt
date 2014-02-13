@@ -1,0 +1,315 @@
+get            post
+容量小          大
+有缓存          没有
+通过地址来提交  不通过
+不安全          相对安全
+易于分享
+快
+
+ 用得比较多     数据量大的时候
+                密码
+                上传图片    file        
+
+
+在form里面。有一个属性，method 提交方式
+
+默认就是get
+
+
+
+psot提交；
+
+Content-Type:application/x-www-form-urlencoded
+
+告诉服务器，我们的数据是什么格式的
+
+application/x-www-form-urlencoded :  默认情况就是这个
+
+' name=xxxx&name2=xxx&...... '
+
+
+
+
+multipart/form-data   主要用来上传 
+input file       post
+
+
+
+
+post  给头部  加一个数据 的格式类型
+
+oAjax.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+			
+
+
+post需要将数据放到send里面发送
+
+oAjax.send('name=1111&name2=222');
+
+
+------------
+
+
+交互
+
+1.url
+2. data
+3. 连ajax
+4. 看看成功或失败
+5. 如果成功 创建 插入
+
+
+	window.location.hash=this.innerHTML; 
+     给网址加锚
+
+
+
+
+
+
+
+
+
+
+－－－－－－－－－－－－－－－
+
+ajax  同一个域名下的数据
+
+ajax 跨域  ？？？
+
+
+XMLHttpRequest cannot load http://www.zhinengshe.com/index.html?t=0.3948563833255321. 
+Origin http://localhost is not allowed by Access-Control-Allow-Origin. 
+
+ajax不能跨域
+
+
+www.jd.com    www.360buy.com  
+
+
+
+学习跨域   jsonp   
+
+
+Jsonp(JSON with Padding)是资料格式 json 的一种“使用模式”
+
+
+
+
+<img src="aa.jpg">
+
+
+<img src="http://www.baidu.com/img/aa.jpg">
+
+<script src="ajax.js"></script>
+
+<script src="http://goo.com/xx/jq.js"></script>
+
+后缀名不重要   是给人看  
+
+
+
+
+百度搜索：
+
+
+http://suggestion.baidu.com/su?wd=a&p=3&sid=4847_4787_1433_4264_4989_4897_4759_4888_4678_4771&cb=jQuery1102046790194301865995_1389503326831&_=1389503326834
+
+
+
+http://suggestion.baidu.com/su?wd=abcd&cb=show
+
+
+wd=内容
+
+cb＝  callback  回调函数
+
+
+
+在服务器环境下，不能有中文名
+
+
+script标签的src  是一次性的  只能给一次    ->只能创建
+
+
+
+
+
+作业：  weibo做完  还有顶跟踩
+        百度搜索 jsonp   加上下键盘
+
+-------------------------------
+
+
+
+<?php
+
+  php 的标签
+
+?>
+
+
+echo  输出    ajax  jsonp form 
+
+  
+
+        js                 php
++      1.相加 2连接        只能相加
+
+.      属性操作            字符串相连
+
+->     无                 操作属性
+
+
+
+oDiv.style.width
+
+$oDiv->style->width
+
+
+
+php 语法严格 ，分号不能省
+
+
+
+后台语言比较安全  
+
+
+$_GET['user']   获取get提交过来的name
+$_POST['pass'];   post
+
+
+---------
+
+
+如果是用ajax或jsonp 来请求数据
+
+这个如果php页面还有其它的标签
+
+会交整个页面返回
+
+
+你用form 用ajax 用 jsonp 来请求
+php都是echo
+
+
+
+
+http://localhost/phpmyadmin/   
+
+wamp  测试数据库地址
+
+
+
+库——类似文件夹	本身不存数据，用于管理
+表——类似文件	存数据
+
+
+http://localhost/phpmyadmin/   
+
+建一个新的数据库  建名称
+
+建表  有几个字段
+
+写各个字段名   长度
+
+
+varchar  字符
+int     整数
+float   	浮点
+text     文本
+
+
+点保存   没有数据
+
+点插入数据 
+
+点 左侧 表名前面的图标 查看
+
+
+
+
+
+连接数据库   三个参数：数据库地址，用户名，密码
+ mysql_connect('localhost','root','');
+
+wamp  用户名默认为root  密码为空      admin
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

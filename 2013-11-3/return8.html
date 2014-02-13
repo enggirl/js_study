@@ -1,0 +1,31 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+*{margin:0;padding:0}
+div{width:400px;height:400px;padding:10px; background-color:red}
+</style>
+<script>
+window.onload=function()
+{
+   function fn(n)
+   {
+	 // alert(n);
+	 return function(){
+			alert(n); 
+	 };
+   };
+   
+   var oDiv=document.getElementById('box');
+  // oDiv.onclick=fn;
+   oDiv.onclick=fn(1);
+};
+</script>
+</head>
+
+<body>
+<div id="box">234234234</div>
+</body>
+</html>

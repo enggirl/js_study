@@ -1,0 +1,24 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script>
+window.onload=function()
+{
+    var oTex=document.getElementById('tex');
+	oTex.onkeyup=function()
+	{
+	   document.title=this.value.length;	
+	   //一直按着不动，也要等抬起的时候才计算
+	  
+	};	
+};
+
+</script>
+</head>
+
+<body>
+<input type="text" id="tex">
+</body>
+</html>

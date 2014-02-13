@@ -1,0 +1,28 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script>
+window.onload=function()
+{
+   var oS=document.getElementById('os');
+
+   oS.onchange=function()
+   {
+	  alert(oS.options[oS.selectedIndex].text);
+	  //  text不一定兼容，但在这里是兼容 
+	  //  会了避免问题，统一用innerHTML    
+   };
+};
+</script>
+</head>
+
+<body>
+<select id="os">
+ <option value="bj">北京</option>
+ <option value="sh">上海</option>
+ <option value="sz">深圳</option>
+</select>
+</body>
+</html>

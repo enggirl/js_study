@@ -1,0 +1,28 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+div{width:300px;height:300px; background:red; position:absolute;top:300px;height:200px;}
+</style>
+<script>
+window.onload=function()
+{
+	var oBtn=document.getElementById('btn');
+	var oTex=document.getElementById('tex');
+	var oBox=document.getElementById('box');
+    oBtn.onclick=function()
+	{
+	   alert( oBox.offsetTop );	
+	};
+	
+};
+</script>
+</head>
+
+<body>
+<input type="button" value="open" id="btn">
+<div id="box"></div>
+</body>
+</html>

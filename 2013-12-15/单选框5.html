@@ -1,0 +1,48 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+*{margin:0;padding:0}
+.radio_off{width:18px;height:18px; background:url(radio.gif) no-repeat 0 0; display:inline-block;}
+.radio_on{width:18px;height:18px; background:url(radio.gif) no-repeat 0 -18px; display:inline-block;}
+</style>
+<script>
+window.onload=function()
+{
+   var aSpan=document.getElementsByTagName('span');
+   var aSex=document.getElementsByName('sex');
+   
+   for(var i=0;i<aSpan.length;i++)
+   {
+	 aSpan[i].index=i;
+	 aSex[i].style.display='none';
+	 aSpan[i].onclick=function()
+	 {
+	     for(var i=0;i<aSpan.length;i++)
+ 		  {
+			
+			 aSpan[i].className='radio_off'; 
+		  };
+	      this.className='radio_on';
+		  aSex[this.index].checked=true;
+		  	 
+     };   
+   }
+};
+</script>
+</head>
+
+<body>
+<form action="http://www.baidu.com">
+   <span class="radio_off"></span>
+    男<input type="radio" value="man" name="sex">
+    <span class="radio_off"></span>
+     女<input type="radio" value="woman" name="sex">
+     <span class="radio_off"></span>
+        女博士<input type="radio" value="phd" name="sex">
+      <input type="submit" value="提交">
+</form>
+</body>
+</html>

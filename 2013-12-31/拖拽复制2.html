@@ -1,0 +1,87 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+*{margin:0;padding:0}
+.box1{ width:100px;height:100px; background:red; position:absolute;top:0;left:0; z-index:1;}
+
+</style>
+<script>
+window.onload=function()
+{
+	var oBox=document.getElementById('box1');
+	var oTex=oBox.children[0];
+	oBox.onmousedown=function(ev)
+	{
+		var oEvent=ev||event;
+		var disX=oEvent.clientX-oBox.offsetLeft;
+		var disY=oEvent.clientY-oBox.offsetTop;
+		
+		var borderDiv=document.createElement('div');
+/*		 borderDiv.className='box1';
+		 borderDiv.innerHTML=this.innerHTML;
+		 borderDiv.style.left=this.offsetLeft+'px';
+		 borderDiv.style.top=this.offsetTop+'px'; 
+		 borderDiv.style.zIndex=0;
+		 document.body.appendChild(borderDiv);*/
+		 
+		 alert(this.outerHTML)  //outerHTML 只能读，不能赋值
+		 
+		 document.body.appendChild(borderDiv);
+		  
+		document.onmousemove=function(ev)
+		{
+			var oEvent=ev||event;
+			oBox.style.left=oEvent.clientX-disX+'px';
+			oBox.style.top=oEvent.clientY-disY+'px';
+		};  
+		
+		document.onmouseup=function(ev)
+		{
+			document.onmousemove=null;
+			document.onmouseup=null;
+			if(oBox.setCapture)
+			{
+				oBox.releaseCapture();
+				// IE低版本不会再选中文本
+				
+			};
+			
+			document.body.removeChild(borderDiv);
+			
+		};  
+		
+		if(oBox.setCapture)
+		{
+			oBox.setCapture();
+			// IE低版本不会再选中文本
+		}
+		
+		return false;
+		// IE低版本用这个还是会选中文本	
+	};
+	
+	oTex.onmousedown=function(ev)
+	{
+		var oEvent=ev||event;
+		oEvent.cancelBubble=true;	
+	};
+};
+</script>
+
+</head>
+
+<body>
+
+<div id="box1" class="box1">
+	<input style="width:50px" type="text">
+    sdfsdfdsf<br />    sdfsdfdsf<br />    sdfsdfdsf<br />    sdfsdfdsf<br />
+	
+</div>
+
+
+
+</body>
+</html>

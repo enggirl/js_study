@@ -1,0 +1,42 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script src="jquery-1.7.2.js"></script>
+<script>
+
+$(function(){
+	
+	$('#btn').click(function(){
+	
+		$.ajax({
+		   url:'2.php',
+		   success: function(html){
+			   alert(html);
+			 },
+		   error: function(e){
+			   
+			   alert( JSON.stringify(e)  );
+			   //json 转字符串的方法 不兼容
+			 },
+			 timeout:2000   //如果2秒之内还没有成功，就代表失败
+			 
+			 //如果超时JQ返回0
+			
+		});
+		
+		
+	});
+		
+});
+
+</script>
+</head>
+
+<body>
+
+<input type="button" value="点击" id="btn">
+
+</body>
+</html>

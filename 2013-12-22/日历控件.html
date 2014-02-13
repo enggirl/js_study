@@ -1,0 +1,82 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+*{margin:0;padding:0}
+.dateDiv{width:210px;overflow:hidden;border:1px solid #000; position:absolute;}
+.dateDiv .name{height:20px; line-height:20px;}
+.dateDiv .name li{height:20px;width:100%; text-align:center; color:blue;list-style:none; position:relative;}
+.dateDiv .name li .a1{ position:absolute;top:0;left:0;}
+.dateDiv .name li .a2{ position:absolute;top:0;right:0;}
+.dateDiv .week{height:30px; line-height:20px;border-bottom:1px solid #000;}
+.dateDiv .week li{ float:left;width:30px;height:30px; text-align:center; list-style:none;}
+.dateDiv .dateUl{ overflow:hidden; clear:both}
+.dateDiv .dateUl li{float:left;width:30px;height:30px; text-align:center; line-height:30px;list-style:none;}
+.dateDiv .dateUl li.ccc{ color:#ccc;}
+.dateDiv .dateUl li.red{ background:#F90}
+.dateDiv .dateUl li.sun{ color:#f00;}
+</style>
+<script>
+window.onload=function()
+{
+	var oTex=document.getElementById('tex');
+	
+	oTex.onclick=function()
+	{
+		var oBigDiv=document.createElement('div');
+		oBigDiv.innerHTML='<ul class="name"><li><span></span><a href="javascript:;" class="a1">上月</a><a href="javascript:;" class="a2">下月</a></li></ul><ul class="week"><li>一</li><li>二</li><li>三</li><li>四</li><li>五</li><li style="color:#f00;">六</li><li style="color:#f00;">日</li></ul><ul class="dateUl"></ul>';	
+		document.body.appendChild(oBigDiv);
+		oBigDiv.className='dateDiv';
+		var left=getPos(this).left;
+		var top=getPos(this).top;
+		
+		oBigDiv.style.left=left+'px';
+		oBigDiv.style.top=top+this.offsetHeight+'px';
+	};
+	
+	
+};
+
+function getPos(obj)
+{
+	var l=0;
+	var t=0;
+	while(obj)
+	{
+		l+=obj.offsetLeft;
+		t+=obj.offsetTop;
+		obj=obj.offsetParent;	
+	};
+	
+	return {left:l,top:t};
+};
+</script>
+</head>
+
+<body>
+<input type="text" autocomplete="off" id="tex" style="margin:50px 100px;">
+<!--<div>
+	<ul class="name">
+        <li>
+           <span></span>
+           <a href="javascript:;" class="a1">上月</a>
+           <a href="javascript:;" class="a2">下月</a>
+        </li>
+    </ul>
+    <ul class="week">
+    	<li>一</li>
+    	<li>二</li>
+    	<li>三</li>
+    	<li>四</li>
+    	<li>五</li>
+    	<li style="color:#f00;">六</li>
+    	<li style="color:#f00;">日</li>
+    </ul>
+    <ul class="dateUl">
+    	
+    </ul>
+</div>-->
+</body>
+</html>

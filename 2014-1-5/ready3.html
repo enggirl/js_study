@@ -1,0 +1,50 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+
+<script>
+
+window.onload=function()
+{
+	alert('load');	
+};
+
+
+
+// IE678
+document.onreadystatechange=function()
+{
+	//  onreadystatechange 
+	// 1.在加载页面的时候判断过程
+	   //DOM 建模 解析 加载中loading 完成complete
+	     //在以上这些进行的时候，每进行一样都会返回一个值
+	// 2. 在ajax判断与后台交互的过程
+
+	if(document.readyState=='complete')
+	{
+		alert('ready');	
+		
+		// 在IE678里面  这么写可能会在图片加载之后才完成
+		// 可能	
+		
+		// 绝对比onload快
+	}
+
+		
+};
+
+
+
+
+
+</script>
+
+</head>
+
+<body>
+<img src="http://h.hiphotos.baidu.com/image/h%3D768%3Bcrop%3D0%2C0%2C1024%2C768/sign=40dec9bfa2ec08fa390011a161d55e1f/dbb44aed2e738bd404c1df31a38b87d6267ff9ca.jpg">
+
+</body>
+</html>

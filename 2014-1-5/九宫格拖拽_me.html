@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  <title>Document</title>
+  <style>
+    *{margin:0;padding:0;}
+    ul{position:relative;list-style:none;width:750px;height:750px;margin:auto;background:#ccc;}
+    ul li{float:left;width:200px;height:200px;background:red;margin:0 50px 50px 0;font-size:100px;color:#fff;}
+  </style>
+  <script>
+    /*
+    九宫格拖拽
+
+    1.每个块都可以拖动  
+    2.块拖动有范围的，超过灰色背景，会回到原位
+    
+    */
+    window.onload = function(){
+      var oBox = document.getElementById("box");
+      var aLi = oBox.children;
+      window.z=0;//赋值每个块的层级
+
+     //1.1存储每个块的当前位置
+      var arr = [];//用来存放每个块的位置，也就是left和top值
+      for(var i=0; i<aLi.length; i++){
+        arr.push({l:aLi[i].offsetLeft,t:aLi[i].offsetTop});
+      }
+      // 1.2初始化给每个块添加决对定位 而top和left值就是他们
+      // 每个所处的位置，因为已经定好位了，所以margin不需要了
+      //初始化每块的定位
+      for(var i=0; i<aLi.length; i++){
+        aLi[i].style.position = "absolute";
+        aLi[i].style.left = arr[i].l + "px";
+        aLi[i].style.top = arr[i].t + "px";
+        aLi[i].style.margin = "0";
+        aLi[i].innerHTML = i+1;
+       
+        aLi[i].style.background = rng("rgb");//为了便于区别，随机颜色
+        
+        //1.3拖拽
+        drag(aLi[i],aLi);
+      }
+      
+    };
+    //1.3拖拽功能
+    //1.3.1 判断与其他块有没碰上，如果没有碰上，就回到原来的位置上
+    function drag(obj,ali){
+      obj.onmousedown = function(ev){
+        //记录按下鼠标后与块的位置
+        var eve = ev || event;
+        var disX = eve.clientX - obj.offsetLeft;
+        var disY = eve.clientY - obj.offsetTop;
+
+        //添加层级关系，让点击的出现在最上面
+        window.z++;
+        obj.style.zIndex = window.z;
+        //记录移动块的初始位置
+        var pos = {l:obj.offsetLeft,t:obj.offsetTop};
+
+        
+        document.onmousemove = function(ev){//移动后赋值位置
+          var eve = ev || event;
+          obj.style.left = eve.clientX - disX + "px";
+          obj.style.top = eve.clientY - disY + "px";
+        }
+        document.onmouseup = function(ev){
+          document.onmousemove = document.onmouseup = null;
+
+          var arr = [];//存放碰上的块
+          var dpos = false;//存放是否碰上状态
+          for(var i=0; i<ali.length; i++){
+            if(obj == ali[i]){
+              continue;
+            }else if(test(obj,ali[i])){ //碰上了，就找那个跟他离的近，互换位置
+              arr.push(ali[i]);
+              dpos = true;  
+            }
+            
+          }
+          //console.log(arr.length)
+          if(!dpos){//没碰上,返回到原来的位置
+              obj.style.left = pos.l + "px";
+              obj.style.top = pos.t + "px";
+            }
+
+          //计算碰撞后跟其他块距离
+          var num = 9999999999999;
+          var index = 0;
+          for(var j=0; j<arr.length; j++){
+            //var len = [];//存放距离
+            var l = Math.abs(obj.offsetLeft - arr[j].offsetLeft);
+            var t = Math.abs(obj.offsetTop - arr[j].offsetTop);
+            var s = l*l + t*t;
+            if(s < num){
+              num = s;
+              index = j;
+            }
+          }
+
+          // 交换与他距离最近的块位置
+          obj.style.left = arr[index].offsetLeft + "px";
+          obj.style.top = arr[index].offsetTop + "px";
+
+          arr[index].style.left = pos.l + "px";
+          arr[index].style.top = pos.t + "px";
+
+          return false;
+        }
+      };
+    }
+    //随机数
+    function rng(n,m){
+      if(n=="rgb"){//随机颜色
+        return "rgb("+ parseInt(Math.random()*256) + "," + parseInt(Math.random()*256) + "," + parseInt(Math.random()*256) +")";
+      }
+      return parseInt(Math.random()*(m-n+1)+n);
+    }
+
+    //判断两个元素是否碰上
+    function test(obj1,obj2){
+      // 原理：两个元素如果8条边只要有一边碰上，就是碰上了，可是怎么算碰上了，就是一条边的位置被另一个块的相对边位置小
+      var l1 = obj1.offsetLeft;
+      var t1 = obj1.offsetTop;
+      var r1 = obj1.offsetLeft + obj1.offsetWidth;
+      var b1 = obj1.offsetTop + obj1.offsetHeight;
+
+      var l2 = obj2.offsetLeft;
+      var t2 = obj2.offsetTop;
+      var r2 = obj2.offsetLeft + obj2.offsetWidth;
+      var b2 = obj2.offsetTop + obj2.offsetHeight;
+
+      if(b1<t2||t1>b2||l1>r2||b1<l2){
+        return false;
+      }else{
+        return true;
+      }
+
+    }
+  </script>
+</head>
+<body>
+  <ul id="box">
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+</body>
+</html>

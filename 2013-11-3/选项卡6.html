@@ -1,0 +1,83 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+*{margin:0;padding:0}
+#box{width:402px;height:400px; background:#ccc}
+#box div{width:400px;height:350px; border:1px solid #000; display:none}
+#box div.show{display:block}
+#box input{height:50px; display:inline-block;width:100px;}
+#box input.active{ background:#0f0;}
+</style>
+<script>
+window.onload=function()
+{
+	var oBox=document.getElementById('box');
+	var aInput=oBox.getElementsByTagName('input');
+	var aDiv=oBox.getElementsByTagName('div');
+	
+	for(var i=0;i<aDiv.length;i++)
+	{
+		aInput[i].a=i;
+		aInput[i].onclick=function()
+		{ 
+			for(var i=0;i<aDiv.length;i++)
+			{
+				aInput[i].className='';
+				aDiv[i].className='';
+			};
+			this.className='active';
+			aDiv[this.a].className='show';
+			iNow=this.a;
+		};
+	};
+	
+	var iNow=0;
+	
+	var timer=setInterval(fn,500);
+	
+	function fn(){
+		for(var i=0;i<aDiv.length;i++)
+			{
+				aInput[i].className='';
+				aDiv[i].className='';
+			};
+		iNow=iNow+1;
+		if(iNow==aDiv.length)
+		{
+			iNow=0;	
+		}
+		aInput[iNow].className='active';
+		aDiv[iNow].className='show';	
+		
+	}
+	
+	oBox.onmouseover=function()
+	{
+		clearInterval(timer);
+	};
+	
+	oBox.onmouseout=function()
+	{
+		timer=setInterval(fn,500);
+	};
+};
+
+//  操作属性   xxx.value    xxxx.title
+
+</script>
+</head>
+
+<body>
+<div id="box">
+    <input class="active" type="button" value="aa">
+    <input type="button" value="bb">
+    <input type="button" value="cc">
+    <div class="show">1111111111111111</div>
+     <div>2222222222</div>
+     <div>3333333333</div>
+</div>
+</body>
+</html>

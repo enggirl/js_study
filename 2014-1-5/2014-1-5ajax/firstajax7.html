@@ -1,0 +1,58 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script src="ajax.js"></script>
+<script>
+//firsttxt.txt
+//ajax(url, fnSucc, fnFaild)
+//   url地址：请求的文件，文档
+//  fnSucc  : 请求成功执行的回调函数
+//  fnFaild :  请求失败执行的回调函数
+
+// Math.random() 会不会重复
+//var s=''+Math.random();
+//alert(s.length);  //19  去除0和点  17位
+// 重复的机率很低很低很低很低很低很低很低很低很低很低.......
+
+
+
+
+/*ajax('d.jpg?t='+Math.random(), function(str){
+	
+	// 文件编码  要一样
+	
+	alert(str);
+		
+}, function(){
+	
+	alert('失败');	
+	
+});*/
+
+
+////  http://www.baidu.com/s  
+
+
+ajax('d?t='+Math.random(), function(str){
+	
+	// 文件编码  要一样
+	
+	alert(str);
+		
+}, function(){
+	
+	alert('失败');	
+	
+});
+
+
+
+
+</script>
+</head>
+
+<body>
+</body>
+</html>

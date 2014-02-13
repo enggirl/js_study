@@ -1,0 +1,163 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+
+<style>
+*{margin:0;padding:0}
+#div1{width:400px;height:30px;margin:40px auto;border:1px solid #000; position:relative;}
+#div1 span{width:100px;height:30px; background:red; position: absolute;top:0;left:0;}
+#div1 a{height:30px; width:30px; position:absolute;top:0;left:-30px;} 
+
+#div2{background:blue;width:400px;height:400px; position:relative;}
+#div2 p{width:100%; position:absolute;top:0;left:0;}
+</style>
+<script>
+window.onload=function()
+{
+	var oDiv1=document.getElementById('div1');
+	var oDiv2=document.getElementById('div2');
+	var oSpan=oDiv1.children[0];
+	var oP=oDiv2.children[0];
+	
+	//span的宽度不定 根据内容来
+	
+	oSpan.style.width=oDiv2.offsetHeight/oP.offsetHeight*oDiv1.offsetWidth+'px';
+	
+	
+	
+	oSpan.onmousedown=function(ev)
+	{
+		var oEvent=ev||event;
+		var disX=oEvent.clientX-this.offsetLeft;
+		
+		document.onmousemove=function(ev)
+		{
+			var oEvent=ev||event;
+			var l=oEvent.clientX-disX;
+			spanFn(l);
+			
+			return false;	
+		};
+		
+		document.onmouseup=function()
+		{
+			document.onmousemove=document.onmouseup=null;
+		};
+		
+		return false;
+	};	
+	
+	function spanFn(l)
+	{
+		if(l<0)l=0;
+			if(l>oDiv1.offsetWidth-2-oSpan.offsetWidth)
+			{
+			   l=	oDiv1.offsetWidth-2-oSpan.offsetWidth;
+			}
+			
+			oSpan.style.left=l+'px';
+			
+			
+			//比例
+			var bili=l/(oDiv1.offsetWidth-2-oSpan.offsetWidth);
+			
+			oP.style.top=-(oP.offsetHeight-oDiv2.offsetHeight)*bili+'px';	
+	};
+	
+	
+	wheelFn(oDiv2,function(down){
+		//	下 true
+		if(down)
+		{
+			var l=oSpan.offsetLeft-20;
+			spanFn(l);
+		}
+		else
+		{
+			var l=oSpan.offsetLeft+20;
+			spanFn(l);
+		}
+		
+	});
+	
+	oDiv1.getElementsByTagName('a')[0].onclick=function()
+	{
+		var l=oSpan.offsetLeft+20;
+			spanFn(l);	
+	};
+};
+
+
+
+function wheelFn(obj,_fn)
+{
+	if(window.navigator.userAgent.indexOf('Firefox')!=-1)
+	{
+		obj.addEventListener('DOMMouseScroll',fn,false);	
+	}
+	else
+	{
+		obj.onmousewheel=fn;	
+	};
+	
+	function fn(ev)
+	{
+		var oEvent=ev||event;
+		var down;
+		down=oEvent.wheelDelta?oEvent.wheelDelta<0:oEvent.detail>0;
+		
+		_fn&&_fn(down);
+		
+		ev&&ev.preventDefault();  //在绑定事件里取消默认
+		return false;
+	};
+};
+</script>
+</head>
+
+<body>
+
+<div id="div1"><span></span><a href="javascript:;">向上</a></div>
+
+
+<div id="div2">
+	<p>
+    	dsfasdfsdafsdfsdf<br />
+    	dsfasdfsdafsdfsdf<br />
+    	dsfasdfsdafsdfsdf<br />
+    	dsfasdfsdafsdfsdf<br />
+    	dsfasdfsdafsdfsdf<br />
+    	dsfasdfsdafsdfsdf<br />
+    	dsfasdfsdafsdfsdf<br />
+    	dsfasdfsdafsdfsdf<br />
+    	dsfasdfsdafsdfsdf<br />
+    	dsfasdfsdafsdfsdf<br />
+    	dsfasdfsdafsdfsdf<br />
+    	dsfasdfsdafsdfsdf<br />
+    	dsfasdfsdafsdfsdf<br />
+    	dsfasdfsdafsdfsdf<br />
+    	dsfasdfsdafsdfsdf<br />
+    	dsfasdfsdafsdfsdf<br />
+    	dsfasdfsdafsdfsdf<br />
+    	dsfasdfsdafsdfsdf<br />
+    	dsfasdfsdafsdfsdf<br />
+    	dsfasdfsdafsdfsdf<br />
+    	dsfasdfsdafsdfsdf<br />
+    	dsfasdfsdafsdfsdf<br />
+    	3242423423423rwedfsdf<br />
+    	dsfasdfsdafsdfsdf<br />
+    	dsfasdfsdafsdfsdf<br />
+    	dsfasdfsdafsdfsdf<br />
+    	dsfasdfsdafsdfsdf<br />dsfasdfsdafsdfsdf<br />
+    	333333333333<br />
+    	dsfasdfsdafsdfsdf<br />
+    	
+    	00000000000000<br />
+    </p>
+
+</div>
+
+</body>
+</html>

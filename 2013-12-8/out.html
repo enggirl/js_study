@@ -1,0 +1,67 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+*{margin:0;padding:0}
+div{width:400px;height:400px; background:#ccc;margin:20px;}
+h1{height:50px; background:yellow}
+</style>
+<script>
+window.onload=function()
+{
+	 var oDiv1=document.getElementById('div1');
+	 oDiv1.onmouseout=function(ev)
+	 {
+	    		
+		var oEvent=ev||event;
+		var to=oEvent.toElement||oEvent.relatedTarget;
+		//  判断移入目标
+		//  oEvent.relatedTarget  FF
+		
+		
+		//如果移出的时候是我的子元素，不靠谱
+		if( isChild(this,to) )
+		{
+		   	return;
+		};
+		
+		
+		alert(123);
+     };
+	
+};
+
+function isChild(oParent,obj)  //判断是不是子级或自己
+{
+   
+   while(obj)
+   {
+	   if(obj==oParent) 
+	   {
+		  return true;
+		  //移入源是自己  或子级
+	   }
+	   
+	   
+		obj=obj.parentNode;
+		   
+   }	
+   
+   //不是子级或自己
+   return false;
+	
+	
+}
+
+</script>
+</head>
+
+<body>
+<div id="div1">
+	<h1>我是标题</h1>
+</div>
+
+</body>
+</html>

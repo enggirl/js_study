@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  <title>Document</title>
+  <script>
+    window.onload = function(){
+      var oH2 = document.getElementsByTagName("h2")[0];
+      var oInput = document.getElementById("show");
+      oInput.onclick = function(){
+        oH2.style.display = "block";
+        return false;  //因为action为空，submit默认会重新刷新页面的，也就是重新加载页面，而重新加载页面，h2是不显示的。所以，不是不现实，而是显示出来了，又被重新加载的页面覆盖。
+      }
+    }
+  </script>
+</head>
+<body>
+  <form action="">
+    <input type="submit" value="show" id="show">
+  </form>
+  <h2 style="display:none;">让我出来</h2>
+</body>
+</html>

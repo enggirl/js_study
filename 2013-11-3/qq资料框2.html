@@ -1,0 +1,46 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+#box1{width:200px;height:200px; background:red; float:left;margin-right:10px;}
+#box2{width:200px;height:200px; background:blue; float:left; display:none}
+</style>
+<script>
+window.onload=function()
+{
+	var oBox1=document.getElementById('box1');
+	var oBox2=document.getElementById('box2');
+	var timer;
+	oBox1.onmouseover=function()
+	{
+		oBox2.style.display='block';
+	};
+	
+	oBox1.onmouseout=function()
+	{
+		timer=setTimeout(function(){
+			oBox2.style.display='none';	
+		},200);	
+	};
+	
+	
+	oBox2.onmouseover=function()
+	{
+		clearTimeout(timer);
+	};
+	
+	oBox2.onmouseout=function()
+	{
+		oBox2.style.display='none';
+	};
+};
+</script>
+</head>
+
+<body>
+<div id="box1"></div>
+<div id="box2"></div>
+</body>
+</html>

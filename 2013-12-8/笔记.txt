@@ -1,0 +1,151 @@
+oEvent.srcElement   事件源     chrome ie
+
+oEvent.target   FF
+
+
+----------------------
+
+
+oEvent.fromElement    chrome ie 移入源
+
+oEvent.relatedTarget  FF移入源
+
+-----------------
+
+oEvent.toElement     chrome ie  移入目标
+oEvent.relatedTarget  FF移入目标
+
+
+---------------
+
+document.createElement('div');   创建DIV
+document.createElement('li');    
+  
+
+
+插入节点
+
+父级.appendChild(创建出来的元素);    从节点最后插入
+
+
+父级.insertBefore(创建出来的元素,插入到谁前面);
+
+************
+appendChild  以及   insertBefore
+
+也可以插入原本就有的标签
+
+只是改变他的位置
+
+标签原本的属性，事件都还有
+
+**********
+
+
+
+
+删除节点
+
+父级.removeChild(需要删除的节点);
+
+
+
+parentNode  父级－  结构上的父级
+
+---------
+
+
+firstElementChild    首节点  FF  chrome
+firstChild      IE
+
+var lastLi=oUl.lastElementChild||oUl.lastChild;  最后一个节点
+
+---
+
+上一个兄弟节点
+ var preLi=this.previousElementSibling|| this.previousSibling;
+   
+
+下一个
+var preLi=this.nextElementSibling|| this.nextSibling;
+
+
+
+---------------------------
+
+BOM  操作浏览器  基本不兼容
+
+
+
+window.open();  打开一个新窗口
+document.write()  在页面内写东西
+window.close()  关闭  不兼容
+不能关掉自己本窗口，但是可以关闭open出来的
+
+
+window.navigator.userAgent  浏览器信息，可以用来判断浏览器
+
+window.location  可以获取网址
+window.location='http://www.zhinengshe.com';  也可以跳转
+
+window.location.reload(); 强制刷新页面
+
+
+
+onresize  改变浏览器大小的时候
+右下角的DIV也需要加上这个事件
+
+
+
+offsetHeight  和 offsetWidth 
+当对象隐藏的时候，获取出来为零
+
+用getComputedStyle和current不会获取不出来
+
+
+----------------------
+
+求绝对位置
+
+求谁的 obj
+
+ obj.offsetTop+有定位的父级的offsetTop
+
+ if( 如果往上一直都有有定位的父级 )
+{
+   一直加
+}
+
+
+offsetParent  有定位的父级
+
+
+----------------------------
+
+http://www.kankan.com/
+
+迅雷  延迟加载
+因为网速慢，回去自己再看下效果
+
+
+
+
+
+
+
+－－－－－－－－－－－－－－－
+
+作业：
+好360创建网址快捷方式  
+两个留言板
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,57 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+*{margin:0;padding:0}
+
+img{ display:block;height:800px;width:600px;}
+</style>
+<script>
+window.onload=function()
+{
+   var s='http://a.hiphotos.sdfsdafes.com/image/w%3D2048/sign=58663f84023b5bb5bed727fe02ebd439/7dd98d1001e93901516db3117aec54e736d196b5.jpg';
+   
+   var oImg=document.createElement('img');
+   document.body.appendChild(oImg);
+   oImg.src=s;
+   oImg.onload=function()
+   {
+	  //图片也有onload
+	  alert('完成');   
+   };
+   
+   oImg.onerror=function()
+   {
+	  //图片加载错误
+	  alert('错');   
+   };
+	
+};
+
+//求绝对位置
+function getPos(obj)
+{
+    var t=0;
+	var l=0;
+	
+	while(obj)
+	{
+	     t+=obj.offsetTop;
+		 l+=obj.offsetLeft;
+	   	 obj=obj.offsetParent;
+	};
+	
+	return {left:l,top:t};
+		
+}
+
+</script>
+</head>
+
+<body id="body1">
+
+
+</body>
+</html>

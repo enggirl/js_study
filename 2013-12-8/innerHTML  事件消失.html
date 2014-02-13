@@ -1,0 +1,38 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+*{margin:0;padding:0}
+
+img{ display:block;height:800px;width:600px;}
+</style>
+<script>
+window.onload=function()
+{
+	var oUl=document.getElementById('ul1');
+	var aLi=oUl.children;
+	for(var i=0;i<aLi.length;i++)
+	{
+	   aLi[i].onclick=function()
+	   {
+		   alert(2343);  
+		   oUl.innerHTML+='<li>4</li>'
+		   
+		};	
+	}
+};
+
+</script>
+</head>
+
+<body id="body1">
+<ul id="ul1">
+	<li>1</li>
+	<li>2</li>
+	<li>3</li>
+</ul>
+
+</body>
+</html>

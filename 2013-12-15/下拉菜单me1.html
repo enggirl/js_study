@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  <title>Document</title>
+  <style>
+    *{margin:0;padding:0;}
+    .selDiv{float:left;width:100px;height:30px;line-height:30px;margin-right:20px;}
+    .selDiv p{border:1px solid #ccc;}
+    .selDiv ul{display:none;list-style:none;}
+    .selDiv ul li{height:30px;border:1px solid #ccc;text-align:center;}
+  </style>
+  <script>
+    window.onload = function(){
+      var oSelDiv = document.getElementById("selDiv");
+      var oP = oSelDiv.getElementsByTagName("p")[0];
+      var oUl = oSelDiv.getElementsByTagName("ul")[0];
+      var oLi = oUl.children;
+
+      oP.onclick = function(){
+        if( oUl.style.display == "block"){
+
+           oUl.style.display = "none";
+
+        }else{
+
+           oUl.style.display = "block";
+        }
+      };
+
+      for(var i=0; i<oLi.length; i++){
+        oLi[i].onclick = function(){
+          var str = this.innerHTML;
+          oP.innerHTML = str;
+          oUl.style.display = "none";
+        };
+      }
+    }
+  </script>
+</head>
+<body>
+  
+  <form action="http://www.baidu.com">
+    <div class="selDiv" id="selDiv">
+      <p>北京</p>
+      <ul>
+        <li>北京</li>
+        <li>上海</li>
+        <li>深圳</li>
+        <li>香港</li>
+      </ul>
+    </div>
+    <select name="se" id="sel">
+      <option value="bj">北京</option>
+      <option value="sh">上海</option>
+      <option value="sz">深圳</option>
+      <option value="xg">香港</option>
+    </select>
+    <input type="submit" value="tijiao" />
+  </form>
+</body>
+</html>

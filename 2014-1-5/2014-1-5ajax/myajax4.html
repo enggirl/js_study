@@ -1,0 +1,102 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script src="ajax.js"></script>
+<script>
+
+
+window.onload=function()
+{
+	var oBtn=document.getElementById('btn');
+	var oUl=document.getElementById('ul1');
+	
+	
+	oBtn.onclick=function()
+	{
+		
+	
+		//1
+		if(window.XMLHttpRequest)
+		{
+			var oAjax=new XMLHttpRequest();	
+		}
+		else
+		{
+			var oAjax=new ActiveXObject('Microsoft.XMLHTTP');
+		}
+		
+		//2
+		//  oAjax.open(get/post,地址url,是否异步);
+		oAjax.open('GET','news.txt?t='+Math.random(),true);
+		//  true 异步
+		
+		
+		//3
+		oAjax.send();
+		
+		
+		//4
+		oAjax.onreadystatechange=function()
+		{
+			//与后台通信过程中的状态变化
+			
+			if(oAjax.readyState==4)
+			{
+				
+				if(oAjax.status>=200&&oAjax.status<300||oAjax.status==304)
+				{
+					alert('成功');	
+				}	
+				else
+				{
+					alert('失败');	
+				}
+			}
+					
+		}; 
+	
+	};
+	
+	
+	
+	
+	
+		
+};
+
+
+</script>
+<style>
+*{margin:0;padding:0}
+li{ list-style:none;margin-bottom:10px; overflow:hidden;}
+h1{ color:#C0F}
+span{ float:left;margin-right:10px;}
+
+</style>
+</head>
+
+<body>
+<input type="button" value="点击" id="btn">
+<ul id="ul1">
+	
+   <!--<li>
+   	  <h1>我是标题11111</h1>
+      <p><span>内容1111</span><span>内容2222</span><span>内容33333</span></p>
+   </li> -->
+
+
+</ul>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+

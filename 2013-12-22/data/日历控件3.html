@@ -1,0 +1,37 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+*{margin:0;padding:0}
+.dateDiv{width:210px;overflow:hidden;border:1px solid #000; position:absolute;}
+.dateDiv .name{height:20px; line-height:20px;}
+.dateDiv .name li{height:20px;width:100%; text-align:center; color:blue;list-style:none; position:relative;}
+.dateDiv .name li .a1{ position:absolute;top:0;left:0;}
+.dateDiv .name li .a2{ position:absolute;top:0;right:0;}
+.dateDiv .week{height:30px; line-height:20px;border-bottom:1px solid #000;}
+.dateDiv .week li{ float:left;width:30px;height:30px; text-align:center; list-style:none;}
+.dateDiv .dateUl{ overflow:hidden; clear:both}
+.dateDiv .dateUl li{float:left;width:30px;height:30px; text-align:center; line-height:30px;list-style:none;}
+.dateDiv .dateUl li.ccc{ color:#ccc;}
+.dateDiv .dateUl li.red{ background:#F90}
+.dateDiv .dateUl li.sun{ color:#f00;}
+</style>
+<script src="data.js"></script>
+<script>
+window.onload=function()
+{
+	
+    dataFn('tex');
+	dataFn('tex2');
+};
+</script>
+</head>
+
+<body>
+购票：<input type="text" autocomplete="off" id="tex" style="margin:50px 100px;">
+返程：<input type="text" autocomplete="off" id="tex2" style="margin:50px 100px;">
+
+</body>
+</html>

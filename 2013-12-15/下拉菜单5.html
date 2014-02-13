@@ -1,0 +1,103 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+*{margin:0;padding:0}
+.seDiv{width:100px;height:30px; position:relative; display:inline-block}
+.seDiv p{height:28px;border:1px solid #000;}
+.seDiv ul{ position:absolute;top:30px;left:0;width:100px; background:#fff; display:none}
+.seDiv ul li{height:28px; line-height:28px; text-align:center;border:1px solid #000;}
+
+
+</style>
+<script>
+window.onload=function()
+{
+	
+	var oSe=document.getElementsByName('se')[0];
+	
+	
+   	var oDiv=document.createElement('div');
+	oDiv.className='seDiv';
+	oSe.parentNode.insertBefore(oDiv,oSe);
+   
+	var oP=document.createElement('p');
+	oDiv.appendChild(oP);
+	oP.innerHTML=oSe.options[oSe.selectedIndex].innerHTML;
+	
+	oP.onmousedown=function()
+	{
+	  return false;	
+	};
+	oP.onclick=function(ev)
+	{
+		var oEvent=ev||event;
+		oEvent.cancelBubble=true;
+		
+	   if(oUl.style.display=='block')
+	   {
+		 oUl.style.display='none';    
+		}
+	   else
+	   {
+		  oUl.style.display='block'; 
+	    }
+	      	
+	};
+	
+	var oUl=document.createElement('ul');
+	oDiv.appendChild(oUl);
+	
+	for(var i=0;i<oSe.options.length;i++)
+	{
+	    var oLi=document.createElement('li');
+		oUl.appendChild(oLi);
+		oLi.innerHTML=oSe.options[i].innerHTML;
+		oLi.index=i;
+		oLi.onclick=function()
+	   {
+		  oP.innerHTML=this.innerHTML; 
+		  oUl.style.display='none';
+		  oSe.selectedIndex=this.index;      
+		};
+	   	
+	}
+	
+	
+	oSe.style.display='none';
+	
+	document.onclick=function()
+	{
+	   	oUl.style.display='none';
+	};
+	
+};
+
+</script>
+</head>
+
+<body>
+<form action="http://www.zhinengshe.com">
+	<!--<div class="seDiv">
+       <p>上海</p>
+       <ul>
+       	<li>上海</li>
+       	<li>北京</li>
+       	<li>广州</li>
+       	<li>深圳</li>
+       </ul>
+    </div>-->
+    
+    <select name="se">
+    	<option value="sh">上海</option>
+    	<option value="bj">北京</option>
+    	<option value="gz">广州</option>
+    	<option value="sz">深圳</option>
+    </select>
+    <input type="submit" value="tj">
+    
+</form>
+</body>
+</html>

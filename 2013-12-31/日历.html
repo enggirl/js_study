@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<title>JS Bin</title>
+<style>
+  *{margin:0;padding:0;}
+    #dateDiv{width:210px;margin:100px auto; overflow:hidden;border:1px solid #000;}
+    #dateDiv .name{height:20px; line-height:20px;}
+    #dateDiv .name li{height:20px;width:100%; text-align:center; color:blue;list-style:none; position:relative;}
+    #dateDiv .name li .a1{ position:absolute;top:0;left:0;}
+    #dateDiv .name li .a2{ position:absolute;top:0;right:0;}
+    #dateDiv .week{height:30px; line-height:20px;border-bottom:1px solid #000;}
+    #dateDiv .week li{ float:left;width:30px;height:30px; text-align:center; list-style:none;}
+    #dateDiv .dateUl{ overflow:hidden; clear:both}
+    #dateDiv .dateUl li{float:left;width:30px;height:30px; text-align:center; line-height:30px;list-style:none;}
+    #dateDiv .dateUl li.ccc{ color:#ccc;}
+    #dateDiv .dateUl li.red{ background:#F90}
+#dateDiv .dateUl li.sun{ color:#f00;}
+
+</style>
+<script>
+  window.onload = function(){
+  var oDateDiv = document.getElementById("dateDiv");
+  var aUl= oDateDiv.children;
+  var oDateUI = aUl[2];
+  var oName = aUl[0];
+  var oSpan = oName.getElementsByTagName("span")[0];
+  var pre = oName.getElementsByTagName("a")[0];
+  var next = oName.getElementsByTagName("a")[1];
+  
+  
+function getLi(){
+   
+  oDateUI.innerHTML = "";
+  //补空
+  var newLi;
+  
+  var weeks = getWeek(iNow);
+  if(weeks===0) weeks = 7;
+  weeks--;
+  for(var j=0; j<weeks; j++){
+    newLi = document.createElement("li");
+    oDateUI.appendChild(newLi);
+  }
+
+  //生成月份日子
+  var days = getDays(iNow);
+  for(var i=0; i<days; i++){
+    newLi = document.createElement("li");
+    newLi.innerHTML = i+1;
+    oDateUI.appendChild(newLi);
+  }
+  
+  //生成日历标题
+  var now = new Date();
+  now.setMonth(now.getMonth()+iNow,1);
+  oSpan.innerHTML = now.getFullYear()+"年"+  (now.getMonth()+1)+"月";
+  
+  //这里需要重新写一套，不然直接用上面的，那个已经把当前日期定死为1号了
+  var now = new Date();
+  now.setMonth(now.getMonth()+iNow);
+  //给特殊的日子加效果样式
+  var aLi = oDateUI.children;
+  if(iNow<0){
+    for(var k=0; k<aLi.length; k++){
+       aLi[k].className = "ccc";
+    }
+  }else if(iNow==0){
+    for(var k=0; k<aLi.length; k++){
+      if(aLi[k].innerHTML < now.getDate()){
+        aLi[k].className = "ccc"; 
+      }else if(aLi[k].innerHTML == now.getDate()){
+         aLi[k].className = "red";
+      }else if(k%7==5|| k%7==6){
+        aLi[k].className = "sun";
+      }
+    }
+  }else if(iNow >0){
+    for(var k=0; k<aLi.length; k++){
+       if(k%7==5|| k%7==6){
+        aLi[k].className = "sun";
+       }
+      
+    }
+  }
+}
+    
+    var iNow = 0;//表示当前月
+    getLi();
+    pre.onclick = function(){
+      iNow--;
+      getLi();
+    };
+    next.onclick = function(){
+      iNow++;
+      getLi();
+    };
+    
+};
+  
+
+//现在有个问题，就是如果当前是2013-12-30  那么getMonth()+,得到2014-01-30
+function getDays(iNow){
+  var now = new Date();
+  now.setMonth(now.getMonth()+iNow,1);//解决办法就是专门设置1
+  now.setMonth(now.getMonth()+1);
+  now.setDate(0);
+  return now.getDate();
+  
+}
+
+function getWeek(iNow){
+  var now = new Date();
+  now.setMonth(now.getMonth()+iNow,1);
+  //now.setDate(1);
+ return now.getDay();
+}
+
+</script>
+</head>
+<body>
+  <div id="dateDiv">
+  <ul class="name">
+        <li>
+           <span><!--2013年10月--></span>
+           <a href="javascript:;" class="a1">上月</a>
+           <a href="javascript:;" class="a2">下月</a>
+        </li>
+    </ul>
+    <ul class="week">
+      <li>一</li>
+      <li>二</li>
+      <li>三</li>
+      <li>四</li>
+      <li>五</li>
+      <li style="color:#f00;">六</li>
+      <li style="color:#f00;">日</li>
+    </ul>
+    <ul class="dateUl">
+      
+    </ul>
+</div>
+
+</body>
+</html>

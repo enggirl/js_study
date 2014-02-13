@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  <title>Document</title>
+  <style>
+    span{display:inline-block;width:18px;height:18px;}
+    .radio_off{background:url(radio.gif) no-repeat 0 0;}
+    .radio_on{background:url(radio.gif) no-repeat 0 -18px;}
+  </style>
+  <script>
+    window.onload = function(){
+      var oSpan =document.getElementsByTagName("span");
+
+      for(var i=0; i<oSpan.length; i++){
+        oSpan[i].onclick = function(){
+          for(var i=0; i<oSpan.length; i++){
+            oSpan[i].className = "radio_off";
+          }
+
+          this.className = "radio_on"
+        };
+      }
+    };
+  </script>
+</head>
+<body>
+  <form action="http://www.baidu.com">
+    <span class="radio_off"></span>
+    <input type="radio" value="football" name="sports">足球
+    <span class="radio_off"></span>
+    <input type="radio" value="basketball" name="sports">篮球
+    <span class="radio_off"></span>
+    <input type="radio" value="pingpangball" name="sports">乒乓球
+    <input type="submit" value="提交"/>
+  </form>
+</body>
+</html>

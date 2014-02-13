@@ -1,0 +1,88 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+*{margin:0;padding:0}
+#box1{ width:100px;height:100px; background:red; position:absolute;top:0;left:0;}
+#box2{ width:100px;height:100px; background:blue; position:absolute;top:200px;left:200px;}
+</style>
+<script>
+window.onload=function()
+{
+    var oBox=document.getElementById('box1');
+	 var oBox2=document.getElementById('box2');
+    var z=0;
+	
+	oBox.onmousedown=function(ev)
+	{
+		
+		var oEvent=ev||event;
+		var disX=oEvent.clientX-oBox.offsetLeft;
+		var disY=oEvent.clientY-oBox.offsetTop;
+		
+		z++;
+		this.style.zIndex=z;
+		  
+		document.onmousemove=function(ev)
+		{
+			var oEvent=ev||event;
+			oBox.style.left=oEvent.clientX-disX+'px';
+			oBox.style.top=oEvent.clientY-disY+'px';
+			
+			var t1=oBox.offsetTop;
+			var l1=oBox.offsetLeft;
+			var b1=oBox.offsetTop+oBox.offsetHeight;
+			var r1=oBox.offsetLeft+oBox.offsetWidth;
+			
+			var t2=oBox2.offsetTop;
+			var l2=oBox2.offsetLeft;
+			var b2=oBox2.offsetTop+oBox2.offsetHeight;
+			var r2=oBox2.offsetLeft+oBox2.offsetWidth;
+			
+			if(b1<t2||l1>r2||t1>b2||r1<l2)
+			{
+			   //碰不上	
+			   oBox2.style.background='blue';	 
+			 }
+			 else
+			 {
+				oBox2.style.background='yellow';	 
+			 }
+			
+		};  
+		
+		document.onmouseup=function(ev)
+		{
+			document.onmousemove=null;
+			document.onmouseup=null;
+			if(oBox.setCapture)
+			{
+				oBox.releaseCapture();
+				// IE低版本不会再选中文本
+				
+			}
+			
+		};  
+		
+		if(oBox.setCapture)
+		{
+			oBox.setCapture();
+			// IE低版本不会再选中文本
+		}
+		
+		return false;
+		// IE低版本用这个还是会选中文本	
+	};
+};
+</script>
+
+</head>
+
+<body>
+
+<div id="box1"></div>
+<div id="box2"></div>
+</body>
+</html>

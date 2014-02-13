@@ -1,0 +1,30 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+div{width:200px;height:200px; background:red; position:absolute;top:0;left:0}
+</style>
+<script>
+window.onload=function()
+{
+   var oBox=document.getElementById('box');
+   
+   document.onmousemove=function(ev)
+   {
+	   var scrollTop=document.body.scrollTop||document.documentElement.scrollTop;
+	   
+	   var oEvent=ev||event;
+	   oBox.style.left=oEvent.clientX+'px';
+	   oBox.style.top=oEvent.clientY+scrollTop+'px';
+	   
+   };
+};
+</script>
+</head>
+
+<body style="height:2000px;">
+<div id="box"></div>
+</body>
+</html>

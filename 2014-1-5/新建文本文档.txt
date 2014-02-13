@@ -1,0 +1,197 @@
+
+DOMContentLoaded  ready事件 需要绑定    非IE678
+
+
+doScroll  IE才认识  等DOM加载完成以后才能用
+
+
+ajax: 动态的无刷新局部加载页面
+
+form 表单提交 刷新
+
+
+ajax: 去跟后台要东西
+
+ajax: 必须要在服务器环境下
+
+WAMP环境  -  本地服务器
+有安装包
+默认c:\wamp
+装在什么盘都可以
+但是要在盘根目录下
+
+在服务器环境下，包括后台的文件名以及路径都不能是中文
+
+c:\wamp   
+1.启动
+2. 找一个www的文件夹   就是我们的服务器目录
+   只用把我们的页面存在这个里面
+3. 里面的一些文件都可以不要
+
+
+http://localhost/   本地主机
+
+安装完成后：
+配置站点
+站点－新建站点
+站点名称，文件夹位置－www
+点左边的服务器  点加号 
+连接方法－本地  文件夹位置－www
+http://localhost  
+
+关掉远程的勾，勾上测试
+
+保存
+
+
+回调函数：
+
+1.你只负责定义——调用由其他人负责
+2.你也不知道具体多久以后会调用
+
+winodw.onload=function(){}
+xxx.onclick=function(){}
+
+
+-------------
+
+缓存： 同一个地址只请求一次
+
+
+
+
+http://www.baidu.com/s?wd=%E6%99%BA%E8%83%BD%E7%A4%BE&rsv_spt=1&issp=1&rsv_bp=0&ie=utf-8&tn=baiduhome_pg&rsv_sug3=7&rsv_sug=0&rsv_sug4=191&rsv_sug1=6
+
+get请求 
+网址和参数中间用?
+参数：
+名称=值&名称=值&名称=值&名称=值
+
+
+
+文件编码  要一样
+utf-8
+
+
+扩展名是给人看的，不论变成什么样，机器依然能读
+
+
+
+arr=[];
+
+json={}  大括号不是json独有的
+       fn  if 都有
+
+eval解析json的时候以为这是一个代码块。没有写完
+
+
+(12)+5＝17；
+
+解决eval  json报错的问题：
+({a:1,b:2,c:3})  给数据加括号
+
+
+var json=eval('('+str+')'); 
+([1,2,3,4])
+
+
+
+
+打电话：             ajax
+
+1. 有一个电话        1. 创建一个ajax
+2. 拨号              2. 连接
+3. 说                3. 发送请求
+4  听                4.  接收
+
+
+ajax 名称：  XMLHttpRequest
+
+
+var oAjax=new XMLHttpRequest();  非IE6
+var oAjax=new ActiveXObject("Microsoft.XMLHTTP") IE678
+是用ie插件activex来实现的
+
+       你们的理解             ajax
+异步： 一个一个来            一块来
+同步： 一块来                一件一件来
+
+
+//2.连接服务器（打开和服务器的连接）
+	oAjax.open('GET', url, true);  
+//上面这是get方式用url访问
+	
+	
+//3.发送
+oAjax.send(); //如果是post方式，在send里面传参数，然后是有
+两部分url的，一个url地址，还有一个就是带数据的参数
+
+oAjax.readyState 状态
+
+readyState——通信状态
+
+0		初始化——ajax对象刚new出来    已创建
+1		请求——正在发送               已连接
+2		接收完成——这是原始数据       接收完成 
+3		正在解析                       解析
+4		完成                           完成  － 完成不代表成功
+
+
+ 
+oAjax.status     http状态码
+
+常见的：404  503  200＝ok    304缓存
+
+oAjax.responseText   读取出来的内容
+
+
+
+接口：   php  asp  jsp
+
+接口文档：   其实就是一种格式而已  
+  1. 你跟后台约定好的
+  2. 他怎么定你怎么用
+
+
+
+user.php 开头注释的部分，  注册登录的文档
+
+
+
+
+%E6%99%BA%E8%83%BD%E7%A4%BE  智能社
+
+
+%E6%99%BA  智
+
+转码：  encodeURIComponent
+解码：  decodeURIComponent
+
+
+
+公司本地启动
+http://localhost:88/wamp/www/2014-1-5ajax/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+

@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  <title>Document</title>
+  <style>
+    span{display:inline-block;width:18px;height:18px;}
+    .radio_off{background:url(radio.gif) no-repeat 0 0;}
+    .radio_on{background:url(radio.gif) no-repeat 0 -18px;}
+  </style>
+  <script>
+    window.onload = function(){
+      var oForm = document.getElementById("frm");
+      var oInput =document.getElementsByTagName("input");
+      var arr = [];
+
+      for(var i=0; i<oInput.length; i++){
+        var oSpan =document.createElement("span");
+        oSpan.className = "radio_off";
+        if(oInput[i].type != "radio"){
+          return;
+        }
+        arr.push(oSpan);
+        oForm.insertBefore(oSpan,oInput[i]);
+        
+        // oInput[i].index = i;
+        oSpan.onclick = function(){
+          for(var i=0; i<arr.length; i++){
+            //arr[i].index = i;
+            arr[i].className = "radio_off";
+          }
+          this.className = "radio_on";
+          //alert(this.index);
+          //oInput[arr[i].index].checked = true;
+          var next = this.nextElementSibling || this.nextSibling;//因为span的兄弟节点就是input
+          next.checked = true;
+        };
+      }
+      // for(var i=0; i<oSpan.length; i++){
+      //   oInput[i].style.display = "none";
+      //   oSpan[i].index = i;
+      //   oSpan[i].onclick = function(){
+      //     for(var i=0; i<oSpan.length; i++){
+      //       oSpan[i].className = "radio_off";
+      //     }
+
+      //     this.className = "radio_on";
+      //     oInput[this.index].checked = true;
+      //   };
+      // }
+    };
+  </script>
+</head>
+<body>
+  <form action="http://www.baidu.com" id="frm">
+    <input type="radio" value="football" name="sports">足球
+    <input type="radio" value="basketball" name="sports">篮球
+   <!--  <span class="radio_off"></span> -->
+    <input type="radio" value="pingpangball" name="sports">乒乓球
+    <input type="submit" value="提交"/>
+  </form>
+</body>
+</html>

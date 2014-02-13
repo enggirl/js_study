@@ -1,0 +1,57 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+.show{width:200px;height:200px; background:red;}
+li{height:20px; background:red;margin:3px 0;}
+</style>
+<script>
+window.onload=function()
+{
+	var oBtn=document.getElementById('btn');
+	var oUl=document.getElementById('ul1');
+	var aLi=oUl.children;
+    var aA=document.getElementsByTagName('a');
+
+
+    for(var i=0;i<aA.length;i++)
+	{
+	    if(i%2==0)
+		{
+			//上移
+			aA[i].onclick=function()
+			{
+			      var preLi=this.parentNode.previousElementSibling|| this.parentNode.previousSibling;
+				 
+				 if(!preLi)return; 
+				  
+				oUl.insertBefore(this.parentNode,preLi);
+				
+			};
+		}
+		else
+		{
+			  //下移  自己做
+		}
+	}
+   
+};
+
+</script>
+
+</head>
+
+<body>
+
+<ul id="ul1">
+	<li>1<a href="javascript:;">上移</a>000<a href="javascript:;">下移</a></li>
+	<li>2<a href="javascript:;">上移</a>000<a href="javascript:;">下移</a></li>
+	<li>3<a href="javascript:;">上移</a>000<a href="javascript:;">下移</a></li>
+	<li>4<a href="javascript:;">上移</a>000<a href="javascript:;">下移</a></li>
+	<li>5<a href="javascript:;">上移</a>000<a href="javascript:;">下移</a></li>
+    
+</ul>
+</body>
+</html>

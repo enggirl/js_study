@@ -1,0 +1,55 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+*{margin:0;padding:0}
+li{height:400px;}
+img{ display:block;height:800px;width:600px;}
+#show{height:100px;width:100%; background:#ccc;}
+</style>
+<script>
+window.onload=function()
+{
+   var oShow=document.getElementById('show');
+   window.onscroll=function()
+   {
+	   var scrollTop=document.body.scrollTop||document.documentElement.scrollTop;
+	   
+	   if(scrollTop>= getPos(oShow).top  )
+	   {
+		   alert(234);   
+	   }
+	      
+   };
+   
+};
+
+function getPos(obj)
+{
+   var l=0;
+   var t=0;
+   while(obj)
+   {
+	   l+=obj.offsetLeft;
+	   t+=obj.offsetTop;
+	   obj=obj.offsetParent;   
+   }	
+   
+   return {left:l,top:t};
+}
+
+</script>
+</head>
+
+<body id="body1">
+<ul>
+<li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+</ul>
+<div id="show"></div>
+<ul>
+<li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+</ul>
+</body>
+</html>

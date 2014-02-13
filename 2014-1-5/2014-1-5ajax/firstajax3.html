@@ -1,0 +1,34 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script src="ajax.js"></script>
+<script>
+//firsttxt.txt
+//ajax(url, fnSucc, fnFaild)
+//   url地址：请求的文件，文档
+//  fnSucc  : 请求成功执行的回调函数
+//  fnFaild :  请求失败执行的回调函数
+
+ajax('a.html', function(str){
+	
+	//如果成功会给返回一个参数
+	
+	alert(str);
+		
+}, function(){
+	
+	alert('失败');	
+	
+});
+
+
+
+
+</script>
+</head>
+
+<body>
+</body>
+</html>

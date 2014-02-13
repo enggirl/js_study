@@ -1,0 +1,41 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script>
+window.onload=function()
+{
+    var arr=[0,7,34,1,4,9,77,8];
+	//sort本身是用来比较字符串
+	
+	arr.sort(function(n1,n2){  //接收两个参数，参数名自定
+	   //还可以传个参数：函数
+	   
+	   //假设 随机抽的是  8，9
+	   if(n1>n2)
+	   {
+		     return 1;   
+	   }
+	   else if(n1<n2)
+	   {
+		    return -1;   
+	   }
+	   else
+	   {
+		   return 0;   
+	   }
+	   
+	   ///返回什么数都可以，但只要是正的负的和零
+	   	
+	});
+	
+	alert(arr);
+};
+</script>
+</head>
+
+<body>
+<div id="box">sadfsadfsa</div>
+</body>
+</html>

@@ -1,0 +1,60 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+*{margin:0;padding:0}
+div{ position:absolute;top:0;left:0; background:red;width:200px;height:200px;}
+</style>
+<script>
+window.onload=function()
+{
+	var oBox=document.getElementById('box');
+	
+	document.onkeydown=function(ev)
+	{
+		var oEvent=ev||event;
+		switch(oEvent.keyCode)
+		{
+		 	case 37:
+			    oBox.style.left=oBox.offsetLeft-10+'px';
+			    break;
+		 	case 38:
+			   oBox.style.top=oBox.offsetTop-10+'px';
+			    break;
+		 	case 39:
+				oBox.style.left=oBox.offsetLeft+10+'px';
+			    break;
+		 	case 40:
+				 oBox.style.top=oBox.offsetTop+10+'px';
+			    break;	
+		}
+		
+		//  ctrl c  变蓝色   17   67
+		
+		//alert(oEvent.keyCode);
+		
+		//组合    
+		if(oEvent.keyCode==67&&oEvent.ctrlKey)
+		{
+		   oBox.style.background='blue';	
+		}
+		
+		
+		if(oEvent.keyCode==38&&oEvent.ctrlKey)
+		{
+		   oBox.style.height=	oBox.offsetHeight+100+'px';
+		}
+		
+		
+	};	
+};
+</script>
+</head>
+
+<body>
+
+<div id="box"></div>
+</body>
+</html>

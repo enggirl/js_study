@@ -1,0 +1,33 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+*{margin:0;padding:0}
+li{margin:5px 0; height:20px; background:red;}
+</style>
+<script>
+window.onload=function()
+{
+	 var oUl=document.getElementById('ul1');
+	 oUl.onclick=function()
+	 {
+		  alert(123); 
+		  //子级也会触发
+	  };
+};
+
+</script>
+</head>
+
+<body>
+<ul id="ul1">
+	<li>1</li>
+	<li>2</li>
+	<li>3</li>
+	<li>4</li>
+</ul>
+
+</body>
+</html>

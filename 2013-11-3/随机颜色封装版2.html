@@ -1,0 +1,36 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+*{margin:0;padding:0}
+div{width:400px;height:400px; background:red}
+</style>
+<script>
+window.onload=function()
+{
+   document.getElementById('box').onclick=function()
+   {
+        var n=rnd(0,255);
+		this.style.background='rgb('+n+','+n+','+n+')';
+   };
+    
+};
+//  *(大－小)+小
+/*function rnd(n,m)
+{
+  	return parseInt(Math.random()*(m-n)+n);
+};*/
+
+function rnd(n,m)
+{
+  	return parseInt(Math.random()*(m-n+1)+n);
+};
+</script>
+</head>
+
+<body>
+<div id="box"></div>
+</body>
+</html>

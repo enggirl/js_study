@@ -1,0 +1,28 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script>
+window.onload=function()
+{
+   var oDate=new Date();
+   //在刷新页面JS到这一行的时候，这个对象里就存了现在的日期和时间进去，还包括时间戳
+   //  就是在这一刻的时候  2013,12,1  12:04:22  4325346245
+   
+   oDate.setDate(32);    //设置月份，如果超出是会进位的
+   alert(oDate.getMonth());   //到了下个月
+   alert(oDate.getDate());
+	
+};
+</script>
+</head>
+
+<body>
+<select id="os">
+ <option value="bj">北京</option>
+ <option value="sh">上海</option>
+ <option value="sz">深圳</option>
+</select>
+</body>
+</html>

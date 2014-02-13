@@ -1,0 +1,79 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+#box{width:300px;height:300px; background:red;}
+</style>
+<script>
+window.onload=function()
+{
+	var oBox=document.getElementById('box');
+    
+	if(window.navigator.userAgent.indexOf('Firefox')!=-1)
+	{
+		oBox.addEventListener('DOMMouseScroll',fn,false);	
+	}
+	else
+	{
+		oBox.onmousewheel=fn;	
+	}
+	
+	function fn(ev)
+	{
+		//滚轮事件
+		//判断上滚或下滚
+		var oEvent=ev||event;
+		
+		var down;
+		//下 true  上false
+		
+		if(oEvent.wheelDelta)
+		{
+		   // chrome ie
+		  /* if(oEvent.wheelDelta<0)
+		   {
+			  down=true;
+		   }	
+		   else
+		   {
+			  down=false;
+		   }*/
+		   
+		   //        上120  下-120
+		   //下 true  上false
+		   down=oEvent.wheelDelta<0;
+		   
+		}
+		else
+		{
+			/*if(oEvent.detail>0)
+			 {
+			  down=true;
+		   }	
+		   else
+		   {
+			  down=false;
+		   }	*/
+		   
+		    down=oEvent.detail>0;
+		}
+		
+		
+		alert(down);
+		
+		//取消浏览器自己的滚动
+		ev&&ev.preventDefault();  //在绑定事件里取消默认
+		return false;
+	};
+};
+</script>
+</head>
+
+<body style="height:2000px;">
+
+<div id="box"></div>
+
+</body>
+</html>

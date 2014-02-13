@@ -1,0 +1,40 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+.show{width:200px;height:200px; background:red;}
+li{height:20px; background:red;margin:3px 0;}
+</style>
+<script>
+window.onload=function()
+{
+	var oBtn=document.getElementById('btn');
+	var oUl=document.getElementById('ul1');
+	var n=0;
+	oBtn.onclick=function()
+	{
+		n++;
+	   var newLi=document.createElement('li');
+	   oUl.appendChild(newLi);
+	   newLi.innerHTML=n;
+
+	};
+	
+   
+   
+   
+};
+
+</script>
+
+</head>
+
+<body>
+<input type="button" value="创建" id="btn">
+<ul id="ul1">
+	
+</ul>
+</body>
+</html>

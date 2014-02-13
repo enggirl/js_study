@@ -1,0 +1,29 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script src="ajax.js"></script>
+<script>
+
+ajax('arr.txt?t='+Math.random(), function(str){
+	
+	// 文件编码  要一样
+	
+	alert(str);
+		
+}, function(){
+	
+	alert('失败');	
+	
+});
+
+
+
+
+</script>
+</head>
+
+<body>
+</body>
+</html>

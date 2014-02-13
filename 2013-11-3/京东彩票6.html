@@ -1,0 +1,86 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+*{margin:0;padding:0}
+div{height:100px;}
+</style>
+<script>
+window.onload=function()
+{   
+	var oBox=document.getElementById('box');
+	var oBtn=document.getElementById('btn');
+   var arr=[];
+   while(arr.length<6)
+   {
+	  var n=rnd(1,32);
+	  if(!findSame(n,arr))
+	  {
+		 arr[arr.length]=toDou(n); 
+	  }
+
+   };
+   oBox.innerHTML=arr;
+	 
+	oBtn.onclick=function(){
+	   setInterval(function(){
+		    var arr=[];
+		   while(arr.length<6)
+		   {
+			  var n=rnd(1,32);
+			  if(!findSame(n,arr))
+			  {
+				 arr[arr.length]=toDou(n); 
+			  }
+		
+		   };
+		   
+		    oBox.innerHTML=arr;
+		},100);
+	 };
+   
+ 
+};
+//补零
+function toDou(n)
+{
+  	if(n<10)
+	{
+	  return '0'+n;	
+	}
+	else
+	{
+	 return n;	
+	}
+};
+
+
+function findSame(n,arr)
+{
+ 	for(var i=0;i<arr.length;i++)
+	{
+		if(arr[i]==n)
+		{
+		   //找到相同的
+		   return true;	
+		}	
+	}
+	
+	//找不到相同的
+	return false;
+};
+
+function rnd(n,m)
+{
+  return parseInt(Math.random()*(m-n+1)+n);	
+}
+</script>
+</head>
+
+<body>
+<div id="box"></div>
+<input type="button" value="abc" id="btn">
+</body>
+</html>

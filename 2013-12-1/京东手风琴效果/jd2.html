@@ -1,0 +1,115 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+*{margin:0;padding:0; background:}
+#big{width:1000px;height:300px;margin:100px auto; background:#000; position:relative; overflow:hidden;}
+#big span{height:300px; position:absolute;top:0;width:400px;}
+
+
+</style>
+<script>
+
+
+window.onload=function()
+{
+   var oBig=document.getElementById('big');
+   var aSpan=oBig.children;
+   
+   for(var i=0;i<aSpan.length;i++)
+   {
+	   aSpan[i].style.left= (1000/6)*i+'px';  
+	   aSpan[i].style.background='rgb('+parseInt(Math.random()*256)+','+parseInt(Math.random()*256)+','+parseInt(Math.random()*256)+')';
+	     
+		aSpan[i].index=i;
+	    aSpan[i].onmouseover=function()
+		{
+			for(var i=0;i<aSpan.length;i++)
+			{
+				if(i<=this.index)
+				{
+				   uniformMove(aSpan[i],{
+					    attr:'left',
+						target:600/5*i,
+						speed:10 
+					  });
+				}
+			}
+		  	
+		};
+   }
+};
+
+
+
+//  匀速运动
+function uniformMove(obj,json)
+{
+	clearInterval(obj.timer);
+    var iCur=getStyle(obj,json.attr);
+	if(json.attr=='opacity')
+	{
+		iCur=Math.round(iCur*100);  //透明度的小数不止两位
+		///83.34234
+	}
+	else
+	{
+	   	iCur=parseInt(iCur); //干掉PX
+	}
+	var iSpeed=json.target>iCur?json.speed:-json.speed;
+	
+	obj.timer=setInterval(function(){
+	      if(Math.abs(json.target-iCur)<Math.abs(iSpeed))	
+		  {
+			  clearInterval(obj.timer);
+			  //赋值  直接赋目标值
+			  objsetAttr(json.target); 
+			  
+			  json.endFn && json.endFn(obj); 
+		  }
+		  else
+		  {
+			   iCur+=iSpeed;
+			   //赋值
+			   objsetAttr(iCur); 
+  
+		   }
+		
+		
+    },30);
+	
+	function objsetAttr(value)
+	{
+	    if(json.attr=='opacity')
+		{
+			
+			obj.style.opacity=value/100;
+		    obj.style.filter='alpha(opacity:'+value+')';
+		}
+		else
+		{
+		  
+		  	obj.style[json.attr]=value+'px';
+		}	
+	}
+	
+	function getStyle(object,attr){return object.currentStyle?object.currentStyle[attr]:getComputedStyle(object,false)[attr];};
+};
+</script>
+</head>
+
+<body>
+<div id="big">
+	<span>1</span>
+	<span>2</span>
+	<span>3</span>
+	<span>4</span>
+	<span>5</span>
+	<span>6</span>
+</div>
+
+<p id="p1"></p>
+</body>
+</html>

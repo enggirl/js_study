@@ -1,0 +1,65 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+*{margin:0;padding:0}
+div{ position:absolute;top:0;left:400px; background:red;width:200px;height:200px;}
+</style>
+<script>
+window.onload=function()
+{
+	var oBox=document.getElementById('box');
+	
+	oBox.onmousedown=function(ev)
+	{
+		var oEvent=ev||event;
+		var disX=oEvent.clientX-this.offsetLeft;
+		var disY=oEvent.clientY-this.offsetTop;
+		
+		document.onmousemove=function(ev)
+		{
+			//向上或向左的时候不行
+			 var oEvent=ev||event;
+			 var l=oEvent.clientX-disX;
+			 var t=oEvent.clientY-disY;
+			 
+			 //吸附
+			 
+			 if(l<200){
+			   l=0;
+			   oBox.style.height= document.documentElement.clientHeight+'px';
+			   t=0;
+			 }
+			 else
+			 {
+			   	oBox.style.height='200px'; 
+			 };
+			 
+			 if(t<0)t=0;
+			 if(l>document.documentElement.clientWidth-oBox.offsetWidth)l=document.documentElement.clientWidth-oBox.offsetWidth;
+
+			 oBox.style.left=l+'px';
+			 oBox.style.top=t+'px';		
+		};
+		
+		document.onmouseup=function()
+		{
+			document.onmousemove=null;	
+			document.onmouseup=null;
+		};
+			
+	};
+	
+	 
+
+};
+</script>
+</head>
+
+<body>
+
+<div id="box"></div>
+</body>
+</html>

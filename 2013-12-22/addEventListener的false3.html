@@ -1,0 +1,51 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+#box1{width:500px;height:500px; background:red;}
+#box2{width:300px;height:300px; background:#ccc;}
+#box3{width:100px;height:100px; background:blue;}
+</style>
+<script>
+window.onload=function()
+{
+	var oBox1=document.getElementById('box1');
+	var oBox2=document.getElementById('box2');
+	var oBox3=document.getElementById('box3');
+	
+	oBox1.addEventListener('click',function(){
+		alert(1);	
+	},true);	
+	//  默认就是false  也要求写false
+	oBox2.addEventListener('click',function(){
+		alert(2);	
+	},true);
+	
+	oBox3.addEventListener('click',function(){
+		alert(3);	
+	},true);
+	
+	//  true  =  捕获  跟冒泡相反
+	//  事件是从根元素从外向里执行
+	//  冒泡是默认的  平时都要写false
+	
+};
+
+
+</script>
+</head>
+
+<body>
+
+<div id="box1">
+	
+	<div id="box2">
+    	
+			<div id="box3"></div>
+    </div>
+</div>
+
+</body>
+</html>

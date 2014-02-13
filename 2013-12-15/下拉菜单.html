@@ -1,0 +1,80 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+*{margin:0;padding:0}
+.seDiv{width:100px;height:30px; position:relative;}
+.seDiv p{height:28px;border:1px solid #000;}
+.seDiv ul{ position:absolute;top:30px;left:0;width:100px; background:#fff; display:none}
+.seDiv ul li{height:28px; line-height:28px; text-align:center;border:1px solid #000;}
+
+
+</style>
+<script>
+window.onload=function()
+{
+   	var oDiv=document.getElementsByClassName('seDiv')[0];
+	var oP=oDiv.children[0];
+	var oUl=oDiv.children[1];
+	var aLi=oUl.children;
+	
+	oP.onmousedown=function()
+	{
+	  return false;	
+	};
+	
+	oP.onclick=function()
+	{
+	   if(oUl.style.display=='block')
+	   {
+		 oUl.style.display='none';    
+		}
+	   else
+	   {
+		  oUl.style.display='block'; 
+	    }
+	      	
+	};
+	
+	for(var i=0;i<aLi.length;i++)
+	{
+		aLi[i].index;
+	   aLi[i].onclick=function()
+	   {
+		  oP.innerHTML=this.innerHTML; 
+		    oUl.style.display='none';       
+		};
+	   	
+	}
+	
+	
+};
+
+</script>
+</head>
+
+<body>
+<form action="http://www.zhinengshe.com">
+	<div class="seDiv" style=" float:left">
+       <p>上海</p>
+       <ul>
+       	<li>上海</li>
+       	<li>北京</li>
+       	<li>广州</li>
+       	<li>深圳</li>
+       </ul>
+    </div>
+    
+    <select name="se">
+    	<option value="sh">上海</option>
+    	<option value="bj">北京</option>
+    	<option value="gz">广州</option>
+    	<option value="sz">深圳</option>
+    </select>
+    <input type="submit" value="tj">
+    
+</form>
+</body>
+</html>

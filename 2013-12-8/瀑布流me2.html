@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  <title>Document</title>
+  <style>
+  *{margin:0;padding:0;}
+    div{width:706px;margin:0 auto;}
+    ul{width:200px;border:1px solid #000;margin-right:50px; float:left;list-style:none;}
+    li{border:1px solid #000;}
+  </style>
+  <script>
+    window.onload = function(){
+      var oUl = document.getElementsByTagName('ul');
+      var n = 0;
+      
+      for(var i=0; i<20; i++){
+        n++;
+        var newLi = document.createElement("li");
+        newLi.innerHTML = n;
+        newLi.style.height = ranValue(200,400)+"px";
+        newLi.style.background = "rgb(" + ranValue(0,255)+ ","+ ranValue(0,255)+ ","+ ranValue(0,255)+ ")";
+
+        //比较哪个ul的高度小，就往哪个里面插入
+        var minUl;
+        if(oUl[0].offsetHeight < oUl[1].offsetHeight){
+
+          if(oUl[0].offsetHeight < oUl[2].offsetHeight){
+
+            minUl = oUl[0];
+
+          }else{
+            
+            minUl = oUl[2];
+          }
+
+        }else{//1<0
+
+          if(oUl[1].offsetHeight < oUl[2].offsetHeight){
+            minUl = oUl[1];
+          }else{
+            minUl = oUl[2];
+          }
+
+        }
+        minUl.appendChild(newLi);
+      }
+
+      function ranValue(m,n){
+        return parseInt(Math.random()*(m-n+1)+n);
+      }
+    }
+  </script>
+</head>
+<body>
+<div>
+  <ul></ul>
+  <ul></ul>
+  <ul style="margin:0"></ul>
+</div>
+</body>
+</html>

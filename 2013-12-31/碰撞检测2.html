@@ -1,0 +1,111 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+*{margin:0;padding:0}
+#box1{ width:100px;height:100px; background:red; position:absolute;top:0;left:0;}
+#box2{ width:100px;height:100px; background:blue; position:absolute;top:200px;left:200px;}
+</style>
+<script>
+window.onload=function()
+{
+    var oBox=document.getElementById('box1');
+	 var oBox2=document.getElementById('box2');
+    var z=0;
+	
+	oBox.onmousedown=function(ev)
+	{
+		
+		var oEvent=ev||event;
+		var disX=oEvent.clientX-oBox.offsetLeft;
+		var disY=oEvent.clientY-oBox.offsetTop;
+		
+		z++;
+		this.style.zIndex=z;
+		  
+		document.onmousemove=function(ev)
+		{
+			var oEvent=ev||event;
+			oBox.style.left=oEvent.clientX-disX+'px';
+			oBox.style.top=oEvent.clientY-disY+'px';
+			
+			if(  test(oBox,oBox2) )
+			{
+			   oBox2.style.background='yellow';	
+			}
+			else
+			{
+				 oBox2.style.background='blue';	
+			}
+			
+			
+		};  
+		
+		document.onmouseup=function(ev)
+		{
+			document.onmousemove=null;
+			document.onmouseup=null;
+			if(oBox.setCapture)
+			{
+				oBox.releaseCapture();
+				// IE低版本不会再选中文本	
+			};
+			
+			if(  test(oBox,oBox2) )
+			{
+			  //互换位置	
+			}
+			else
+			{
+			  //回原位	
+			}
+			
+			
+		};  
+		
+		if(oBox.setCapture)
+		{
+			oBox.setCapture();
+			// IE低版本不会再选中文本
+		}
+		
+		return false;
+		// IE低版本用这个还是会选中文本	
+	};
+};
+
+
+function test(obj1,obj2)
+{
+	var t1=obj1.offsetTop;
+	var l1=obj1.offsetLeft;
+	var b1=obj1.offsetTop+obj1.offsetHeight;
+	var r1=obj1.offsetLeft+obj1.offsetWidth;
+	
+	var t2=obj2.offsetTop;
+	var l2=obj2.offsetLeft;
+	var b2=obj2.offsetTop+obj2.offsetHeight;
+	var r2=obj2.offsetLeft+obj2.offsetWidth;
+	
+	if(b1<t2||l1>r2||t1>b2||r1<l2)
+	{
+	   //碰不上	
+	   return false;
+	 }
+	 else
+	 {
+		return true;
+	 }	
+};
+</script>
+
+</head>
+
+<body>
+
+<div id="box1"></div>
+<div id="box2"></div>
+</body>
+</html>

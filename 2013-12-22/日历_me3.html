@@ -1,0 +1,92 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+*{margin:0;padding:0}
+#dateDiv{width:210px;margin:100px auto; overflow:hidden;border:1px solid #000;}
+#dateDiv .name{height:20px; line-height:20px;}
+#dateDiv .name li{height:20px;width:100%; text-align:center; color:blue;list-style:none; position:relative;}
+#dateDiv .name li .a1{ position:absolute;top:0;left:0;}
+#dateDiv .name li .a2{ position:absolute;top:0;right:0;}
+#dateDiv .week{height:30px; line-height:20px;border-bottom:1px solid #000;}
+#dateDiv .week li{ float:left;width:30px;height:30px; text-align:center; list-style:none;}
+#dateDiv .dateUl{ overflow:hidden; clear:both}
+#dateDiv .dateUl li{float:left;width:30px;height:30px; text-align:center; line-height:30px;list-style:none;}
+#dateDiv .dateUl li.ccc{ color:#ccc;}
+#dateDiv .dateUl li.red{ background:#F90}
+#dateDiv .dateUl li.sun{ color:#f00;}
+</style>
+<script>
+window.onload=function(){
+	var oDateUI = document.getElementById("dateUI");
+
+  //修改日历标题
+	var oSpan = document.getElementById("s");
+  var nowD = new Date();
+  oSpan.innerHTML = nowD.getFullYear()+"年"+ (nowD.getMonth()+1) +"月";
+
+  //补全1号前面的空li
+
+  var firstDay = getFirstDay();
+  if(firstDay==0) firstDay = 7;
+  firstDay--;
+  for(var i=0; i<firstDay; i++){
+    var newLi = document.createElement("li");
+    oDateUI.appendChild(newLi);
+  }
+
+  //生成当前月份的天数
+  for(var i=0; i<getDates(); i++){
+    var newLi = document.createElement("li");
+    newLi.innerHTML = i+1;
+    oDateUI.appendChild(newLi);
+  }
+
+  
+  
+}
+
+function getDates(){
+  var nowD = new Date();
+  //alert(nowD);
+  nowD.setMonth(12);
+  //alert(nowD.getMonth()+1)
+  nowD.setDate(0);
+  //alert(nowD.getMonth()+1)
+  return nowD.getDate();
+}
+function getFirstDay(){
+  var nowD = new Date();
+  nowD.setDate(1);
+  return nowD.getDay();
+}
+
+</script>
+</head>
+
+<body>
+<div id="dateDiv">
+	<ul class="name">
+        <li>
+           <span id="s">2013年10月</span>
+           <a href="javascript:;" id="pre" class="a1">上月</a>
+           <a href="javascript:;" id="next" class="a2">下月</a>
+        </li>
+    </ul>
+    <ul class="week">
+    	<li>一</li>
+    	<li>二</li>
+    	<li>三</li>
+    	<li>四</li>
+    	<li>五</li>
+    	<li style="color:#f00;">六</li>
+    	<li style="color:#f00;">日</li>
+    </ul>
+    <ul class="dateUl" id="dateUI">
+    	
+    </ul>
+</div>
+</body>
+</html>

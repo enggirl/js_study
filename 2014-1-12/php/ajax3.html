@@ -1,0 +1,56 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script src="ajax3.js"></script>
+<script>
+window.onload=function()
+{
+	
+	//alert(eval('abc'));
+	
+	
+	var aInput=document.getElementsByTagName('input');
+	aInput[2].onclick=function()
+	{
+		var url='form3.php';
+		
+		ajax(url,{
+			user:aInput[0].value,
+			pass:aInput[1].value,
+			act:'add'
+				
+		},'get',function(str){
+		
+			alert(str);
+			
+		},function(){
+			
+			alert('失败');	
+		});
+			
+	};
+		
+};
+
+
+</script>
+</head>
+
+<body>
+
+登陆：
+<input type="text" name="user">
+<input type="text" name="pass">
+<input type="button" value="登陆">
+<br>
+<br>
+
+注册：
+<input type="text" name="user">
+<input type="text" name="pass">
+<input type="button" value="注册">
+
+</body>
+</html>

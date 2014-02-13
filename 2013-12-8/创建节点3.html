@@ -1,0 +1,40 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+.show{width:200px;height:200px; background:red;}
+</style>
+<script>
+window.onload=function()
+{
+	var oBtn=document.getElementById('btn');
+	
+	oBtn.onclick=function()
+	{
+		//创建一个DIV
+   
+	   var newDiv=document.createElement('div');
+	   //创建完了是一个
+	   newDiv.className='show';
+	   newDiv.innerHTML='我是创建出来的';
+	   document.body.appendChild(newDiv);
+	   
+	   //创建完成得有个地方接收
+	};
+	
+   
+   
+   
+};
+
+</script>
+
+</head>
+
+<body>
+<input type="button" value="创建" id="btn">
+
+</body>
+</html>

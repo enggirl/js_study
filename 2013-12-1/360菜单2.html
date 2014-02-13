@@ -1,0 +1,103 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+*{margin:0;padding:0}
+ul{height:32px;margin-left:40px;}
+li{ float:left;height:60px; position:relative;width:150px;border:1px solid #000; list-style:none}
+span{ position: absolute;top:60px;left:0;width:100%;height:60px; background:red;}
+p{ position: absolute;top:0;left:0;width:100%;height:60px;  text-align:center; line-height:30px;}
+</style>
+<script>
+
+
+window.onload=function()
+{
+   var aLi=document.getElementsByTagName('li');
+   	
+	
+	//如果移出的时候没有到零。是不是需要先走到零
+   for(var i=0;i<aLi.length;i++)
+   {
+	   aLi[i].onmouseover=function()
+	   {
+		   var oSpan=this.children[0];
+			TopMove(oSpan,0,4);  
+	   }; 
+	   
+	   aLi[i].onmouseout=function()
+	   {
+           var oSpan=this.children[0];
+		   // endFn 可以传可以不传  ->链式运动
+			TopMove(oSpan,0,4,function(){
+			     //到零了再往下走
+				 
+				 TopMove(oSpan,60,4); 
+				 	
+			});  
+	   };  
+   };
+   
+   
+    document.onkeydown=function(ev)
+	{
+	   	var oEvent=ev||event;	
+	};
+
+   
+};
+
+
+//  obj移入谁，控制谁的Top,目标
+function TopMove(obj,iTarget,iSpeed,endFn)
+{
+	clearInterval(obj.timer);
+	var objTop=parseInt(getStyle(obj,'top'));
+	iSpeed=iTarget>objTop?iSpeed:-iSpeed;
+	
+	obj.timer=setInterval(function(){
+		  if(Math.abs(iTarget-objTop)<Math.abs(iSpeed))
+		  {
+			   clearInterval(obj.timer);
+			   obj.style.top= iTarget+'px';
+			   
+			   //已经可以判断到目标
+			   endFn && endFn();
+		  }
+		  else
+		  {
+			  objTop+= iSpeed;
+			  obj.style.top= objTop+'px'; 
+			     
+		  }
+	   	
+    },30);
+};
+
+function getStyle(obj,attr)
+{
+	if(obj.currentStyle)
+	{
+	   return obj.currentStyle[attr];
+	}
+	else
+	{
+	   return getComputedStyle(obj,false)[attr];	
+	}
+};
+</script>
+</head>
+
+<body>
+<ul id="ul1">
+	<li><span></span><p>1111</p></li>
+	<li><span></span><p>2222</p></li>
+	<li><span></span><p>3333</p></li>
+	<li><span></span><p>4444</p></li>
+	<li><span></span><p>5555</p></li>
+	<li><span></span><p>6666</p></li>
+</ul>
+</body>
+</html>

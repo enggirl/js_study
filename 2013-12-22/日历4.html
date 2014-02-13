@@ -1,0 +1,131 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+*{margin:0;padding:0}
+#dateDiv{width:210px;margin:100px auto; overflow:hidden;border:1px solid #000;}
+#dateDiv .name{height:20px; line-height:20px;}
+#dateDiv .name li{height:20px;width:100%; text-align:center; color:blue;list-style:none; position:relative;}
+#dateDiv .name li .a1{ position:absolute;top:0;left:0;}
+#dateDiv .name li .a2{ position:absolute;top:0;right:0;}
+#dateDiv .week{height:30px; line-height:20px;border-bottom:1px solid #000;}
+#dateDiv .week li{ float:left;width:30px;height:30px; text-align:center; list-style:none;}
+#dateDiv .dateUl{ overflow:hidden; clear:both}
+#dateDiv .dateUl li{float:left;width:30px;height:30px; text-align:center; line-height:30px;list-style:none;}
+#dateDiv .dateUl li.ccc{ color:#ccc;}
+#dateDiv .dateUl li.red{ background:#F90}
+#dateDiv .dateUl li.sun{ color:#f00;}
+</style>
+<script>
+window.onload=function()
+{
+	var oBigDiv=document.getElementById('dateDiv');
+	var aUl=oBigDiv.children;
+	
+	//  2-start
+	 var oneDay=getoneDay();   //本月第一天是星期几
+	 if(oneDay==0)oneDay=7;
+	 oneDay--;
+	 for(var i=0;i<oneDay;i++)
+	 {
+		var oNewLi=document.createElement('li');
+		aUl[2].appendChild(oNewLi);	
+	 }
+	//  2-end
+	
+	
+	//  1-start
+	// 创建日期，往aUl[2]里放
+	
+	var days=getDates();// 这个月有多少天
+	for(var i=0;i<days;i++)
+	{
+		var oNewLi=document.createElement('li');
+		oNewLi.innerHTML=i+1;
+		aUl[2].appendChild(oNewLi);	
+	}
+	
+	//  1-end
+	
+	
+	//  3-start
+	//  更换标题
+	var oSpan=oBigDiv.getElementsByTagName('span')[0];
+	var oDate=new Date();
+	oSpan.innerHTML=oDate.getFullYear()+'年'+(oDate.getMonth()+1)+'月';
+	//  3-end
+	
+	//  4-start
+	var aLi=aUl[2].children;
+	for(var i=0;i<aLi.length;i++)
+	{
+		if(aLi[i].innerHTML<oDate.getDate())
+		{
+			aLi[i].className='ccc';	
+		}	
+		else if(aLi[i].innerHTML==oDate.getDate())
+		{
+			aLi[i].className='red';
+		}
+		/*else if()  //星期六星期天
+		{
+			aLi[i].className='sun';
+		};*/
+	};
+	
+	alert( 5%7  );   // 5
+	alert( 6%7  );   //  6
+	
+	alert( 12%7  );   //5
+	alert( 13%7  );   //6
+	
+	
+	//  4-end
+	
+};
+
+function getDates()
+{
+	var oDate=new Date();
+	oDate.setMonth( oDate.getMonth()+1 );  //到下个月
+	oDate.setDate(0);  //上个月最后一天
+    return oDate.getDate();		
+};
+
+
+//本月第一天是星期
+function getoneDay()
+{
+	var oDate=new Date();	
+	oDate.setDate(1);
+	return oDate.getDay();  //  返回0-6
+};
+</script>
+</head>
+
+<body>
+<div id="dateDiv">
+	<ul class="name">
+        <li>
+           <span><!--2013年10月--></span>
+           <a href="javascript:;" id="pre" class="a1">上月</a>
+           <a href="javascript:;" id="next" class="a2">下月</a>
+        </li>
+    </ul>
+    <ul class="week">
+    	<li>一</li>
+    	<li>二</li>
+    	<li>三</li>
+    	<li>四</li>
+    	<li>五</li>
+    	<li style="color:#f00;">六</li>
+    	<li style="color:#f00;">日</li>
+    </ul>
+    <ul class="dateUl">
+    	
+    </ul>
+</div>
+</body>
+</html>

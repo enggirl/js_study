@@ -1,0 +1,85 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+*{margin:0;padding:0}
+#box{ position:absolute;top:20px;left:100px; background:red;width:100px;height:100px; z-index:1}
+.r{width:10px;height:100%; background:#000; position:absolute;right:0;top:0}
+.br{width:10px;height:10px; background:#F0F; position:absolute;right:0;bottom:0}
+</style>
+<script>
+window.onload=function()
+{
+	var oBox1=document.getElementById('box');
+    var oR=oBox1.children[0];
+	var oBR=oBox1.children[1];
+	oR.onmousedown=function(ev)
+	{
+		var oEvent=ev||event;
+		var disX=oEvent.clientX;
+		var oldWidth=oBox1.offsetWidth;
+		
+		document.onmousemove=function(ev)
+		{
+			var oEvent=ev||event;
+			var newX=oEvent.clientX;
+			var w=newX-disX;
+			oBox1.style.width=oldWidth+w+'px';
+	
+		};
+		
+		document.onmouseup=function()
+		{
+			document.onmousemove=document.onmouseup=null;
+		};	
+		
+		return false;
+	};
+	
+	oBR.onmousedown=function(ev)
+	{
+		var oEvent=ev||event;
+		var disX=oEvent.clientX;
+		var disY=oEvent.clientY;
+		var oldWidth=oBox1.offsetWidth;
+		var oldHeight=oBox1.offsetHeight;
+		
+		document.onmousemove=function(ev)
+		{
+			var oEvent=ev||event;
+			var newX=oEvent.clientX;
+			var newY=oEvent.clientY;
+			var w=newX-disX;
+			var h=newY-disY;
+			oBox1.style.width=oldWidth+w+'px';
+			oBox1.style.height=oldHeight+h+'px';
+		};
+		
+		document.onmouseup=function()
+		{
+			document.onmousemove=document.onmouseup=null;
+		};	
+		
+		return false;
+	};
+
+
+};
+
+
+
+</script>
+</head>
+
+<body>
+
+<div id="box">
+   <span class="r"></span>
+   <span class="br"></span>
+</div>
+
+
+</body>
+</html>

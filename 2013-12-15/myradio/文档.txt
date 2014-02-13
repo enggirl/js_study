@@ -1,0 +1,8 @@
+1.
+
+  <script src="myradio/r2.js"></script>  
+
+2.
+
+   在你需要自定义单选框input 的加一个 _myradio='myradio'
+

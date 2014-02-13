@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  <title>Document</title>
+  <script src="date_me.js"></script>
+  <style>
+    input{height:30px;margin:30px 100px;border:1px solid #ccc;}
+  </style>
+  <script>
+    window.onload = function(){
+      createDate("dateUI");
+
+      var oTxt = document.getElementById("txt");
+      var oDateDiv = document.getElementById("dateDiv");
+      oTxt.onclick = function(ev){
+        var eve = ev || event;
+        eve.cancelBubble=true;
+
+        oDateDiv.style.display = "block";
+        //eve.callcancel = true;
+        oDateDiv.style.left = getPos(this).left + "px";
+        oDateDiv.style.top = getPos(this).top + this.offsetHeight + "px";
+      }
+
+      document.onclick = function(){
+        oDateDiv.style.display = "none";
+      }
+
+      function getPos(obj){
+        var l = 0;
+        var t = 0;
+        while(obj){
+          l += obj.offsetLeft;
+          t += obj.offsetTop;
+          obj = obj.offsetParent;
+        }
+        return {left:l,top:t};
+      }
+    };
+  </script>
+</head>
+<body>
+  <input type="text" id="txt">
+  <div id="dateDiv"></div>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title> - 智能课堂 - www.zhinengshe.com</title>
+<link href="zns_style.css" type="text/css" rel="stylesheet" />
+<script>
+window.onload=function()
+{
+	var oDiv1=document.getElementById('div1');
+	var oSpan=oDiv1.children[1];
+	var oDiv2=document.getElementById('div2'); 
+     var bigImg=oDiv2.children[0];
+	 
+	 oDiv1.onmouseover=function(ev)
+	 {
+	     oSpan.style.display='block';
+		 oDiv2.style.display='block';	
+	 };
+	 
+	 oDiv1.onmouseout=function()
+	 {
+	     oSpan.style.display='none';	 
+		  oDiv2.style.display='none';
+	 };
+	 
+	 
+	  oDiv1.onmousemove=function(ev)
+	 {
+		 var oEvent=ev||event;
+		 var l=oEvent.clientX-oDiv1.offsetLeft-oSpan.offsetWidth/2;
+		 var t=oEvent.clientY-oDiv1.offsetTop-oSpan.offsetHeight/2;
+		 
+		 if(l<0)l=0;
+		 if(l>oDiv1.offsetWidth-oSpan.offsetWidth)l=oDiv1.offsetWidth-oSpan.offsetWidth;
+		 if(t<0)t=0;
+		  if(t>oDiv1.offsetHeight-oSpan.offsetHeight)t=oDiv1.offsetHeight-oSpan.offsetHeight;
+   
+		 oSpan.style.left=l+'px';
+		 oSpan.style.top=t+'px';
+		 
+		 //求比例
+	   	var b1=l/(oDiv1.offsetWidth-oSpan.offsetWidth);
+		
+		
+		 bigImg.style.left= (oDiv2.offsetWidth-bigImg.offsetWidth)*b1+'px';
+	 };
+};
+</script>
+</head>
+
+<body>
+<div id="div1">
+	<img src="images/2.jpg" />
+	<span></span>
+</div>
+<div id="div2">
+	<img id="img1" src="images/1.jpg" />
+</div>
+</body>
+</html>

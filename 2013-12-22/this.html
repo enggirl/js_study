@@ -1,0 +1,61 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+*{margin:0;padding:0}
+#box1{ position:absolute;top:20px;left:0; background:red;width:200px;height:200px;}
+#box2{ position:absolute;top:20px;left:500px; background:red;width:200px;height:200px;}
+</style>
+<script>
+window.onload=function()
+{
+	var oBox=document.getElementById('box');
+   
+     
+	//oBox.addEventListener('click',function(){
+		//alert(this);
+	//},false);
+	
+	oBox.attachEvent('onclick',function(){
+		alert(this);
+		//  这个绑定不能用this
+	});
+	
+	oBox.onclick=function()
+	{
+	   //事件函数	
+	};
+	
+	function fn()
+	{
+		//非事件函数
+	   alert(this);	
+	};
+
+};
+
+
+function fn2()
+	{
+		//行间调用这个函数，也不能用this 
+	   alert(this);	
+	};
+
+</script>
+</head>
+
+<body>
+<input type="button" value="回去" id="btn">
+<div id="box">
+efsdfsadfewrgfs
+dafvsdfsadfsa
+</div>
+
+<div id="box2" onclick="fn2()">
+22222
+</div>
+
+</body>
+</html>

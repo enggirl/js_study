@@ -1,0 +1,76 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+*{margin:0;padding:0}
+#dateDiv{width:210px;margin:100px auto; overflow:hidden;border:1px solid #000;}
+#dateDiv .name{height:20px; line-height:20px;}
+#dateDiv .name li{height:20px;width:100%; text-align:center; color:blue;list-style:none; position:relative;}
+#dateDiv .name li .a1{ position:absolute;top:0;left:0;}
+#dateDiv .name li .a2{ position:absolute;top:0;right:0;}
+#dateDiv .week{height:30px; line-height:20px;border-bottom:1px solid #000;}
+#dateDiv .week li{ float:left;width:30px;height:30px; text-align:center; list-style:none;}
+#dateDiv .dateUl{ overflow:hidden; clear:both}
+#dateDiv .dateUl li{float:left;width:30px;height:30px; text-align:center; line-height:30px;list-style:none;}
+#dateDiv .dateUl li.ccc{ color:#ccc;}
+#dateDiv .dateUl li.red{ background:#F90}
+#dateDiv .dateUl li.sun{ color:#f00;}
+</style>
+<script>
+window.onload=function()
+{
+	var oBigDiv=document.getElementById('dateDiv');
+	var aUl=oBigDiv.children;
+	
+	
+	//  1-start
+	// 创建日期，往aUl[2]里放
+	
+	var days=getDates();// 这个月有多少天
+	for(var i=0;i<days;i++)
+	{
+		var oNewLi=document.createElement('li');
+		oNewLi.innerHTML=i+1;
+		aUl[2].appendChild(oNewLi);	
+	}
+	
+	//  1-end
+	
+};
+
+function getDates()
+{
+	var oDate=new Date();
+	oDate.setMonth( oDate.getMonth()+1 );  //到下个月
+	oDate.setDate(0);  //上个月最后一天
+    return oDate.getDate();		
+};
+</script>
+</head>
+
+<body>
+<div id="dateDiv">
+	<ul class="name">
+        <li>
+           <span id="s">2013年10月</span>
+           <a href="javascript:;" id="pre" class="a1">上月</a>
+           <a href="javascript:;" id="next" class="a2">下月</a>
+        </li>
+    </ul>
+    <ul class="week">
+    	<li>一</li>
+    	<li>二</li>
+    	<li>三</li>
+    	<li>四</li>
+    	<li>五</li>
+    	<li style="color:#f00;">六</li>
+    	<li style="color:#f00;">日</li>
+    </ul>
+    <ul class="dateUl">
+    	
+    </ul>
+</div>
+</body>
+</html>

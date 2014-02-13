@@ -1,0 +1,58 @@
+form  method属性，不写默认是get
+
+get:     http://www.baidu.com/?sex=phd
+      1. 网址后面的参数有    get是通过地址栏来提交数据
+      2.  安全性低
+      3.  容量小  大概只几K  4k
+      4.  会有缓存
+      5.  易于分享
+
+post:   http://www.sohu.com/
+     1. 网址后面的参数没有   通过用户看不到的自己的机制来提交数据
+     2. 安全性相对较高     https:?//  加密的这样安全性更高
+     3. 容量大 大概1G  
+     4.  没有缓存
+ 
+ 
+
+一个对象加两个普通事件  oBtn.onclick  会覆盖，只执行最后一次的
+
+
+事件绑定 
+
+oBtn.addEventListener(事件不带on,  fn ,  false);     非IE678
+oBtn.attachEvent(事件带on,fn)                        IE678
+
+
+
+解除绑定：
+
+
+oBtn.removeEventListener(事件不带on,  fn ,  false);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

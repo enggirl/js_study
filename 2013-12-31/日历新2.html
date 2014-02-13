@@ -1,0 +1,100 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+*{margin:0;padding:0}
+#dateDiv{width:210px;margin:100px auto; overflow:hidden;border:1px solid #000;}
+#dateDiv .name{height:20px; line-height:20px;}
+#dateDiv .name li{height:20px;width:100%; text-align:center; color:blue;list-style:none; position:relative;}
+#dateDiv .name li .a1{ position:absolute;top:0;left:0;}
+#dateDiv .name li .a2{ position:absolute;top:0;right:0;}
+#dateDiv .week{height:30px; line-height:20px;border-bottom:1px solid #000;}
+#dateDiv .week li{ float:left;width:30px;height:30px; text-align:center; list-style:none;}
+#dateDiv .dateUl{ overflow:hidden; clear:both}
+#dateDiv .dateUl li{float:left;width:30px;height:30px; text-align:center; line-height:30px;list-style:none;}
+#dateDiv .dateUl li.ccc{ color:#ccc;}
+#dateDiv .dateUl li.red{ background:#F90}
+#dateDiv .dateUl li.sun{ color:#f00;}
+</style>
+<script>
+window.onload=function()
+{
+	var oDateDiv=document.getElementById('dateDiv');
+	var aUl=oDateDiv.children;
+	var oDateUl=aUl[2];
+	
+	//放空白LI
+	var weeks= getWeek();   // 0-6
+	//   5   塞  4
+	//   3       2
+	//   0       6
+	if(weeks==0)weeks=7;
+	//  7        6
+	weeks--;
+	for(var i=0;i<weeks;i++)
+	{
+		var oNewLi=document.createElement('li');
+		oDateUl.appendChild(oNewLi);	
+	}
+	
+	
+	
+	//这个月有多少天
+	
+	var days=getDays();
+	for(var i=0;i<days;i++)
+	{
+		var oNewLi=document.createElement('li');
+		oDateUl.appendChild(oNewLi);	
+		oNewLi.innerHTML=i+1;
+	}
+	
+};
+
+
+function getDays()
+{
+	var oDate=new Date();   //2013,12,29
+	oDate.setMonth( oDate.getMonth()+1  );   //到下个月  2014,1,29
+	oDate.setDate(0);   //2013,12,31
+	return oDate.getDate();  // 31	
+}
+
+
+//本月一号是星期几
+function getWeek()
+{
+	var oDate=new Date(); 
+	oDate.setDate(1);
+	return oDate.getDay();  // 0-6	
+};
+
+</script>
+</head>
+
+<body>
+<div id="dateDiv">
+	<ul class="name">
+        <li>
+           <span><!--2013年10月--></span>
+           <a href="javascript:;" class="a1">上月</a>
+           <a href="javascript:;" class="a2">下月</a>
+        </li>
+    </ul>
+    <ul class="week">
+    	<li>一</li>
+    	<li>二</li>
+    	<li>三</li>
+    	<li>四</li>
+    	<li>五</li>
+    	<li style="color:#f00;">六</li>
+    	<li style="color:#f00;">日</li>
+    </ul>
+    <ul class="dateUl">
+    	
+    </ul>
+</div>
+</body>
+</html>

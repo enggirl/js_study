@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+
+<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
+Remove this if you use the .htaccess -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<script src="andy.js"></script>
+<link href="search.css" rel="stylesheet">
+<script>
+$(function(){
+   //相当于onload
+   
+     var aDDbtn=$('#btndl').getElementsByTagName('dd');
+	 var aShow=$('#soft').children;
+	 var chooseAll=$('.chooseAll');  //两个全选DIV
+	 
+	 //最常用，女生用，选项卡切换
+     for(var i=0;i<aDDbtn.length;i++)
+	 {
+	     aDDbtn[i].index=i;
+		 aDDbtn[i].onmouseover=function()
+		 {
+		     for(var i=0;i<aDDbtn.length;i++)
+			 {
+			    aDDbtn[i].className='';	 
+				aShow[i].className='';
+				chooseAll[i].style.display='none';
+			 }
+			 
+			 this.className='active';	 
+			 aShow[this.index].className='show';
+			 chooseAll[this.index].style.display='block';
+		   	 
+		 };	 
+	 };
+	 
+	 
+	 /// 下面的点击 ，可以用大的showDIV来传参，做完一个，其它的都有
+	  checkedBox(aShow[0]);
+	  checkedBox(aShow[1]);
+	  
+	  
+	 function checkedBox(showDiv)
+	 {
+	     //两个大DIV可以都在这个函数里面去写效果
+		 var aDl=showDiv.children;//每一个div下面有四个dl,只用获取一次，其它的也都分别有四个
+		 
+		 for(var i=0;i<aDl.length;i++)
+		 {
+		    checkDl(aDl[i]);	 
+		 };
+		 
+		 function checkDl(dl)  //每一个DL自己也要全选，所以也可以传参
+		 {
+		      var oDt=dl.getElementsByTagName('dt')[0];
+			  var aLi=dl.getElementsByTagName('li');
+			  
+			  oDt.onclick=function()
+			  {
+				 dl.className='checkedDl';    
+			  };    
+		 };
+		 	 
+	 };
+   
+   	
+});
+
+
+
+</script>
+<title>雷电搜索</title>
+</head>
+<body>
+<div id="search">
+	<div class="choose">
+		<dl id="btndl">
+			<dt>选择必备类型：</dt>
+			<dd class="active">最常用</dd>
+			<dd>女生用</dd>
+		</dl>
+	</div>
+	<div class="searCon">
+		<div class="chooseAll">
+			<label><input type="checkbox" />全选</label>
+			<span>您一共选择了0款软件</span>
+		</div>
+        <div class="chooseAll" style="display:none">
+			<label><input type="checkbox" />全选</label>
+			<span>您一共选择了0款软件</span>
+		</div>
+		<div class="soft" id="soft">
+			<div class="show">
+				<dl>
+					<dt>实用工具</dt>
+					<dd>
+						<ul>
+							<li>360手机卫士</li>
+							<li>360安全浏览器</li>
+							<li>高德地图</li>
+							<li>搜狗手机输入法</li>
+						</ul>
+					</dd>
+				</dl>
+				<dl>
+					<dt>装机必备</dt>
+					<dd>
+						<ul>
+							<li>360手机卫士</li>
+							<li>360安全浏览器</li>
+							<li>高德地图</li>
+							<li>搜狗手机输入法</li>
+						</ul>
+					</dd>
+				</dl>
+				<dl>
+					<dt>生活娱乐</dt>
+					<dd>
+						<ul>
+							<li>8684公交</li>
+							<li>360团购</li>
+							<li>高德地图</li>
+							<li>搜狗手机输入法</li>
+						</ul>
+					</dd>
+				</dl>
+				<dl>
+					<dt>经典必玩</dt>
+					<dd>
+						<ul>
+							<li>1942</li>
+							<li>冰雕爆破者</li>
+							<li>捕鱼达人</li>
+							<li>三国杀</li>
+						</ul>
+					</dd>
+				</dl>
+			</div>
+            <div>
+				<dl>
+					<dt>实用2222</dt>
+					<dd>
+						<ul>
+							<li>360手机卫222士</li>
+							<li>360安22全浏览器</li>
+							<li>高德22地图</li>
+							<li>搜狗222手机输入法</li>
+						</ul>
+					</dd>
+				</dl>
+				<dl>
+					<dt>旅游222行</dt>
+					<dd>
+						<ul>
+							<li>携22程机票</li>
+							<li>酒222店</li>
+							<li>旅22游攻略</li>
+							<li>搜2</li>
+						</ul>
+					</dd>
+				</dl>
+				<dl>
+					<dt>生活333</dt>
+					<dd>
+						<ul>
+							<li>8684地铁</li>
+							<li>360团购</li>
+							<li>四22级单词</li>
+							<li>爱帮网</li>
+						</ul>
+					</dd>
+				</dl>
+				<dl>
+					<dt>经典345</dt>
+					<dd>
+						<ul>
+							<li>蘑菇忍者</li>
+							<li>冰2222雕爆破者</li>
+							<li>2</li>
+							<li>消灭星星</li>
+						</ul>
+					</dd>
+				</dl>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

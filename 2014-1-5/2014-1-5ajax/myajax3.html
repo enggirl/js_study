@@ -1,0 +1,93 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script src="ajax.js"></script>
+<script>
+
+
+window.onload=function()
+{
+	var oBtn=document.getElementById('btn');
+	var oUl=document.getElementById('ul1');
+	
+	
+	oBtn.onclick=function()
+	{
+		
+		
+		
+		//var oAjax=new ActiveXObject('Microsoft.XMLHTTP');
+		
+		//alert(XMLHttpRequest);  //IE6 报错
+		alert( window.XMLHttpRequest );
+		
+		
+		//var a=324;
+		//window.a
+		
+		//alert(a);   没有定义的变量报错
+		//alert(window.a);  没有定义的属性undefined
+		
+		
+		if(window.XMLHttpRequest)
+		{
+			var oAjax=new XMLHttpRequest();	
+		}
+		else
+		{
+			var oAjax=new ActiveXObject('Microsoft.XMLHTTP');
+		}
+		
+		
+		alert(oAjax); 
+		
+		
+		
+		
+		
+		
+	};
+	
+	
+	
+	
+	
+		
+};
+
+
+</script>
+<style>
+*{margin:0;padding:0}
+li{ list-style:none;margin-bottom:10px; overflow:hidden;}
+h1{ color:#C0F}
+span{ float:left;margin-right:10px;}
+
+</style>
+</head>
+
+<body>
+<input type="button" value="点击" id="btn">
+<ul id="ul1">
+	
+   <!--<li>
+   	  <h1>我是标题11111</h1>
+      <p><span>内容1111</span><span>内容2222</span><span>内容33333</span></p>
+   </li> -->
+
+
+</ul>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+

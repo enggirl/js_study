@@ -1,0 +1,53 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script>
+window.onload=function()
+{
+   var oTab=document.getElementById('tab');
+    //获取标题2
+   alert(oTab.getElementsByTagName('thead')[0].getElementsByTagName('tr')[0].getElementsByTagName('td')[1].innerHTML);
+   
+   // 表格操作与DIV一样
+    alert(oTab.getElementsByTagName('tbody')[0].getElementsByTagName('tr')[0].getElementsByTagName('td')[2].innerHTML);
+};
+
+</script>
+</head>
+
+<body>
+<!--
+  tbody 我们自己没有写，但是页面会自动给我们加上
+-->
+<table id="tab" border="1">
+  <thead>
+  	 <tr>
+        <td>标题1</td>
+        <td>标题2</td>
+        <td>标题3</td>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td>11</td>
+        <td>12</td>
+        <td>13</td>
+      </tr>
+      <tr>
+        <td>21</td>
+        <td>22</td>
+        <td>23</td>
+      </tr>
+  </tbody>
+  <tfoot>
+  	  <tr>
+        <td>01</td>
+        <td>02</td>
+        <td>03</td>
+      </tr>
+  </tfoot>
+</table>
+</body>
+</html>

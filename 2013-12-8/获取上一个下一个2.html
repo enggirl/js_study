@@ -1,0 +1,46 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+.show{width:200px;height:200px; background:red;}
+li{height:20px; background:red;margin:3px 0;}
+</style>
+<script>
+window.onload=function()
+{
+	var oBtn=document.getElementById('btn');
+	var oUl=document.getElementById('ul1');
+	var aLi=oUl.children;
+
+    for(var i=0;i<aLi.length;i++)
+	{
+	   aLi[i].onclick=function()
+	   {
+		     //去找点击的下一个
+		  var preLi=this.nextElementSibling|| this.nextSibling;
+		  
+		  preLi.style.background='blue';
+			
+		   
+		      
+	    };	
+	}
+   
+};
+
+</script>
+
+</head>
+
+<body>
+<input type="button" value="创建" id="btn">
+<ul id="ul1">
+	<li><p>000<a href="javascript:;">删除</a></p></li>
+    <li><p>111<a href="javascript:;">删除</a></p></li>
+    <li><p>222<a href="javascript:;">删除</a></p></li>
+    <li><p>333<a href="javascript:;">删除</a></p></li>
+</ul>
+</body>
+</html>

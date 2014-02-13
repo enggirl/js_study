@@ -1,0 +1,103 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+*{margin:0;padding:0}
+ul{height:32px;margin-left:40px;}
+li{ float:left;height:60px; position:relative;width:150px;border:1px solid #000; list-style:none}
+span{ position: absolute;top:60px;left:0;width:100%;height:60px; background:red;}
+p{ position: absolute;top:0;left:0;width:100%;height:60px;  text-align:center; line-height:30px;}
+</style>
+<script>
+
+
+window.onload=function()
+{
+   var aLi=document.getElementsByTagName('li');
+   	
+	
+	//如果移出的时候没有到零。是不是需要先走到零
+   for(var i=0;i<aLi.length;i++)
+   {
+	   aLi[i].onmouseover=function()
+	   {
+		   var oSpan=this.children[0];
+			TopMove(oSpan,{
+				attr:'top',
+			    target:0,
+				speed:4
+				//还有一个可选的结束 ，回调函数
+			});  
+	   }; 
+	   
+	   aLi[i].onmouseout=function()
+	   {
+           var oSpan=this.children[0];
+
+	   };  
+   };
+   
+   
+    document.onkeydown=function(ev)
+	{
+	   	var oEvent=ev||event;	
+	};
+
+   
+};
+
+
+//  匀速运动
+function TopMove(obj,json,endFn)
+{
+	clearInterval(obj.timer);
+    var iCur=getStyle(obj,json.attr);
+	if(json.attr=='opacity')
+	{
+		iCur=Math.round(iCur*100);  //透明度的小数不止两位
+		///83.34234
+	}
+	else
+	{
+	   	iCur=parseInt(iCur);
+	}
+	var iSpeed=json.target>iCur?json.speed:-json.speed;
+	
+	obj.timer=setInterval(function(){
+	      if(Math.abs(json.target-iCur)<Math.abs(iSpeed))	
+		  {
+			  clearInterval(obj.timer);
+			  //赋值  直接赋目标值  
+		  }
+		  else
+		  {
+			   iCur+=iSpeed;
+			   //赋值
+			   
+			    
+		   }
+		
+		
+    },30);
+	
+	
+	function getStyle(object,attr){return object.currentStyle?object.currentStyle[attr]:getComputedStyle(object,false)[attr];};
+};
+
+
+</script>
+</head>
+
+<body>
+<ul id="ul1">
+	<li><span></span><p>1111</p></li>
+	<li><span></span><p>2222</p></li>
+	<li><span></span><p>3333</p></li>
+	<li><span></span><p>4444</p></li>
+	<li><span></span><p>5555</p></li>
+	<li><span></span><p>6666</p></li>
+</ul>
+</body>
+</html>

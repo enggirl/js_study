@@ -1,0 +1,24 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script>
+window.onload=function()
+{
+    var oTex=document.getElementById('tex');
+	oTex.onkeydown=function()
+	{
+	   //document.title=this.value.length;	
+	   alert(this.value);
+	   //  onkeydown 没有真正的录入文本
+	};	
+};
+
+</script>
+</head>
+
+<body>
+<input type="text" id="tex">
+</body>
+</html>

@@ -1,0 +1,39 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+#box{width:300px;height:300px; background:red;}
+</style>
+<script>
+window.onload=function()
+{
+	var oBox=document.getElementById('box');
+    
+	if(window.navigator.userAgent.indexOf('Firefox')!=-1)
+	{
+		oBox.addEventListener('DOMMouseScroll',function(){
+			alert(1);
+				
+			// chrome  也认这个绑定，但不认这个事件
+		},false);	
+	}
+	else
+	{
+		oBox.onmousewheel=function()
+		{
+			//滚轮事件
+			alert(1);	
+		};	
+	}
+};
+</script>
+</head>
+
+<body>
+
+<div id="box"></div>
+
+</body>
+</html>

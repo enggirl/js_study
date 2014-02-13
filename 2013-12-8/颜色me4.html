@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  <title>Document</title>
+  <style>
+   
+*{margin:0;padding:0;}
+ul{width:210px;margin:40px auto;border:1px solid #000;border-bottom:none;border-right:none; overflow:hidden;}
+li{width:9px;height:9px;border-bottom:1px solid #000;border-right:1px solid #000; float:left; list-style:none;}
+
+  </style>
+  <script>
+    window.onload = function(){
+      var oUl = document.getElementById("ul1");
+      var colors = ['00','33','66','99','cc','ff'];
+      var firstcolors = ['ff0000','00ff00','0000ff','ffff00','00ffff','ff00ff'];
+
+      for(var i=0; i<12; i++){ //共12行
+
+        for(var j=0; j<3; j++){ //前3列
+          var newLi = document.createElement("li");
+          oUl.appendChild(newLi);
+
+          if(j==1){
+            //每行不同，所以受i影响
+            if(i<6){//上面6行由黑灰到白
+
+              newLi.style.background = "#"+colors[i]+colors[i]+colors[i];
+              
+            }else{//下面6行
+              newLi.style.background = "#"+firstcolors[i-6];
+            }
+          }else{
+            newLi.style.background = "#000";
+          }
+        }
+        //后面的列，分为3大块，每块里面有6列  一开始一直是三列排下去，是因为ul的width是30px，也就是宽度不够
+        for(var m=0; m<3; m++){
+          for(var k=0; k<6; k++){
+            var newLi = document.createElement("li");
+            oUl.appendChild(newLi);
+
+             newLi.style.background = "#" + colors[m]+colors[k]+colors[i];
+          }
+        }
+        // for(var k=0; k<18; k++){ //这样暂时也是对的效果，跟踪后续发展
+        //     var newLi = document.createElement("li");
+        //     oUl.appendChild(newLi);
+        // }
+      }
+    }
+  </script>
+</head>
+<body>
+  <ul id="ul1"></ul>
+</body>
+</html>

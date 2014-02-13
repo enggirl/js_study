@@ -1,0 +1,55 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+*{margin:0;padding:0}
+.seDiv{width:100px;height:30px; position:relative; display:inline-block}
+.seDiv p{height:28px;border:1px solid #000;}
+.seDiv ul{ position:absolute;top:30px;left:0;width:100px; background:#fff; display:none}
+.seDiv ul li{height:28px; line-height:28px; text-align:center;border:1px solid #000;}
+
+
+</style>
+<script src="select/s.js"></script>
+<script>
+window.onload=function()
+{
+    myselect('se',function(obj){
+		  alert(obj);
+	});
+	myselect('se2');
+	//当两个的时候。点击页面第一个下拉菜单就不会关掉
+	//  document.onclick  事件覆盖了
+	
+	// 作业： 把这个写完
+	
+	
+	
+};
+
+</script>
+</head>
+
+<body>
+<form action="http://www.zhinengshe.com">
+
+    <select name="se">
+    	<option value="sh">上海</option>
+    	<option value="bj">北京</option>
+    	<option value="gz">广州</option>
+    	<option value="sz">深圳</option>
+    </select>
+    
+     <select name="se2">
+    	<option value="s2h">上海22</option>
+    	<option value="b2j">北22京</option>
+    	<option value="g2z">广22州</option>
+    	<option value="s2z">深22圳</option>
+    </select>
+    <input type="submit" value="tj">
+    
+</form>
+</body>
+</html>

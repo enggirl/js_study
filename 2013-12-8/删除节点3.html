@@ -1,0 +1,63 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+.show{width:200px;height:200px; background:red;}
+li{height:20px; background:red;margin:3px 0;}
+</style>
+<script>
+window.onload=function()
+{
+	var oBtn=document.getElementById('btn');
+	var oUl=document.getElementById('ul1');
+	var aLi=oUl.children;
+	var n=0;
+	oBtn.onclick=function()
+	{
+		n++;
+	   var newLi=document.createElement('li');
+	   
+	   newLi.innerHTML=n+'<a href="javascript:;">删除</a>';
+       
+	   if(oUl.children[0])
+	   {
+		   oUl.insertBefore(newLi,oUl.children[0]);   
+	   }
+	   else
+	   {
+		  oUl.appendChild(newLi);   
+	   }
+
+	};
+	
+    for(var i=0;i<aLi.length;i++)
+	{
+		var oA=aLi[i].children[0];
+		oA.index=i;
+	   oA.onclick=function()
+	   {
+		   
+		   //  oUl   父级 是需要被删除对象的父级
+		   oUl.removeChild( aLi[this.index] );  
+	   };
+	}
+   
+   
+};
+
+</script>
+
+</head>
+
+<body>
+<input type="button" value="创建" id="btn">
+<ul id="ul1">
+	<li>000<a href="javascript:;">删除</a></li>
+    <li>111<a href="javascript:;">删除</a></li>
+    <li>222<a href="javascript:;">删除</a></li>
+    <li>333<a href="javascript:;">删除</a></li>
+</ul>
+</body>
+</html>

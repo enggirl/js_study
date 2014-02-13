@@ -1,0 +1,65 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+*{margin:0;padding:0}
+
+img{ display:block;height:800px;width:600px;}
+</style>
+<script>
+window.onload=function()
+{
+   var aImg=document.getElementsByTagName('img');
+   
+   var winH=document.documentElement.clientHeight;
+   var scrollT=document.documentElement.scrollTop||document.body.scrollTop;
+   
+   for(var i=0;i<aImg.length;i++)
+   {
+	  var top= getPos(aImg[i]).top;
+	  if(top<winH+scrollT)
+	  {
+		  //换图片
+		  //如果滚动距离 加上浏览器高度大于图片的绝对top
+		  
+		   aImg[i].src=aImg[i].getAttribute('_src'); 
+	  }
+	      
+   }
+	
+};
+
+//求绝对位置
+function getPos(obj)
+{
+    var t=0;
+	var l=0;
+	
+	while(obj)
+	{
+	     t+=obj.offsetTop;
+		 l+=obj.offsetLeft;
+	   	 obj=obj.offsetParent;
+	};
+	
+	return {left:l,top:t};
+		
+}
+
+</script>
+</head>
+
+<body id="body1">
+
+  <img src="logo.png" _src="http://a.hiphotos.baidu.com/image/w%3D2048/sign=58663f84023b5bb5bed727fe02ebd439/7dd98d1001e93901516db3117aec54e736d196b5.jpg">
+
+<img src="logo.png" _src="http://g.hiphotos.baidu.com/image/w%3D2048/sign=94da5b23a50f4bfb8cd0995437777af0/86d6277f9e2f07083ee01ebce824b899a801f2a0.jpg">
+
+<img src="logo.png" _src="http://a.hiphotos.baidu.com/image/w%3D2048/sign=0ef89c67cf1b9d168ac79d61c7e6b58f/a71ea8d3fd1f4134ef340bc6241f95cad1c85e02.jpg">
+
+<img src="logo.png" _src="http://e.hiphotos.baidu.com/image/w%3D2048/sign=76190688728da9774e2f812b8469f919/8b13632762d0f703ad06506709fa513d2797c5d1.jpg">
+
+</body>
+</html>

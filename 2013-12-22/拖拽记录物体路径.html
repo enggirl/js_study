@@ -1,0 +1,89 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+*{margin:0;padding:0}
+div{ position:absolute;top:20px;left:0; background:red;width:200px;height:200px;}
+</style>
+<script>
+window.onload=function()
+{
+	var oBox=document.getElementById('box');
+	var oBtn=document.getElementById('btn');
+	
+	oBtn.onclick=function()
+	{
+		var timer=setInterval(function(){
+			 
+			 var json=arr.pop();
+			 //  取最后一条，并且删除 
+			  
+			 oBox.style.left=json.left+'px';
+			 oBox.style.top=json.top+'px';
+			 
+			 if(arr.length==0)clearInterval(timer);
+			
+			 	
+		},50);
+			
+	};
+	
+	
+	var arr=[];
+	
+	oBox.onmousedown=function(ev)
+	{
+		var oEvent=ev||event;
+		var disX=oEvent.clientX-this.offsetLeft;
+		var disY=oEvent.clientY-this.offsetTop;
+		
+		//down的时候也要记录初始位置
+		arr.push({left:this.offsetLeft,top:this.offsetTop});
+		
+		
+		document.onmousemove=function(ev)
+		{
+			//向上或向左的时候不行
+			 var oEvent=ev||event;
+			 var l=oEvent.clientX-disX;
+			 var t=oEvent.clientY-disY;
+			 
+
+			 oBox.style.left=l+'px';
+			 oBox.style.top=t+'px';
+			 
+			 arr.push( {left:l,top:t} );		
+		};
+		
+		document.onmouseup=function()
+		{
+			document.onmousemove=null;	
+			document.onmouseup=null;
+			
+			if(oBox.setCapture)oBox.releaseCapture();	
+		};
+		
+		if(oBox.setCapture)oBox.setCapture();	
+		
+		return false;  //避免选中文本
+		
+			
+	};
+	
+	 
+
+};
+</script>
+</head>
+
+<body>
+<input type="button" value="回去" id="btn">
+<div id="box">
+efsdfsadfewrgfs
+dafvsdfsadfsa
+</div>
+
+</body>
+</html>

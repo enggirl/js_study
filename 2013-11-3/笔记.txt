@@ -1,0 +1,198 @@
+计算后的高度  obj.offsetHeight
+                obj.offsetWidth
+              offsetLeft
+              offsetTop
+
+
+
+
+
+在定时器内不能直接用this   ->window
+
+
+－－－－－－－－－
+命名：
+
+oDiv   aInput   str
+
+类型	前缀	类型	实例
+对象	o	Object	oDiv1
+数组	a	Array	aItems
+字符串	s	String	sUserName
+整数	i	Integer	iItemCount
+布尔值	b	Boolean	bIsComplete
+浮点数	f	Float	fPrice
+函数	fn	Function	fnHandler
+正则表达式	re	RegExp	reEmailCheck
+变体变量	v	Variant	vAnything
+
+
+用得最多的  o  a  s
+
+匈牙利命名法   
+getElementByID
+oDiv   aDiv  aBtn   
+
+
+%  取模  求余
+
+
+
+算术：+ 加、- 减、* 乘、/ 除% 
+赋值：=、+=、-=、*=、/=、%=
+关系：<、>、<=、>=、==、===不等于：!=、!==
+逻辑&& 与（并且）、|| 或（或者）、! 否（取反）
+
+
+//真假
+  
+真： true    非零数字   非空字符串   非空对象
+假： false   零         空字符串     空对象   undefined  null  NAN
+
+
+//
+obj.style.width  行间必须得有
+obj.offsetWidth  计算后的宽度  只有4个
+
+
+// 取所有样式 
+
+  if(this.currentStyle)
+	  {
+		 alert(this.currentStyle.background);  
+	  }
+	  else
+	  {
+		 alert(getComputedStyle(this,false).backgroundColor);   
+	  }
+
+   不能取组合样式
+   可以取默认样式
+
+
+
+--------
+
+Math.random()  随时数 0－1之间  0有机率出现  1不会出现
+
+
+颜色
+red
+#f00
+rgb(255,0,0)
+
+
+
+ 
+作业：
+左右的无缝滚动
+输入两个数字，弹出较大的值
+简易网页计算器       
+<input text>  <select>    <input text>  <btn>
+//非数字不能运算
+
+
+
+----------------------------
+
+参数   +  函数
+
+function aa(n)
+{
+   alert(n);
+};
+
+aa(1);
+
+返回值：  return 
+将值返回到调用函数的地方
+return 可以省  但是如果不写默认返回undefined
+可以返回任意类型
+return 函数内之后的JS语句不会执行
+
+
+
+
+// 京东彩票
+
+1   6位
+2   1－32
+3   不重复
+
+
+for      次数已定
+while    满足条件
+
+if（饿）
+{
+  吃
+}
+
+///
+彩票会动
+
+1  取N次就停
+2  过N秒就停
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

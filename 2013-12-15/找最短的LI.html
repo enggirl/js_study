@@ -1,0 +1,44 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+*{margin:0;padding:0}
+li{ list-style:none;height:20px; background:red;margin:3px 0;width:100px;}
+
+</style>
+<script>
+window.onload=function()
+{
+	var aLi=document.getElementsByTagName('li');
+	
+	var n=99999999999999999999999;
+	var minLi;
+	
+	for(var i=0;i<aLi.length;i++)
+	{
+	   aLi[i].index=i;
+	   if(aLi[i].offsetWidth<n)
+	   {
+		   minLi=aLi[i];
+		   n=aLi[i].offsetWidth;
+	   }	
+	};
+	
+	alert(minLi.index);
+};
+
+</script>
+</head>
+
+<body>
+<ul>
+	<li>1</li>
+	<li style="width:140px">2</li>
+	<li style="width:170px">3</li>
+	<li style="width:110px">4</li>
+	<li style="width:160px">5</li>
+</ul>
+</body>
+</html>

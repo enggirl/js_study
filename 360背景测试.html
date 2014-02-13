@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+ <head>
+  <title>  </title>
+  <meta name="generator" content="editplus">
+  <meta name="author" content="">
+  <meta name="keywords" content="">
+  <meta name="description" content="">
+<style type="text/css">
+
+</style>
+<script type="text/javascript">
+var testWdith = 1000;
+
+window.onload = function(){
+	var divs = document.getElementsByTagName("div");
+	for (var i=0;i<divs.length ;i++ ){
+		divs[i].onmouseover = function(){
+			this.hover = true;
+			//movein(this);
+			move(this, 100, 1000);
+		}
+		divs[i].onmouseout = function(){
+			this.hover = false;
+			//moveout(this);
+			move(this,1000, 100);
+		}
+		divs[i].hover = false;
+	}
+}
+
+//移入移出
+function move(item, orginal, target){
+	if(item.moving){
+		return;
+	}
+	var width = orginal;
+	var symbal = (target - orginal)/(Math.abs(target - orginal));
+	clearInterval(item.timer);
+	item.timer = setInterval(function(){
+		width += symbal * 10;
+		item.moving = true;
+		var hover = symbal > 0 ? !item.hover : item.hover;
+		if(width >= Math.max(target, orginal) || width <= Math.min(orginal, target)){
+			clearInterval(item.timer);
+			item.moving = false;
+			width = target;
+			if(hover){
+				move(item, target, orginal);
+			}
+		}
+		item.style.width = width + "px";
+	},20);
+}
+/*
+//移入
+function movein(item){
+	var width = 100;
+	console.log("in-moving:"+item.moving + "; hover:"+item.hover);
+	if(item.moving){
+		return ;
+	}
+	clearInterval(item.timer);
+	item.timer = setInterval(function(){
+		width += 10;
+		item.moving = true;
+		if(width >= testWdith){
+			clearInterval(item.timer);
+			item.moving = false;
+			width = testWdith;
+			item.style.width = width + "px";
+			if(!item.hover){
+				moveout(item);
+				return ;
+			}
+		}
+		item.style.width = width + "px";
+	},20);
+}
+
+//移出来
+function moveout(item){
+	var width = testWdith;
+	console.log("out-moving:"+item.moving + "; hover:"+item.hover);
+	if(item.moving){
+		return ;
+	}
+	clearInterval(item.timer);
+	item.timer = setInterval(function(){
+		width -= 10;
+		item.moving = true;
+		if(width <= 100){
+			item.moving = false;
+			clearInterval(item.timer);
+			width = 100;
+			item.style.width = width + "px";
+			if(item.hover){
+				movein(item);
+				return ;
+			}
+		}
+		item.style.width = width + "px";
+	},20);
+}
+*/
+</script>
+
+  <style type="text/css">
+div {
+	width:100px; 
+	height:100px;
+	margin:20px;
+	background-color:#f00;
+}
+  
+  </style>
+ </head>
+
+ <body>
+<div></div>
+<div></div>
+
+
+ </body>
+</html>

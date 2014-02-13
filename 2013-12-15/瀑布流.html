@@ -1,0 +1,90 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+*{margin:0;padding:0}
+div{width:706px;margin:0 auto;}
+ul{width:200px;border:1px solid #000;margin-right:50px; float:left; list-style:none;}
+</style>
+<script>
+window.onload=function()
+{
+	
+	//////////ie7  有问题
+    var aUL=document.getElementsByTagName('ul');
+	var n=0;
+	create20();
+	function create20()
+	{
+		for(var i=0;i<20;i++)
+	{
+	    var newLi=document.createElement('li');
+		newLi.style.height=rnd(200,400)+'px';
+		newLi.style.background='rgb('+rnd(0,255)+','+rnd(0,255)+','+rnd(0,255)+')';
+		n++;
+		newLi.innerHTML=n;
+	   	//aUL[0].appendChild(newLi);
+		
+		//哪一个UL最短就插入哪一个
+	    var oUl;
+		
+		if(aUL[0].offsetHeight<aUL[1].offsetHeight)
+		{
+		     if(aUL[0].offsetHeight<aUL[2].offsetHeight)
+			{
+				oUl=aUL[0];
+			} 
+			else
+			{
+				oUl=aUL[2];
+			}	
+		}
+		else
+		{
+		   if(aUL[1].offsetHeight<aUL[2].offsetHeight)
+			{
+				oUl=aUL[1];
+			} 
+			else
+			{
+				oUl=aUL[2];
+			}		
+		}
+		
+		oUl.appendChild(newLi);
+	};
+	};
+	
+	window.onscroll=function()
+	{
+	   var scrollTop=document.body.scrollTop||document.documentElement.scrollTop;
+	   var winH=document.documentElement.clientHeight;
+	   
+	  // alert(document.body.scrollHeight);
+	   
+	   if(scrollTop>= document.body.scrollHeight-winH-200 )
+	   {
+		  create20();
+	   };
+	};
+   	
+};
+
+function rnd(n,m)
+{
+   return parseInt(Math.random()*(m-n+1)+n);	
+}
+</script>
+</head>
+
+<body>
+
+<div>
+    <ul></ul>
+    <ul></ul>
+    <ul style="margin:0;"></ul>
+</div>
+</body>
+</html>
