@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>图片竖向滚动 - 智能课堂 - www.zhinengshe.com</title>
+<style type="text/css">
+* { padding: 0; margin: 0; }
+li { list-style: none; }
+body { background: #f7f7f7; }
+#slideShow { width: 168px; margin: 50px auto 0; }
+#slideShow h2 { height: 24px; line-height: 24px; padding: 0 10px; background: url(images/bg.gif) no-repeat; font-size: 12px; font-weight: normal; }
+#slideShow h2 a { text-decoration: none; color: #fff; }
+#slideShow h2 a:hover { text-decoration: underline; }
+#slideShow .title { float: left; }
+#slideShow .more { float: right; }
+#slideShow .wrap { border: 1px solid #d1d1d1; border-bottom: none; }
+#slideShow p { position: relative; z-index: 2; }
+#slideShow .up a { display: block; height: 22px; background: #efefef url(images/bg.gif) no-repeat 75px -40px; }
+#slideShow .up a:hover { background: #e4ebf2 url(images/bg.gif) no-repeat 75px -40px; }
+#slideShow .down a { display: block; height: 22px; background: #efefef url(images/bg.gif) no-repeat -78px -40px; }
+#slideShow .down a:hover { background: #e4ebf2 url(images/bg.gif) no-repeat -78px -40px; }
+#slideShow .content { height: 380px; overflow: hidden; position: relative; z-index: 1; }
+#slideShow ul { position: absolute; top: 0; left: 0; }
+#slideShow li { width: 166px; float: left; }
+#slideShow li img { display: block; }
+#slideShow .footer { height: 5px; overflow: hidden; background: url(images/bg.gif) no-repeat 0 -25px; }
+</style>
+<script type="text/javascript">
+window.onload=function()
+{
+	var oUp=document.getElementById('up');
+	var oUl=document.getElementById('ul1');
+	var top=0;
+	var timer;
+	oUp.onmousedown=function()
+	{//1新需求：怎么能让onmousedown一次，他就会自己走，也就是用什么来代替每次onmousedown
+    //解决：用定时器
+		timer=setInterval(function(){
+        //2.1新需求：虽然定时器是关了，但是mousedown，他还会走
+        //解决：需要把下面的判断放到前面来
+            if(top<-(734-380))  
+            {
+                clearInterval(timer);
+            }else{
+                top-=10;
+                oUl.style.top=top+'px';
+            }
+			
+    //2新需求：1虽然可以自己走了，但是他向上走到头，下面就会露出来背景，怎么能避免呢
+    //分析：放开content的overflow：hidden，然后修改top值，发现，当top=-354时正好，如果超过这个值，那么就会露出背景色。而且这个值恰巧是content.height- ul.height.那么为什么会这样？那是因为content是ul的显示区，可以理解为镜头框，通过向上移动ul，可以看到ul的其余部分，但是ul.height-content.height值是ul向上移动的最大距离。如果超过就露底了
+	//解决：当他超过这个距离，就把定时器关了
+			// if(top<-(734-380))   
+   //          {
+   //              clearInterval(timer);
+   //          }	
+		},100);
+	};
+	
+	oUp.onmouseup=function()
+	{
+		clearInterval(timer);
+	};
+};
+</script>
+</head>
+
+<body>
+
+<div id="slideShow">
+    <h2>
+        <a class="title" href="http://www.zhinengshe.com">智能课堂</a>
+        <a class="more" href="http://www.zhinengshe.com">>>更多</a>
+    </h2>
+    <div class="wrap">
+        <p class="up" id="up"><a href="javascript:;"></a></p>
+        <div class="content" id="content">
+            <ul id="ul1">
+                <li><img src="images/1.gif" alt="智能课堂" longdesc="http://www.zhinengshe.com" /></li>
+                <li><img src="images/2.gif" alt="智能课堂" longdesc="http://www.zhinengshe.com" /></li>
+                <li><img src="images/3.gif" alt="智能课堂" longdesc="http://www.zhinengshe.com" /></li>
+                <li><img src="images/4.gif" alt="智能课堂" longdesc="http://www.zhinengshe.com" /></li>
+                <li><img src="images/5.gif" alt="智能课堂" longdesc="http://www.zhinengshe.com" /></li>
+                <li><img src="images/6.gif" alt="智能课堂" longdesc="http://www.zhinengshe.com" /></li>
+                <li><img src="images/7.gif" alt="智能课堂" longdesc="http://www.zhinengshe.com" /></li>
+                <li><img src="images/8.gif" alt="智能课堂" longdesc="http://www.zhinengshe.com" /></li>
+            </ul>
+        </div>
+        <p class="down"><a href="javascript:;"></a></p>
+    </div>
+    <div class="footer"></div>
+</div>
+
+</body>
+</html>

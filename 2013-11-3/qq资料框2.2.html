@@ -1,0 +1,50 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+#box1{width:200px;height:200px; background:red; float:left;margin-right:10px;}
+#box2{width:200px;height:200px; background:blue; float:left; display:none}
+</style>
+<script>
+window.onload=function()
+{
+	var oBox1=document.getElementById('box1');
+	var oBox2=document.getElementById('box2');
+	var timer;
+	oBox1.onmouseover=function()
+	{
+		oBox2.style.display='block';
+		
+	};
+	
+	oBox1.onmouseout=function()
+	{
+		timer=setTimeout(function(){
+			oBox2.style.display='none';	
+		},200);	
+	};
+	
+	
+	oBox2.onmouseover=function()
+	{
+		clearTimeout(timer);
+	};
+	
+	oBox2.onmouseout=function()
+	{//在2.1里面虽然鼠标可以从box1移到box2上，但是，现在有个新需求：想从box2再回到box1上。同理，如果直接从box2上mouseout，box2就消失了，这样鼠标虽然也可以回到box1上，但是会闪一下。这是因为box2上mouseout，他自己消失，但是box1上mouseover时，box2是显示的。所以两个动作有先后顺序，之间也有时间间隔，就导致闪一下
+
+		timer=setTimeout(function(){
+			oBox2.style.display='none';	
+		},200);	
+	};
+};
+</script>
+</head>
+
+<body>
+<div id="box1"></div>
+<div id="box2"></div>
+</body>
+</html>

@@ -1,0 +1,56 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+*{margin:0;padding:0}
+div{width:300px;height:100px;border:1px solid #000;margin:100px auto; position: relative; overflow:hidden;}
+div ul{width:750px;height:100px; position:absolute;top:0;left:0;}
+li{ list-style:none;width:150px;height:100px; background:red; float:left;}
+</style>
+<script>
+window.onload=function()
+{
+	var oUl=document.getElementById('ul1');
+	//alert(oUl.offsetLeft);
+    //oUl.style.left=oUl.offsetLeft -10+'px';  //跟1比较，ul向左移动了， ul之所以会移动，是因为用js不断重写他的left值
+    //1.2新需求：怎么能让left持续修改，也就是让ul向左移动
+    //解决：用定时器
+    //1.3新需求：虽然ul自己会动了，可是他总有走到头的时候，走到头就露出来白色，那么怎么解决这个问题
+    //解决：把ul加长
+    oUl.innerHTML += oUl.innerHTML;//但是这样问题没有解决
+    //1.4新需求：怎么能让他知道走到头，你要返回来
+    //分析：我们前面补出来一个ul长度，也是为了不让白色底露出来，而他本来应该是走完一个ul就回来重新开始走，所以
+    //解决：我们让他走完一个ul宽度就返回来，也就是left=0
+    //1.5新需求：每次5都显示不全，就倒回去重新走了。
+    //分析：这是因为oUl的width设置为750px
+    //解决：不能把ul的width定死。也就是说他应该是根据li的个数和li的width来变的
+    oUl.style.width = oUl.children[0].offsetWidth * oUl.children.length + 'px';
+    setInterval(function(){
+        var l = oUl.offsetLeft -10;
+        if(l<=-oUl.offsetWidth/2){ 
+            l=0;
+        }
+        oUl.style.left=l+'px'; 
+    },100);
+
+};
+
+</script>
+</head>
+
+<body>
+
+<div>
+	<ul id="ul1">
+    	<li>1</li>
+    	<li>2</li>
+    	<li>3</li>
+    	<li>4</li>
+    	<li>5</li>
+    </ul>
+</div>
+
+</body>
+</html>

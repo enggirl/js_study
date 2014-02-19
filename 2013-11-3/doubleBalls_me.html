@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+  <style>
+    body{font-size:14px;}
+    *{margin:0;padding:0;}
+    ul,li{list-style:none;}
+    #ul1{float:left;width:180px;}
+    #ul1 li{float:left;width:20px;height:20px;line-height:20px;margin-right:10px;background:red;border-radius:10px;text-align:center;color:#fff;}
+    span{float:left;width:20px;height:20px;line-height:20px;margin-right:10px;background:blue;border-radius:10px;color:#fff;text-align:center;}
+  </style>
+  <script>
+    window.onload = function(){
+      /*
+        京东彩票
+        效果：1.  前6位是1-32之间的任意数字
+              2.  这6位数字不能重复
+              3.点击一个按钮，他们需要不断刷新产生不同的6位数
+              4.点击按钮后一段时间，6位数自动停止刷新
+              5.还有一个单独1-16的随机数
+        步骤：1.前6位是1-32之间的任意数字
+              2.这6位数字不能重复
+              3.不足两位的补0
+              4.点击一个按钮，他们需要不断刷新产生不同的6位数
+      */
+      //1.前6位是1-32之间的任意数字
+      // 1.1有个产生随机数的函数
+      // 1.2产生随机数的函数需要执行6次
+
+      var oBtn = document.getElementById("btn");
+      //4.点击一个按钮，他们需要不断刷新产生不同的6位数
+      oBtn.onclick =function(){
+        var timer = setInterval(startDouble,30);
+        //4.1点击按钮后一段时间，6位数自动停止刷新
+        setTimeout(function(){
+          clearInterval(timer);
+        },1000);
+      }
+
+      function startDouble(){
+        //  1.2产生随机数的函数需要执行6次，所以用循环,用来存放6位随机数的容器，数组
+        var oUl = document.getElementById("ul1");
+        var oSpan = document.getElementsByTagName("span")[0];
+        var aLi = oUl.children;
+        var arr = [],arr2 = [];
+        for(var i=0; i<6; i++){
+          var num = rmd(1,32);
+          //2.2产生的随机数，需要先经过筛选看看是否重复，如果不重复就插入数组，如果重复，就跳过下一个，但是这样的话，就放空一次。也就是说，如果有相同的两个随机数，那么跳到下一个，因为只循环6次，出现相同随机数的这次也是占用了1/6的机会。如果不处理，虽然循环了6次，但是显示的数字个数却少于6个。所以，如果出现相同的，那么这次不算，需要重新来一次
+          if(!findSame(arr,num)){
+            arr.push(num);
+            aLi[i].innerHTML = addZero(arr[i]);
+          }else{
+            i--;
+          }
+        }
+        oSpan.innerHTML = addZero(rmd(1,16));
+      }
+      startDouble();
+
+      //3.不足两位的补0,先看看这个数是几位的，如果是两位，直接返回，如果不足两位也就是1位，在他前面+“0”.那怎么知道一个数是几位？其实就是看这个数是不是>0且<9,因为>9的都是两位数
+      function addZero(n){
+        if(n>0 && n<=9){
+          return "0" + n;
+        }
+        return n;
+      }
+      //2.这6位数字不能重复，怎么知道产生的随机数是否重复,需要一个变量存一个值，然后让他依次跟数组中的值比较
+      //2.1需要一个变量存一个值，然后让他依次跟数组中的值比较
+      function findSame(arr,n){
+        for(var i=0; i<arr.length; i++){
+          if(arr[i]==n){
+            return true;
+          }
+        }
+        return false;
+      }
+      //1.1产生随机数
+      function rmd(n,m){
+        return parseInt(Math.random()*(m-n+1)+n);
+      }
+    };
+  </script>
+</head>
+<body>
+<ul id="ul1">
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+</ul>
+<span></span>
+<input type="button" value="随机出一组" id="btn">
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<style>
+#div1 {width:200px; height:200px; background:#CCC;}
+</style>
+<script>
+window.onload=function()
+{
+	var oS=document.getElementById('s1');
+	var aInput=document.getElementsByTagName('input');
+	var oDiv=document.getElementById('div1');
+	
+	alert(oS.value);
+	
+	aInput[1].onclick=function()
+	{
+		oDiv.style[oS.value]=	aInput[0].value;
+		//oDiv.style[变量或参数]
+	};
+	
+	//操作属性的第二种方法
+	//oDiv.style.width='500px';
+	//  这种方式不能是字符串不能是变量不能是参数，必须是真正有的属性或样式
+	
+	//操作属性的第二种方法
+	//alert(1);
+	//oDiv.style['width']='600px';
+	// 值不定的时候用方括号
+};
+</script>
+</head>
+
+<body>
+<select id="s1">
+	<option value="width">width</option>
+	<option value="height">height</option>
+	<option value="background">background</option>
+	<option value="display">display</option>
+</select>
+<input type="text" />
+<input type="button" value="变" />
+<div id="div1"></div>
+</body>
+</html>

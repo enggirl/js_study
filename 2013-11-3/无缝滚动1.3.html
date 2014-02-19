@@ -1,0 +1,45 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+*{margin:0;padding:0}
+div{width:300px;height:100px;border:1px solid #000;margin:100px auto; position: relative; overflow:hidden;}
+div ul{width:750px;height:100px; position:absolute;top:0;left:0;}
+li{ list-style:none;width:150px;height:100px; background:red; float:left;}
+</style>
+<script>
+window.onload=function()
+{
+	var oUl=document.getElementById('ul1');
+	//alert(oUl.offsetLeft);
+    //oUl.style.left=oUl.offsetLeft -10+'px';  //跟1比较，ul向左移动了， ul之所以会移动，是因为用js不断重写他的left值
+    //1.2新需求：怎么能让left持续修改，也就是让ul向左移动
+    //解决：用定时器
+    //1.3新需求：虽然ul自己会动了，可是他总有走到头的时候，走到头就露出来白色，那么怎么解决这个问题
+    //解决：把ul加长
+    oUl.innerHTML += oUl.innerHTML;//但是这样问题没有解决
+    setInterval(function(){
+        oUl.style.left=oUl.offsetLeft -10+'px'; 
+    },100);
+
+};
+
+</script>
+</head>
+
+<body>
+
+<div>
+	<ul id="ul1">
+    	<li>1</li>
+    	<li>2</li>
+    	<li>3</li>
+    	<li>4</li>
+    	<li>5</li>
+    </ul>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+*{margin:0;padding:0}
+div{width:400px;height:400px;padding:10px; background-color:red}
+</style>
+<script>
+window.onload=function()
+{
+   function fn()
+   {
+   	//这个跟2的区别，就是return位置不同，所以结果也不同。2中会先输出‘函数’，然后是12，而这个只输出12，这说明return后面的东西都不会执行
+   		return 12;
+	   alert('函数');  //js
+	   
+   };
+   
+    var n=fn();
+	alert(n);
+};
+</script>
+</head>
+
+<body>
+<div id="box">234234234</div>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin:0;padding:0;}
+		ul,li{list-style:none;}
+		a{float:left;padding:3px 8px;background:red;color:#fff;text-decoration:none;}
+		#cont{position:relative;float:left;overflow:hidden;width:840px;height:120px;}
+		#ul1{position:absolute;left:0;top:0;width:1680px;height:120px;}
+		#ul1 li{float:left;width:200px;height:120px;padding:5px;}
+		#ul1 li img{width:200px;height:120px;}
+	</style>
+	<script>
+		window.onload = function(){
+			/*
+				效果：1.他自己会自动整个滚动，滚动过程中不会有中断空白
+							2.鼠标移入容器，停止滚动，鼠标移出容器，继续滚动
+							3.鼠标点击向左，容器向左移动，点击向右，容器向右移动
+				步骤：1.容器整体自动滚动，定时器，滚动过程中没有空白
+							2.鼠标移入容器，停止滚动，鼠标移出容器，继续滚动
+							3.鼠标点击向左，容器向左移动，点击向右，容器向右移动
+			*/
+
+			// 1.容器整体自动滚动，定时器，滚动过程中没有空白，有空白是因为容器从头走到尾后面没有东西，所以需要复制一份容器，但是需要让他在某个位置回到头，不然他总会走到尾露出空白的时候。返回的位置选为容器的尾部，其实后面复制的根本显示不完，跟返回的元素一样，只是个障眼法
+			var oUl = document.getElementById("ul1");
+			var aA = document.getElementsByTagName("a");
+			//1.1 复制容器
+			oUl.innerHTML += oUl.innerHTML;
+			//1.2 获取容器的总长度 =  单个块长度 * 块个数
+			oUl.offsetWidth = oUl.children[0].offsetWidth * oUl.children.length;
+			//1.3 给容器left一个偏移量，也就是从原来的left：0移动一段距离 10
+			//1.4 如果想left持续有偏移量，也就是相对于原来的位置，他移动了，用定时器
+			// function move(){
+			// 	var l = oUl.offsetLeft - 50;
+			// //1.5 如果不想让出现空白，让容器返回
+			// 	if(l < (-oUl.offsetWidth/2)){
+			// 		l = 0;
+			// 	}
+			// 	oUl.style.left = l + "px";
+			// }
+			var timer = setInterval(move,100);
+
+			//2.如果想要鼠标移入容器，容器就停止运动，那么必须清掉定时器，鼠标移出容器，容器又开始运动，重新开启定时器
+			oUl.onmouseover = function(){
+				clearInterval(timer);
+			};
+			oUl.onmouseout = function(){
+				timer = setInterval(move,100);
+			};
+
+			//3.点击向左右按钮，容器向左向右移动，所以可以看出，他们唯一的不同就是，移动的方向不同，其他都一样。向左移动，偏移量left越来越小，向右移动，偏移量left越来越大。现在看来影响移动方向的数据，好像就是一个10，试试把-10改为+10，容器开始向右移动了。所以，实际确实跟推想一致。那么想要通用这个10，不能一个+10，另一个为-10，但是
+			//+10=-(-10)。而且这个10还有一个作用，就是影响移动的快慢。也就是说这个值越大，移动越快，反之越小。所以重写move
+			ispeed = 10;
+			function move(){
+				var l = oUl.offsetLeft - ispeed;
+			//1.5 如果不想让出现空白，让容器返回
+				if(l < (-oUl.offsetWidth/2)){
+					l = 0;
+				}else if(l > 0){
+					l = -oUl.offsetWidth/2;
+				}
+				oUl.style.left = l + "px";
+			}
+			aA[0].onclick =function(){
+				ispeed = 10;
+			}
+			aA[1].onclick =function(){
+				ispeed = -10;
+			}
+		};
+	</script>
+</head>
+<body>
+	<a href="javascript:;">向左</a>
+	<div id="cont">
+		<ul id="ul1">
+			<li><img src="images/1.jpg" alt="" /></li>
+			<li><img src="images/2.jpg" alt="" /></li>
+			<li><img src="images/3.jpg" alt="" /></li>
+			<li><img src="images/4.jpg" alt="" /></li>
+			<li><img src="images/1.jpg" alt="" /></li>
+			<li><img src="images/2.jpg" alt="" /></li>
+			<li><img src="images/3.jpg" alt="" /></li>
+			<li><img src="images/4.jpg" alt="" /></li>
+		</ul>
+	</div>
+	<a href="javascript:;">向右</a>
+</body>
+</html>

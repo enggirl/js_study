@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+	<script>
+		window.onload = function(){
+			var oBtn = document.getElementById('btn');
+
+			oBtn.onclick = function(){
+				var oTxt1 = parseInt(document.getElementById('txt1').value),
+					oTxt2 = parseInt(document.getElementById('txt2').value),
+					oOpt = document.getElementById('opt').value;
+					if(isNaN(oTxt1)){
+						alert('第一个文本框输入数字');
+					}else if(isNaN(oTxt2)){
+						alert('第二个文本框输入数字');
+					}else{
+						result =getResult(oOpt,oTxt1,oTxt2);
+					}
+				alert(result);
+			};
+
+			function getResult(oOpt,oTxt1,oTxt2){
+				var result = 0;
+				switch(oOpt){
+					case '+': result=oTxt1+oTxt2;break;
+					case '-': result=oTxt1-oTxt2;break;
+					case '×': result=oTxt1*oTxt2;break;
+					case '/': result=oTxt1/oTxt2;break;
+					default: break;	
+				}
+				return result;
+			}
+
+		};
+	</script>
+</head>
+<body>
+	<input type="text" id='txt1'>
+	<select name="" id="opt">
+		<option value="+">+</option>
+		<option value="-">-</option>
+		<option value="×">×</option>
+		<option value="/">/</option>
+	</select>
+	<input type="text" id='txt2'>
+	<input type="button" id="btn" value='计算'>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>比较两个数大小</title>
+	<script>
+		window.onload = function(){
+			
+			var oBtn = document.getElementById('btn');
+			oBtn.onclick = function(){
+			//新需求：这样写第一次好使，但是修改txt1和txt2值后，就不好使了，他总是记住第一次的输出结果。
+			//分析：那是因为他们只是在点击前赋值了一次，所以当txt1和txt2值修改后，没有重新赋值，还是沿用以前的旧值，所以，就输出旧结果
+			//解决：把赋值放到每次点击后
+				var oTxt1 = parseInt(document.getElementById('txt1').value);
+				var oTxt2 = parseInt(document.getElementById('txt2').value);
+				if(oTxt1 < oTxt2){
+
+					alert('第二个数大');
+
+				}else{
+					alert('第一个数大');
+				}
+			}
+			
+		}
+	</script>
+</head>
+<body>
+	<input type="text" id='txt1'/>
+	<input type="text" id='txt2'/>
+	<input type="button" value='比较' id='btn'/>
+</body>
+</html>                                                

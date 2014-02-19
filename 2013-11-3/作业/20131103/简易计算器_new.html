@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+  <script>
+    window.onload= function(){
+      /*
+        点击按钮，1.获取所有的input可以获取实时的值
+                 2.如果值不是数字，要提示，需要判断
+                 3.根据下拉框的选项对两个文本框执行相应的操作
+      */
+      var aInput = document.getElementsByTagName("input");
+      var oSel = document.getElementById("sel");
+          
+      var result = 0;
+      aInput[2].onclick = function(){
+        //1.
+        var txt1 = parseInt(aInput[0].value);
+        var txt2 = parseInt(aInput[1].value);
+        var opt = oSel.value; 
+        //2.
+        if(isNaN(txt1)){
+          alert("1请输入数字");
+        }else if(isNaN(txt2)){
+           alert("2请输入数字");
+        }
+        //3.
+        
+        switch(opt){
+          case "+": result = txt1 + txt2; break;
+          case "-": result = txt1 - txt2; break;
+          case "*": result = txt1 * txt2; break;
+          case "/": result = txt1 / txt2; break;
+          default: break;
+        }
+        alert(result);
+      };
+    }
+    
+  </script>
+</head>
+<body>
+<input type="text">
+  <select name="" id="sel">
+    <option value="+">+</option>
+    <option value="-">-</option>
+    <option value="*">*</option>
+    <option value="/">/</option>
+</select>
+<input type="text">
+<input type="button" value="计算">
+</body>
+</html>

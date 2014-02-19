@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin:0;padding:0;}
+		ul,li{list-style:none;}
+		div{overflow:hidden;position:relative;width:200px;height:100px;margin:100px auto 0;border:1px solid #000;}
+		div ul{position:absolute;top:0;left:0;width:800px;height:100px;}
+		div li{float:left;width:200px;height:100px;background:red;}
+	</style>
+	<script>
+		window.onload = function(){
+			var oDiv = document.getElementById('box');
+			var oUl = oDiv.children[0];
+			var l = 0;
+			var timer;
+
+			oUl.innerHTML += oUl.innerHTML;
+			oUl.style.width = oUl.children[0].offsetWidth * oUl.children.length + 'px';
+
+			function fn(){
+				l = oUl.offsetLeft -10;
+				if(l <= -oUl.offsetWidth/2){
+					l = 0;
+				}
+				oUl.style.left = l + 'px';
+			}
+			timer =setInterval(fn,100);
+
+			oDiv.onmouseover = function(){
+				clearInterval(timer);
+			}
+			oDiv.onmouseout = function(){
+				timer =setInterval(fn,100);
+			}
+		};
+	</script>
+</head>
+<body>
+	<div id='box'>
+		<ul>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+		</ul>
+	</div>
+</body>
+</html>
