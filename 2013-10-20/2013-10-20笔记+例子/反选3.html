@@ -1,0 +1,68 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script>
+window.onload=function()
+{
+	var oBox=document.getElementById('box');
+	var aInput=oBox.getElementsByTagName('input');
+	var aBtn=document.getElementsByTagName('input');
+	
+	aBtn[0].onclick=function()
+	{
+		for(var i=0;i<aInput.length;i++)
+		{
+			aInput[i].checked=true;	
+		}	
+		aBtn[1].checked=false;
+	};
+	
+	aBtn[1].onclick=function()
+	{
+		for(var i=0;i<aInput.length;i++)
+		{
+			aInput[i].checked=false;	
+		}	
+		aBtn[0].checked=false;
+	};
+	
+	aBtn[2].onclick=function()
+	{
+		for(var i=0;i<aInput.length;i++)
+		{
+			//aInput[i].checked=false;	
+			if(aInput[i].checked==true)
+			{
+				aInput[i].checked=false;
+			}
+			else
+			{
+				aInput[i].checked=true;	
+			}
+		}	
+		aBtn[0].checked=false;
+		aBtn[1].checked=false;
+	};
+	
+	
+		
+};
+
+</script>
+</head>
+
+<body>
+<input type="checkbox">全选<input type="checkbox">不选
+<input type="checkbox">反选<br />
+<div id="box">
+    <input type="checkbox">
+    <input type="checkbox">
+    <input type="checkbox">
+    <input type="checkbox">
+    <input type="checkbox">
+    <input type="checkbox">
+</div>
+</body>
+</html>

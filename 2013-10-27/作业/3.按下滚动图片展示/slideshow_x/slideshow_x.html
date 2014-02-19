@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+.cont{ width:600px; height:60px; border:1px solid #ccc; padding:20px; margin:20px;}
+.j1{ background:url(image/j1.jpg); width:10px; height:15px; overflow:hidden; float:left; margin-top:20px; cursor:pointer;}
+.j2{ background:url(image/j2.jpg); width:10px; height:15px; overflow:hidden; float:right; margin-top:20px; cursor:pointer;}
+.cent{ width:560px; height:60px; overflow:hidden;float:left; margin:0px 10px; position:relative;}
+.cent ul{ height:60px; overflow:hidden; list-style:none; padding:0px; margin:0px; position:absolute; left:0px; top:0px;}
+.cent ul li{ width:80px; height:60px; overflow:hidden; float:left; padding:0px 7px;}
+</style>
+
+<script type="text/javascript">
+var oDivx = null;
+var oUl = null;
+var iTmer = null;
+var speed = 0;
+var oTage = 0;
+var oLi = 0;
+window.onload = function()
+{
+	var oDiv = document.getElementById("gund");
+	oDivx = oDiv.getElementsByTagName("div")[0];
+	oUl = oDiv.getElementsByTagName("ul")[0];
+	oLi = oUl.getElementsByTagName("li");
+	
+	var oSpanl = oDiv.getElementsByTagName("span")[0];
+	var oSpanr = oDiv.getElementsByTagName("span")[1];
+	oSpanl.onmousedown = fnstart;
+	oSpanr.onmousedown = fnstart;
+	oSpanl.onmouseup = fnstopd;
+	oSpanr.onmouseup = fnstopd;
+	
+	oUl.style.width = oLi[0].offsetWidth * oLi.length + "px";
+}
+
+
+function fnstart()
+{		
+	if(this.className == "j1")
+	{
+		speed = -5;
+		oTage = -(oUl.offsetWidth-oDivx.offsetWidth);
+	}
+	else
+	{
+		speed = 5;
+		oTage = 0;
+	}
+	
+	if(iTmer)
+	{
+		clearInterval(iTmer);
+	}
+	iTmer = setInterval("yuns()",40);
+}
+
+function yuns()
+{
+	if(Math.abs(oTage-oUl.offsetLeft) < Math.abs(speed))
+	{
+		clearInterval(iTmer);
+		iTmer = null;
+	}
+	else
+	{
+		oUl.style.left = oUl.offsetLeft + speed +"px";
+	}
+}
+
+function fnstopd()
+{
+	clearInterval(iTmer);
+	iTmer = null;
+}
+
+
+</script>
+</head>
+
+<body>
+
+<div class="cont" id="gund">
+	<span class="j1"></span>
+    <div class="cent">
+    	<ul>
+        	<li><img src="image/p1.jpg" /></li>
+            <li><img src="image/p2.jpg" /></li>
+            <li><img src="image/p3.jpg" /></li>
+            <li><img src="image/p4.jpg" /></li>
+            <li><img src="image/p5.jpg" /></li>
+            <li><img src="image/p6.jpg" /></li>
+            <li><img src="image/p7.jpg" /></li>
+            <li><img src="image/p8.jpg" /></li>
+            <li><img src="image/p9.jpg" /></li>
+            <li><img src="image/p1.jpg" /></li>
+            <li><img src="image/p2.jpg" /></li>
+            <li><img src="image/p3.jpg" /></li>
+            <li><img src="image/p1.jpg" /></li>
+            <li><img src="image/p2.jpg" /></li>
+            <li><img src="image/p3.jpg" /></li>
+        </ul>
+    </div>
+    <span class="j2"></span>
+</div>
+
+</body>
+</html>

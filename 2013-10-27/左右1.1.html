@@ -1,0 +1,74 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+*{margin:0;padding:0}
+#box{width:240px;height:100px;}
+#box span{width:20px;height:100px; float:left; background:#000; color:#fff;}
+#box div{float:left;width:200px;height:100px; position:relative;}
+#box div ul{width:200px;height:100px; position:relative;}
+#box div ul li{width:200px;height:100px; position:absolute;top:0;left:0; list-style:none; display:none}
+</style>
+<script>
+window.onload=function()
+{
+	var oBox=document.getElementById('box');
+	var aSpan=oBox.getElementsByTagName('span');
+	var aLi=oBox.getElementsByTagName('li');
+	// 右
+	var iNow=0;  //默认的第一张
+	aSpan[1].onclick=function()
+	{
+		for(var i=0;i<aLi.length;i++)
+		{
+			aLi[i].style.display='none';
+		};
+		console.log('iNow='+iNow);	//0 1  2
+		iNow++;
+		console.log('iNow='+iNow);	//1 2  3
+	
+	
+		//如果到3就回到0
+		if(iNow==aLi.length)
+		{
+			iNow=0;	
+		}
+		console.log('iNow='+iNow);// 1 2  0
+		aLi[iNow].style.display='block';
+	};
+	
+	aSpan[0].onclick=function()
+	{
+		for(var i=0;i<aLi.length;i++)
+		{
+			aLi[i].style.display='none';
+		};	
+		iNow--;
+		//如果到-1就回到3
+		if(iNow==-1)
+		{
+			iNow=aLi.length-1;	
+		}
+		aLi[iNow].style.display='block';
+	};
+};
+
+</script>
+</head>
+
+<body>
+<div id="box">
+	<span>左</span>
+    <div>
+    	<ul>
+        	<li style="display:block"><img src="img2/toyota_ad.jpg" width="200" height="100"></li>
+            <li><img src="img2/U3093P30DT20130911114332.jpg" width="200" height="100"></li>
+            <li><img src="img2/U3093P30DT20130923134652.jpg" width="200" height="100"></li>
+        </ul>
+    </div>
+    <span>右</span>
+</div>
+</body>
+</html>

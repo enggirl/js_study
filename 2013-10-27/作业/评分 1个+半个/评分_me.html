@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+	<link href="zns_style.css" rel="stylesheet" type="text/css" />
+	<script>
+		window.onload = function(){
+			/*效果:鼠标移入到第几个星星，那么这个星星包括他前面的星星都亮，鼠标移出，所有的星星都灭
+			  步骤：1.获取所有星星
+			        2.移入某个星星，这个星星亮
+			        3.记录2中星星的下标，然后等于这个下标值的星星都亮
+			        4.移出某个星星，所有的星星都灭
+				
+			*/
+			var oPf = document.getElementById("pingfen");
+			var aLi = oPf.getElementsByTagName("li");
+
+			//2.移入某个星星，这个星星亮
+			for(var i=0; i<aLi.length; i++){
+				aLi[i].index = i;
+				aLi[i].onmouseover = function(){
+					for(var i=0; i<aLi.length; i++){
+						aLi[i].className = "";
+					}
+					this.className = "current";
+					// 3.记录2中星星的下标，然后等于这个下标值的星星都亮
+					for(var j=0; j<=this.index; j++){
+						aLi[j].className = "current";
+					}
+				}
+				//4.移出某个星星，所有的星星都灭
+				aLi[i].onmouseout = function(){
+					for(var i=0; i<aLi.length; i++){
+						aLi[i].className = "";
+					}
+				}
+
+			}
+		}
+	</script>
+</head>
+<body>
+	<div id="pingfen">
+	<ul>
+    	<li class='current'></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+</body>
+</html>

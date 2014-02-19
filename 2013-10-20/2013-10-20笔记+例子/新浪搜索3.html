@@ -1,0 +1,39 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script>
+window.onload=function()
+{
+	var oBtn=document.getElementById('btn');
+	var oTex=document.getElementById('box');
+	var oBox=document.getElementById('box2');
+	
+	oBtn.onfocus=function()
+	{
+		oTex.style.display='none';
+		oBox.style.display='block';	
+	};
+	
+	oBtn.onblur=function()
+	{
+		if(oBtn.value=='')
+		{
+			oTex.style.display='block';
+		}
+		
+		
+		oBox.style.display='none';	
+	};
+};
+
+</script>
+</head>
+
+<body>
+<input type="text" id="btn">
+<div id="box">请输入文字</div>
+<div id="box2" style="width:300px;height:300px; background:red; display:none;"></div>
+</body>
+</html>

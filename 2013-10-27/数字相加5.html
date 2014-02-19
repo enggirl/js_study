@@ -1,0 +1,41 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script>
+window.onload=function()
+{
+	var aInput=document.getElementsByTagName('input');
+	aInput[2].onclick=function()
+	{
+		var a='10';
+		alert(a-1);
+		//因为字符串与数字 - / * 会自动转换为number,所以用下面的形式代替parseInt()
+		var n1=aInput[0].value-0;
+		var n2=aInput[1].value-0;
+		
+		if(isNaN(n1))//n1不是数字
+		{
+		   alert('第一个文本框输入数字');	
+		}
+		else if(isNaN(n2))
+		{
+			 alert('第2个文本框输入数字');	
+		}
+		else
+		{
+			alert(n1+n2);
+		};
+	};	
+};
+</script>
+</head>
+
+<body>
+<input type="text" >
++
+<input type="text" >
+<input type="button" value="aa">
+</body>
+</html>

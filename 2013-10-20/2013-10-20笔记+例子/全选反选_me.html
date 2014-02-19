@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+	<!-- /*<style>
+	div{width:100px;height:100px;background:red;margin:10px;}
+	</style>*/ -->
+	<script>
+   window.onload = function(){
+      //点击全选，下面都选中
+  //点击不选，下面的都不选
+  //点击反选，判断选中的，不选，没选中的选
+  var oBtn = document.getElementById("btn");
+  var oBox = document.getElementById("box");
+  var aInput = oBox.getElementsByTagName("input");
+  var len = aInput.length;
+  //console.log(len);
+  
+var aBtn = oBtn.getElementsByTagName("input");
+  
+  aBtn[0].onclick = function(){//全选
+    for(var i=0; i<len; i++){//让一组做同样的事情用循环
+      //aInput[i].checked = "true";
+      aInput[i].checked = true;
+    }
+    aBtn[1].checked = false;
+    aBtn[2].checked = false;
+  };
+  aBtn[1].onclick = function(){//不选
+    for(var i=0; i<len; i++){//让一组做同样的事情用循环
+      /*aInput[i].checked = "false";//这个之所以让复选框选中，就是因为checked是个boolean值，所以会把右侧的值变成boolean值，然后再赋值给左侧
+      //而"false"是个非空字符串，所以转为boolean就是true
+      console.log(typeof aInput[i].checked) //boolean
+      console.log(aInput[i].checked)  //true
+      console.log(typeof aInput[i].value)  //string
+      console.log(aInput[i].value)  //on
+      */
+      aInput[i].checked = false;
+    }
+    aBtn[0].checked = false;
+    aBtn[2].checked = false;
+  };
+  aBtn[2].onclick = function(){//反选
+    for(var i=0; i<len; i++){
+      if(aInput[i].checked == true){
+        aInput[i].checked = false;
+      }else{
+        aInput[i].checked = true;
+      }
+    }
+    aBtn[0].checked = false;
+    aBtn[1].checked = false;
+  };
+
+   }
+	</script>
+</head>
+<body>
+	<div class="btn" id="btn">
+    <input type="checkbox">全选
+    <input type="checkbox">不选
+    <input type="checkbox">反选
+  </div>
+  <div class="box" id="box">
+    <input type="checkbox">
+    <input type="checkbox">
+    <input type="checkbox">
+    <input type="checkbox">
+    <input type="checkbox">
+    <input type="checkbox">
+  </div>
+</body>
+</html>

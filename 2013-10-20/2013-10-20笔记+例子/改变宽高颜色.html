@@ -1,0 +1,36 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+div{width:200px;height:200px; background:red;}
+</style>
+<script>
+function toWidth()
+{
+	var oBox=document.getElementById('box');
+	oBox.style.width='400px';
+};
+function toHeight()
+{
+	var oBox=document.getElementById('box');
+	oBox.style.height='400px';
+};
+function toColor()
+{
+	var oBox=document.getElementById('box');
+	oBox.style.background='blue';
+};
+</script>
+</head>
+
+<body>
+<input type="button" value="aaa" onclick="toWidth()">
+<input type="button" value="bbb" onclick="toHeight()">
+<input type="button" value="ccc" onclick="toColor()">
+<div id="box">
+
+</div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+*{margin:0;padding:0}
+ul{width:850px;height:32px;margin:100px auto}
+ul li{ list-style:none;width:200px;height:30px; border:1px solid #000; float:left; position:relative;}
+ul li a{width:200px;height:30px; line-height:30px; text-align:center; display:block;}
+ul li div{width:200px;height:400px; background:red; position:absolute;top:30px; left:1px; display:none;}
+</style>
+<script>
+window.onload=function()
+{
+	var oUl=document.getElementById('ul1');
+	var aLi=oUl.children;
+	alert(aLi.length);
+	
+		
+};
+
+</script>
+</head>
+
+<body>
+
+<ul id="ul1">
+	<li>
+        <ul>
+        	<li></li>
+        	<li></li>
+        	<li></li>
+        </ul>
+    </li>
+    <li></li>
+    <li>
+    	<a href="javascript:;">菜单3</a>
+        <div></div>
+    </li>
+    <li>
+    	<a href="javascript:;">菜单4</a>
+        <div></div>
+    </li>
+    <div></div>
+</ul>
+
+</body>
+</html>

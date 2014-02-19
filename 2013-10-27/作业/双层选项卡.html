@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>双层选项卡</title>
+	<style>
+*{margin:0;padding:0;list-style:none;}	
+l{float:left;}
+r{float:right;}
+
+.box{width:656px;height:430px;background:#E0E0E0;}
+.btn{width:650px;height:52px;line-height:60px;border-bottom:1px solid #F90;margin:0 auto;}
+.btn span{display:block;width:175px;height:50px; float:left;margin-left:10px;text-align:center;}
+.box2{width:110px;height:110px; position:relative; left:30px;top:20px;}
+.box ul{position:absolute;bottom:0;left:30px;}
+.box2 ul li{float:left; }
+.box2 span{display:block; width:20px;height:20px;background:#F96;margin-right:3px;}
+.boxList{width:656px;height:375px; position:relative;}
+p{ vertical-align:middle;width:100px;height:80px;background:#6CF;}
+.btn_active{border-top:3px solid #F90;border-left:1px solid #F90;border-right:1px solid #F90;background:#FFF; }
+.list{width:656px;height:375px;display:none;}
+.list2{display:none;}
+.bl{display:block;}
+.box2 .btnn_active{background:#FFF;}
+	</style>
+	<script>
+		window.onload = function(){
+			show('box','list bl');
+			show('box2','list2 bl');
+		}
+		function show(id,className){
+			var Obox = document.getElementById(id);
+			var Obtn = Obox.children[0];
+			var aspan = Obtn.children;
+			var Oboxlist= Obox.children[1];
+			var alist = Oboxlist.children;
+			var len = alist.length;
+
+			for(var i=0;i<len; i++){
+				aspan[i].index = i;
+				aspan[i].onmouseover = function(){
+					for(var i=0;i<len;i++){
+						aspan[i].className = '';
+						alist[i].className = 'list';
+					}
+					this.className = 'btn_active';
+					alist[this.index].className = className;
+				}
+			}
+		}
+	</script>
+</head>
+<body>
+	<div class="box" id="box">
+  	<div class="btn">
+          <span class="btn_active">今日要闻</span>
+          <span>热门视频</span>
+          <span>热门图集</span>
+      </div>
+      <div class="boxList">
+      	<div class="list bl">
+          	 <div class="box2" id="box2">
+               	  <ul>
+                    		<li><span class="btnn_active">1</span></li>
+                    		<li><span>2</span></li>
+                    		<li><span>3</span></li>
+                    </ul>
+                    <div class="box2List">
+                    		<div class="list2 bl">
+                          	<h2>星期五</h2>
+                              <p>01</p>
+                          </div>
+                          <div class="list2">
+                          	<h2>星期六</h2>
+                              <p>02</p>
+                          </div>
+                          <div class="list2">
+                          	<h2>星期日</h2>
+                              <p>03</p>
+                          </div>
+                    </div>
+               </div>
+          </div>
+      	<div class="list">热门视频热门视频热门视频热门视频热门视频热门视频热门视频热门视频热门视频热门视频热门视频热门视频热门视频热门视频</div>
+          <div class="list">热门图集热门图集热门图集热门图集热门图集热门图集热门图集热门图集热门图集热门图集热门图集热门图集热门图集热门图集</div>
+      </div>
+  </div>
+</body>
+</html>

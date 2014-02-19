@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+	<!-- /*<style>
+	div{width:100px;height:100px;background:red;margin:10px;}
+	</style>*/ -->
+	<script>
+  //联动全选，就是当input选中的个数为6的时候，让全选按钮选中，也就是说每选中一个input，选中个数计数器+1，然后接着判断个数是不是为6，如果是6，就选中全选
+   window.onload = function(){
+      var oBtn = document.getElementById("btn");
+      var oBox = document.getElementById("box");
+      var aInput = oBox.getElementsByTagName("input");
+      var n = 0;
+      for(var i=0; i<aInput.length; i++){
+        aInput[i].onclick = function(){
+          if(this.checked === true){//当input的选中，就+1，没选中就-1，否则，没有else n--，那么n只能一次等于6
+            n++;
+          }else{
+            n--;
+          }
+          
+          alert(n)
+          if(n===6){
+            oBtn.checked = true; 
+          }else{
+            oBtn.checked = false;
+          }
+        }
+          
+        // alert(n)
+        // if(n===6){
+        //   oBtn.checked = true; 
+        // }
+      }
+   }
+	</script>
+</head>
+<body>
+	<div class="btn" >
+    <input type="checkbox" id="btn">全选
+  </div>
+  <div class="box" id="box">
+    <input type="checkbox">
+    <input type="checkbox">
+    <input type="checkbox">
+    <input type="checkbox">
+    <input type="checkbox">
+    <input type="checkbox">
+  </div>
+</body>
+</html>

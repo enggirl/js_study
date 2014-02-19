@@ -1,0 +1,33 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+div{width:200px;height:200px; background:red; display:none;}
+</style>
+<script>
+function show()
+{
+	var oBox=document.getElementById('box');
+	//oBox.style.display="block";	
+	
+	//这个例子解释为什么点击两次按钮才起作用。因为div里面没有display行内样式，所以，第一次先添加display：none，然后点击第二次修改它的值
+	if(oBox.style.display=='none')  //注意：不是一个等号
+	{
+	   oBox.style.display='block';
+	}
+	else
+	{
+		oBox.style.display='none';
+	};
+};
+
+</script>
+</head>
+
+<body>
+<input type="button" value="点击" onclick="show()">
+<div id="box"></div>
+</body>
+</html>

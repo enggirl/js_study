@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>微博弹出框</title>
+	<style>
+	*{margin:0;padding:0;}
+	body{font-size:12px;}
+	ul,li{list-style:none;}
+	dl{display:none;width:530px;height:460px;margin:0 auto;padding:0 20px 20px 20px;border:1px solid #ededed;}
+	dl dt{overflow:hidden;zoom:1;margin-bottom:20px;}
+	dl dt h1{float:left;}
+	dl dt a{float:right;text-decoration:none;font-size:20px;font-weight:bold;}
+	dl ul{overflow:hidden;zoom:1;}
+	dl li{float:left;margin:0 10px 20px 0;border:1px solid #ccc;}
+	dl li a{display:block;width:118px;height:68px;background:green;}
+	dl li p{display:none;line-height:25px;background:rgba(0,0,0,.3);/*background:#000;*/margin-top:-25px;color:#fff;text-align:center;/*opacity:0.3;filter:alpha(opacity=30);*/}
+	.red{background:red;}
+	</style>
+	<script>
+		window.onload = function(){
+			var Obody = document.getElementById('body1');
+			var Oul = document.getElementById('imglist');
+			var Oli = Oul.getElementsByTagName('li');
+			var len = Oli.length;
+
+			var Oshowbtn = document.getElementById('showpop');
+			var Odt = Obody.getElementsByTagName('dt')[0];
+			var Odl = Obody.getElementsByTagName('dl')[0];
+			var Oclose = Odt.children[1];
+
+			Oshowbtn.onclick = function(){
+				Odl.style.display = 'block';
+			}
+			Oclose.onclick = function(){
+				Odl.style.display = 'none';
+			}
+
+			for(var i=0; i<len; i++){
+				Oli[i].onmouseover = function(){
+					var Oa = this.children[0];
+					var Op = this.children[1];
+					Op.style.display = 'block';
+				}
+				Oli[i].onmouseout = function(){
+					var Oa = this.children[0];
+					var Op = this.children[1];
+					Op.style.display = 'none';
+				}
+				Oli[i].onclick = function(){
+					Obody.className = 'red';
+				}
+			}
+
+		}
+	</script>
+</head>
+<body id='body1'>
+	<a href="javascript:;" id='showpop'>显示弹窗</a>
+	<dl id='popbox'>
+		<dt><h1>个性设置</h1><a href="javascript:;">×</a></dt>
+		<dd>
+			<ul id='imglist'>
+				<li>
+					<a href="javascript:;"></a>
+					<p>设置1</p>
+				</li>
+				<li>
+					<a href="javascript:;"></a>
+					<p>设置1</p>
+				</li>
+				<li>
+					<a href="javascript:;"></a>
+					<p>设置1</p>
+				</li>
+				<li>
+					<a href="javascript:;"></a>
+					<p>设置1</p>
+				</li>
+				<li>
+					<a href="javascript:;"></a>
+					<p>设置1</p>
+				</li>
+				<li>
+					<a href="javascript:;"></a>
+					<p>设置1</p>
+				</li>
+				<li>
+					<a href="javascript:;"></a>
+					<p>设置1</p>
+				</li>
+				<li>
+					<a href="javascript:;"></a>
+					<p>设置1</p>
+				</li>
+				<li>
+					<a href="javascript:;"></a>
+					<p>设置1</p>
+				</li>
+				<li>
+					<a href="javascript:;"></a>
+					<p>设置1</p>
+				</li>
+				<li>
+					<a href="javascript:;"></a>
+					<p>设置1</p>
+				</li>
+				<li>
+					<a href="javascript:;"></a>
+					<p>设置1</p>
+				</li>
+			</ul>
+		</dd>
+	</dl>
+</body>
+</html>

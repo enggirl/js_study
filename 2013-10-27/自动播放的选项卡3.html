@@ -1,0 +1,84 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+*{margin:0;padding:0}
+#box{width:402px;height:400px; background:#ccc}
+#box div{width:400px;height:350px; border:1px solid #000; display:none}
+#box div.show{display:block}
+#box input{height:50px; display:inline-block;width:100px;}
+#box input.active{ background:#0f0;}
+</style>
+<script>
+window.onload=function()
+{
+	var oBox=document.getElementById('box');
+	var aInput=oBox.getElementsByTagName('input');
+	var aDiv=oBox.getElementsByTagName('div');
+	
+	
+	for(var i=0;i<aDiv.length;i++)
+	{
+		aInput[i].index=i;//约定成俗
+		aInput[i].onclick=function()
+		{ 
+			for(var i=0;i<aDiv.length;i++)
+			{
+				aInput[i].className='';
+				aDiv[i].className='';
+			};
+			this.className='active';
+			aDiv[this.index].className='show';
+		};
+	};
+	
+	var oNext=document.getElementById('next');
+	var iNow=0;
+	oNext.onclick=function()
+	{
+		aInput[iNow].className='';
+		aDiv[iNow].className='';
+		iNow++;	
+		if(iNow==aInput.length)
+		{
+			iNow=0;
+		}
+		aInput[iNow].className='active';
+		aDiv[iNow].className='show';
+	};
+	
+	setInterval(function(){
+		
+		aInput[iNow].className='';
+		aDiv[iNow].className='';
+		iNow++;	
+		if(iNow==aInput.length)
+		{
+			iNow=0;
+		}
+		aInput[iNow].className='active';
+		aDiv[iNow].className='show';
+		
+	},500);
+	
+};
+
+
+
+</script>
+</head>
+
+<body>
+<div id="box">
+    <input class="active" type="button" value="aa">
+    <input type="button" value="bb">
+    <input type="button" value="cc">
+    <div class="show">1111111111111111</div>
+     <div>2222222222</div>
+     <div>3333333333</div>
+</div>
+<a id="next" href="javascript:;">下一个</a>
+</body>
+</html>

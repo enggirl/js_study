@@ -1,0 +1,31 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+#box{width:200px;height:30px;border:1px solid #000; position:relative;}
+#box a{ display:block;width:200px;height:30px;}
+#div1{width:400px;height:400px; background:red; position:absolute;top:50%;left:50%; display:none;margin:-200px 0 0 -200px;}
+</style>
+<script>
+function show()
+{
+	var oDiv1=document.getElementById('div1');
+	oDiv1.style.display='block';	
+};
+
+</script>
+</head>
+
+<body>
+<div id="box" onclick="show()">
+	<a href="javascript:;">菜单</a>
+    
+</div>
+
+<div id="div1">
+      sdfsdf
+</div>
+</body>
+</html>

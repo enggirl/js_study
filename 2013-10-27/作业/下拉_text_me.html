@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+<style>
+*{margin:0;padding:0}
+#div1 {width:200px; height:200px; background:#CCC;}
+
+</style>
+  <script>
+  /*根据下拉列表的选项作为元素的样式属性，文本框里输入相应于选中样式属性的属性值，点击按钮块应用样式
+  步骤:1.获取下拉列表选中的项内容
+       2.获取文本框中输入的内容
+       3.把下拉列表选中的项作为样式，文本框内容作为样式值
+
+  */
+    window.onload = function(){
+      var oSel = document.getElementById("sel");
+      var oTxt = document.getElementById("txt");
+      var oBtn= document.getElementById("btn");
+      var oDiv = document.getElementById("div1");
+      //1.2.3
+      oBtn.onclick = function(){
+        oDiv.style[oSel.value] = oTxt.value;
+      }
+    };
+  </script>
+</head>
+<body>
+<select id='sel'>
+  <option value="width">width</option>
+  <option value="height">height</option>
+  <option value="background">background</option>
+  <option value="display">display</option>
+</select>
+<input type="text" id='txt'/>
+<input type="button" value="变" id='btn'/>
+<div id="div1"></div>
+
+
+</body>
+</html>

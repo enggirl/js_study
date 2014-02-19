@@ -1,0 +1,28 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script>
+//函数调用传（参数），定义接（参数）,
+//解释：函数作为参数时，不带定义所需的参数，只有在参数函数执行调用的时候，才传入定义所需的参数
+function show(n,m,fn)  // 定义
+{
+	//fn=function(){alert(1);}
+	fn(n);  // 调用 执行
+};
+
+show(1,2,a);  //调用，执行
+
+function a(n1)  // 定义
+{
+	alert(n1);
+}
+
+
+</script>
+</head>
+
+<body>
+</body>
+</html>

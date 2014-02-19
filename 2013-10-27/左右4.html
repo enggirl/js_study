@@ -1,0 +1,65 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+*{margin:0;padding:0}
+#box{width:240px;height:100px;}
+#box span{width:20px;height:100px; float:left; background:#000; color:#fff;}
+#box div{float:left;width:200px;height:100px; position:relative; overflow:hidden;}
+#box div ul{width:600px;height:100px; position: absolute;top:0;left:0;}
+#box div ul li{width:200px;height:100px; float:left;list-style:none;}
+</style>
+<script>
+window.onload=function()
+{
+	
+	var oBox=document.getElementById('box');
+	var aSpan=oBox.getElementsByTagName('span');
+	var aLi=oBox.getElementsByTagName('li');
+	// 右
+	var iNow=0;  //默认的第一张
+	aSpan[1].onclick=function()
+	{
+		//这个跟3的区别就是，这个结构中li是浮动，ul是绝对定位的,代码不同的就是用下面一句，代替for循环，但是实现原理就有区别了，3因为li都是绝对定位的，所以，三个li是叠放在一起的，当一个块消失，显示就是他下面的一块。而4把li变成浮动，横向平铺，那么当一个块消失，后面的块就会顶上来
+		aLi[iNow].style.display='none';
+		iNow++;
+		//如果到3就回到0
+		if(iNow==aLi.length)
+		{
+			iNow=0;	
+		}
+		aLi[iNow].style.display='block';
+	};
+	
+	aSpan[0].onclick=function()
+	{
+		aLi[iNow].style.display='none';
+		iNow--;
+		//如果到3就回到0
+		if(iNow==-1)
+		{
+			iNow=aLi.length-1;	
+		}
+		aLi[iNow].style.display='block';
+	};
+};
+
+</script>
+</head>
+
+<body>
+<div id="box">
+	<span>左</span>
+    <div>
+    	<ul>
+        	<li style="display:block"><img src="img2/toyota_ad.jpg" width="200" height="100"></li>
+            <li><img src="img2/U3093P30DT20130911114332.jpg" width="200" height="100"></li>
+            <li><img src="img2/U3093P30DT20130923134652.jpg" width="200" height="100"></li>
+        </ul>
+    </div>
+    <span>右</span>
+</div>
+</body>
+</html>

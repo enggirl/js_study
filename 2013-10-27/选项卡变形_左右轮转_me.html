@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+<style>
+*{margin:0;padding:0}
+#box{width:240px;height:100px;}
+#box span{width:20px;height:100px; float:left; background:#000; color:#fff;}
+#box div{float:left;width:200px;height:100px; position:relative; overflow:hidden;}
+#box div ul{width:600px;height:100px; position: absolute;top:0;left:0;}
+#box div ul li{width:200px;height:100px; float:left;list-style:none;}
+</style>
+  <script>
+  /*20140210
+    轮播图带左右方向按钮控制，要实现的效果，就是点击右边的方向按钮，图片向右走，也就是如果多个图片顺序是123，那么向右走，就是1>2>3,到了3，下一张应该是1，如果点击左边的方向按钮，图片向左走，也就是3>2>1的顺序，到了1，下一张应该是3
+    这个效果是选项卡的变形，因为按钮的个数！= 图片的个数，1个按钮对应3个图片，所以需要有个变量表示图片的个数
+    实现步骤：1。获取元素
+              2. 先写一个按钮，另一个类似。如向右，点击向右按钮，跟选项卡一个套路。先让所有图片都消失，然后让当前的图片显示。
+              3.最后加一个判断，如果到了3，下一张应该是1。这也是跟基本选项卡变形的地方
+              4.向左向右方向判断依据，图片块顺序123，那么从1-2，然后2-3就是向右，但是实际后面的块占居了前面块的位置，所以是向左移动了；如果从3-2，然后2-1就是向左，但是实际前面的块占居了后面块的位置，所以是向右移动了。这样说很容易搞混。用left偏移量来说，点击向右按钮，那么放图片块的left是变小的，而点击向左按钮，那么放图片的left是变大的.每次移动的距离就是一个图片块的宽度
+
+    交互效果实现有大体两种方式，一个是用偏移left值，一个是隐藏上一张显示下一张，而这两种方式还跟结构的样式有关，一个是图片浮动，一个是图片绝对定位。如果是图片浮动那么，前面两种实现方式都可以，但是如果是图片绝对定位，那么只能用后者，这是源于绝对定位是类似于ps中图层叠放原理.偏移left是偏移图片块容器的left
+    
+    
+    */
+    window.onload = function(){
+      //1.获取元素
+      var oBox = document.getElementById("box");
+      var aSpan = oBox.getElementsByTagName("span");
+      var oUl = oBox.getElementsByTagName("ul")[0];
+      var aLi = oUl.children;
+
+      //2.向右按钮点击  所有图片都消失，当前图片显示，如何判断是当前图片？也就是如何判断第几个图片显示？因为图片块跟按钮个数不一样，所以需要单独给图片块设置一个下标变量,那么这个下标变量跟按钮是什么关系?其实效果是这样的，当按钮点击一下，图片块应该移动一个，也就是隐藏上一个(当前)，显示下一个，前面的块消失，后面的块顶上来，就好像向前移动了一个图片块的距离，所以每点击一次按钮，下标变量就+1
+      //move();
+      changeLeft();
+      function move(){
+        var iNow = 0;
+        aSpan[1].onclick = function(){
+          aLi[iNow].style.display = "none";
+          // for(var i=0; i<aLi.length; i++){
+          //   aLi[i].style.display = "none";
+          // }
+          iNow--;
+          //3.如果下标变量到了3，下一张应该是1，也就是说当等于图片块的个数，让他重新=0
+          if(iNow == -1){
+            iNow = aLi.length-1;
+          }
+          aLi[iNow].style.display = "block";
+        }
+        aSpan[0].onclick = function(){
+          aLi[iNow].style.display = "none";
+          // for(var i=0; i<aLi.length; i++){
+          //   aLi[i].style.display = "none";
+          // }
+          iNow++;
+          //3.如果下标变量到了1，下一张应该是3，也就是说当等于图片块的个数，让他重新=0
+          if(iNow == aLi.length){
+            iNow = 0;
+          }
+          aLi[iNow].style.display = "block";
+        }
+      }
+
+      function changeLeft(){
+        var iNow = 0;
+        aSpan[1].onclick = function(){
+          iNow++;
+          if(iNow == aLi.length){
+            iNow = 0;
+          }
+          oUl.style.left = -iNow*200 + "px"; 
+        }
+        aSpan[0].onclick = function(){
+          iNow--;
+          if(iNow < 0){
+            iNow = aLi.length - 1;
+          }
+          oUl.style.left = -iNow*200 + "px"; 
+        }
+      }
+    };
+    
+  </script>
+</head>
+<body>
+<div id="box">
+  <span>左</span>
+    <div>
+      <ul>
+          <li style="display:block"><img src="img2/toyota_ad.jpg" width="200" height="100"></li>
+            <li><img src="img2/U3093P30DT20130911114332.jpg" width="200" height="100"></li>
+            <li><img src="img2/U3093P30DT20130923134652.jpg" width="200" height="100"></li>
+        </ul>
+    </div>
+    <span>右</span>
+</div>
+</body>
+</html>

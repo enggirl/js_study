@@ -1,0 +1,276 @@
+复习：
+
+onclick
+onmouseover
+onmouseout
+
+function 函数名()
+{
+  JS
+};
+
+函数名();
+
+var 变量名=值；   外号
+
+document.getElementById('id')
+
+obj.style.width='200px';
+
+
+'abcd'  字符
+a        变量
+
+
+if(条件)
+{
+  条件成立执行的JS语句
+}
+else
+{
+  条件不成立执行的语句
+}
+
+.box{ display:block}  没有写行间
+
+if(oBox.style.display=='block')
+{
+	oBox.style.display='none'
+}
+else
+{
+	Box.style.display='block'
+}
+
+点两下才出现 。  解决办法：再反过来
+
+
+--------------------------
+参数：
+1.  参数可以省
+2.  参数的值取决于我们给它传什么
+3.  参数可以传多个，中间用逗号隔开
+4.  参数可以传多类型，变量，数字，字符，函数其它的一切类型都可以传
+5.  参数名可以任意
+
+
+操作属性：
+1   .   点    只能放W3C认证或者是JS加过的属性
+              不能放变量，不能放参数，不能放字符串
+2  []  主要用于放变量或参数
+
+
+--------------------------
+
+
+行为、样式、结构
+JS    css   html
+
+
+oBtn.onclick=函数名;
+
+
+
+
+--------------------------
+
+约定俗成
+
+window.onload   当页面加载完成之后才执行
+
+以后写的东西都得放头部，并且都用onload
+
+
+------
+
+
+定时器
+过一段时间做什么事情
+
+setTimeout(函数，时间);
+
+时间是毫秒为单位，1000毫秒＝1秒
+
+
+－－－
+
+document.getElementsByTagName('div');
+
+
+get Elements By  TagName
+    一组元素     标签名－节点名      通过标签名去获取元素
+                                    DIV P  SPAN UL LI
+
+
+length  长度 －个数    从1开始
+
+[]  下标，代表第几个   从零开始
+aDiv[1]
+
+
+－－－－－－－－－－
+if(条件)
+{
+  条件成立执行
+}
+else
+{
+  条件不成立执行
+}
+
+
+while(条件)
+{
+   执行
+};
+
+
+
+避免死循环
+
+
+i=i+1;  自增
+i+=1;     i-=1;   i*=1;  i/=1;
+i++;      i--;
+
+
+
+        var i=0;             初始值
+	while(i<4)           条件
+	{
+		alert(i);    JS语句
+		i=i+1;       自增
+	};
+
+
+
+
+给一组东西干同样的事情就用循环
+
+
+
+for(初始值;条件;自增)
+	{
+		  //JS
+	};
+
+
+
+--------
+
+true 真
+false 假
+
+布尔值  boolean   判断逻辑
+
+为真就是true  有东西就是true  条件成立就是true
+
+－－－－－－－－－－
+
+
+this    当前事件的对象
+
+如果没有事件函数，this指向window
+
+
+－－－－－－－－－
+书写js顺序
+1.  window.onload
+2.  获取元素
+3.  修改样式
+
+
+－－－－－－－－－
+获取元素
+1.  DYID         document.getElementById  
+                *BYID只能从document下取
+2.  DYTAGNAME    document.getElementsByTagName
+                 oBox..getElementsByTagName
+                 只要下面有这种标签，不管几级，都能获取
+3.  children;   子级   只能获取到一级
+
+---------
+
+onfocus   获取焦点
+onblur      失去焦点
+
+
+div.innerHTML＝xxx  给DIV加内容
+
+alert('abc'+'dfg');  字符串相加就是连在一起
+
+
+---------
+
+
+onmousedown   鼠标按下的时候
+onmouseup     鼠标抬起的时候
+onclick       鼠标完全按下抬起之后才会触发
+
+
+
+作业：
+新浪所有
+全选反选
+新浪顶部菜单
+百度－window.onload
+模拟单选－有背景图片
+微博－有GIF图
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,26 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script>
+window.onload=function()
+{
+
+	var oBox=document.getElementById('box');
+    //alert(oBox.innerHTML);
+	//oBox.innerHTML='<span>span</span>';
+	oBox.innerHTML+='<span>span</span>';//这句不会出现在查看源码的代码中，但是会出现在浏览器解析的代码中，说明js只能修改浏览器解析的代码，但是不会修改你写好的html代码
+};
+
+</script>
+</head>
+
+<body>
+
+<div id="box">
+  <h1>请输入文字</h1>
+ </div>
+
+</body>
+</html>

@@ -1,0 +1,56 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+*{margin:0;padding:0}
+#box{width:240px;height:100px;}
+#box span{width:20px;height:100px; float:left; background:#000; color:#fff;}
+#box div{float:left;width:200px;height:100px; position:relative; overflow:hidden;}
+#box div ul{width:600px;height:100px; position: absolute;top:0;left:0;}
+#box div ul li{width:200px;height:100px; float:left;list-style:none;}
+</style>
+<script>
+window.onload=function()
+{
+	var oBox=document.getElementById('box');
+	var aSpan=oBox.getElementsByTagName('span');
+	var oUl=oBox.getElementsByTagName('ul')[0];
+	// 右
+	var iNow=0;  //默认的第一张
+	aSpan[1].onclick=function()
+	{
+		//这个跟4样式相同，都是ul绝对定位，li浮动，但是实现左右的原理不同，4用的是利用一个块当消失时，后面的元素就会认为他不存在，自动顶上来占居消失元素的位置，而5是利用偏移left移动li
+		//右
+		var l=oUl.style.left;
+		l=parseInt(l);
+		oUl.style.left=l+200+'px';
+	};
+	
+	aSpan[0].onclick=function()
+	{
+		//左
+		var l=oUl.style.left;
+		l=parseInt(l);
+		oUl.style.left=l-200+'px';
+	};
+};
+
+</script>
+</head>
+
+<body>
+<div id="box">
+	<span>左</span>
+    <div>
+    	<ul style="left:0">
+        	<li style="display:block"><img src="img2/toyota_ad.jpg" width="200" height="100"></li>
+            <li><img src="img2/U3093P30DT20130911114332.jpg" width="200" height="100"></li>
+            <li><img src="img2/U3093P30DT20130923134652.jpg" width="200" height="100"></li>
+        </ul>
+    </div>
+    <span>右</span>
+</div>
+</body>
+</html>

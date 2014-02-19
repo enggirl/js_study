@@ -1,0 +1,20 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script>
+var a=1111;
+
+function fn()
+{}
+
+var arr=[a,function(){alert('abc')},fn];//数组还可以接受函数
+alert(arr[1]); //输出function(){alert('abc')}
+arr[1](); //因为是函数，所以可以执行得到abc
+</script>
+</head>
+
+<body>
+</body>
+</html>

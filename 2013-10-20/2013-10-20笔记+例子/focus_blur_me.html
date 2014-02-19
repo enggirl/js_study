@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+  <script>
+    window.onload = function(){
+      var aInput = document.getElementsByTagName("input");
+      var oBox = document.getElementById("box");
+      for(var i=0; i<aInput.length; i++){
+        /*
+          点击第一个文本框，文本框就获得焦点，执行focus事件，然后点击第二个文本框，先是第一个文本框失去焦点，也就是第一个文本框执行blur，然后再触发第二个文本框获得焦点，执行focus事件 
+        */
+        aInput[i].onfocus = function(){
+          oBox.innerHTML = this.value+"获取焦点";
+          console.log(this.value+"获取焦点")
+        } 
+        aInput[i].onblur = function(){
+          oBox.innerHTML = this.value+"失去焦点";
+          console.log(this.value+"失去焦点")
+        }
+      }
+    };
+    
+  </script>
+</head>
+<body>
+  <input type="text" value="文本1">
+  <input type="text" value="文本2">
+  <input type="text" value="文本3">
+  <input type="text" value="文本4">
+  <div id="box"></div>
+</body>
+</html>

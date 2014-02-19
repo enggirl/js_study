@@ -1,0 +1,28 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script>
+var a=0;
+window.onload=function()
+{
+	var timer;
+	document.getElementById('btn').onclick=function()
+	{
+		//每点一次。就打开一个新的定时器，为解决这个问题，就在开定时器前，先把已有的定时器关掉，这样确保只有一个定时器在运行，避免干扰
+		clearInterval(timer);
+		timer=setInterval(function(){
+			a++;
+			document.getElementById('tex').value=a;	
+		},1000);
+	};	
+};
+</script>
+</head>
+
+<body>
+<input type="text" id="tex" value="0">
+<input type="button" value="aa" id="btn">
+</body>
+</html>

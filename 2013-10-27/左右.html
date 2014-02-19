@@ -1,0 +1,51 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+*{margin:0;padding:0}
+#box{width:240px;height:100px;}
+#box span{width:20px;height:100px; float:left; background:#000; color:#fff;}
+#box div{float:left;width:200px;height:100px; position:relative;}
+#box div ul{width:200px;height:100px; position:relative;}
+#box div ul li{width:200px;height:100px; position:absolute;top:0;left:0; list-style:none; display:none}
+</style>
+<script>
+window.onload=function()
+{
+	var oBox=document.getElementById('box');
+	var aSpan=oBox.getElementsByTagName('span');
+	var aLi=oBox.getElementsByTagName('li');
+//这个是变形的选项卡，说他变形，是因为按钮的个数 != div或li的个数
+
+	// 右
+	var iNow=0;  //默认的第一张
+	aSpan[1].onclick=function()
+	{
+		for(var i=0;i<aLi.length;i++)
+		{
+			aLi[i].style.display='none';
+		};	
+		iNow++;
+		aLi[iNow].style.display='block';
+	};
+};
+
+</script>
+</head>
+
+<body>
+<div id="box">
+	<span>左</span>
+    <div>
+    	<ul>
+        	<li style="display:block"><img src="img2/toyota_ad.jpg" width="200" height="100"></li>
+            <li><img src="img2/U3093P30DT20130911114332.jpg" width="200" height="100"></li>
+            <li><img src="img2/U3093P30DT20130923134652.jpg" width="200" height="100"></li>
+        </ul>
+    </div>
+    <span>右</span>
+</div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+div{ position:absolute;top:50%;left:50%;width:300px;height:300px; background:red;margin:-150px 0 0 -150px; display:none;}
+</style>
+<script>
+window.onload=function()
+{
+	var oBtn=document.getElementById('btn');
+	var oBox=document.getElementById('box');	
+	oBtn.onmouseover=function()
+	{
+		setTimeout(function(){
+			
+			oBox.style.display='block';	
+		},3000);
+			
+	};
+};
+</script>
+</head>
+
+<body>
+<input type="button" value="aa" id="btn">
+<div id="box"></div>
+</body>
+</html>

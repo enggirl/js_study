@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+*{margin:0; padding:0;}
+ul,li{ list-style-type:none;}
+body{width:100%; height:100%; background:#efefef; margin:0; font-family:"微软雅黑"; font-size:12px;}
+.container{width:960px; height:460px; margin:50px auto 10px auto; padding:20px; background:#fefefe;}
+#box{width:256px; height:379px; margin:50px auto 0 auto; border:1px solid #aaa; overflow:hidden;}
+#Btns{width:256px; height:40px;}
+#Btns li{width:126px; height:38px; line-height:38px; cursor:pointer; font-size:18px; color:#0086c4;   display:inline-block; float:left; text-align:center; border:1px solid #ddd;}
+#Btns li.active{ background:#0086c4; color:#fefefe; }
+#box .list{width:256px; height:350px; display:none; }
+#box .list ul li{width:256px; height:auto; min-height:30px; line-height:30px; color:#777; cursor:pointer; border-bottom:1px solid #aaa; position:relative;}
+#box .list ul li.active{height:60px;}
+#box .list ul li.active span{display:none;}
+#box .list ul li.active img{display:block;}
+#box .list ul li span{display:inline-block; width:82px; text-align:center;}
+#box .list ul li img{position:absolute; top:0; left:0; display:none;}
+.footer{width:960px; height:20px; margin:10px auto; padding:20px; background:#fefefe; color:#0086c4; text-align:center;}
+</style>
+<script>
+window.onload=function(){
+  var OBtns = document.getElementById('Btns');
+  var Oli = OBtns.children;
+  var len = Oli.length;
+
+  var Odiv = document.getElementById('box').getElementsByTagName('div');
+
+  for(var i=0; i<len; i++){
+    Oli[i].index = i;
+    Oli[i].onmouseover = function(){
+      for(var i=0; i<len; i++){
+        Oli[i].className = '';
+        Odiv[i].style.display = 'none';
+      }
+      this.className = 'active';
+      Odiv[this.index].style.display = 'block';
+
+    }
+  }
+
+//列表hover
+  for(var j=0; j<Odiv.length; j++){
+    //showlist(Odiv[j]);
+     var ali = Odiv[j].getElementsByTagName('li');
+    for(var i=0; i<ali.length; i++){//有两个div,里面都有li，都叫ali，所以第二个div里面的li覆盖了第一个
+      ali[i].onmouseover = function(){
+        for(var i=0;i<ali.length;i++){
+          ali[i].className = '';
+        }
+        this.className = 'active';
+      }
+    }
+  }
+
+  /*function showlist(obj){
+     var ali = obj.getElementsByTagName('li');
+    for(var i=0; i<ali.length; i++){
+      ali[i].onmouseover = function(){
+        for(var i=0;i<ali.length;i++){
+          ali[i].className = '';
+        }
+        this.className = 'active';
+      }
+    }
+  }*/
+
+}
+
+</script>
+</head>
+
+<body>
+        <div class="container">
+                  <div id="box">
+                         <ul id="Btns">
+                               <li class="active">最新</li>
+                               <li>热门</li>
+                         </ul>
+                         <div  class="list" style="display:block;">
+                               <ul>
+                                      <li class="active">
+                                          <span>2013-11-11</span><span>找你妹</span><span>休闲</span>
+                                          <img src="ddd_03.jpg"/>
+                                      </li>
+                                      <li>
+                                          <span>2013-11-11</span><span>找你妹2</span><span>休闲</span>
+                                          <img src="ddd_03.jpg" />
+                                      </li>
+                                      <li>
+                                          <span>2013-11-11</span><span>找你妹</span><span>休闲</span>
+                                          <img src="ddd_03.jpg" />
+                                      </li>
+                                      <li>
+                                          <span>2013-11-11</span><span>找你妹</span><span>休闲</span>
+                                          <img src="ddd_03.jpg" />
+                                      </li>
+                                      <li>
+                                          <span>2013-11-11</span><span>找你妹</span><span>休闲</span>
+                                          <img src="ddd_03.jpg" />
+                                      </li>
+                                      <li>
+                                          <span>2013-11-11</span><span>找你妹</span><span>休闲</span>
+                                          <img src="ddd_03.jpg" />
+                                      </li>
+                                      <li>
+                                          <span>2013-11-11</span><span>找你妹</span><span>休闲</span>
+                                          <img src="ddd_03.jpg" />
+                                      </li>
+                                      <li>
+                                          <span>2013-11-11</span><span>找你妹</span><span>休闲</span>
+                                          <img src="ddd_03.jpg" />
+                                      </li>
+                                      <li>
+                                          <span>2013-11-11</span><span>找你妹</span><span>休闲</span>
+                                          <img src="ddd_03.jpg" />
+                                      </li>
+                                      <li>
+                                          <span>2013-11-11</span><span>找你妹</span><span>休闲</span>
+                                          <img src="ddd_03.jpg" />
+                                      </li>
+                               </ul>
+                         </div>
+                         <div class="list">
+                               <ul>
+                                      <li class="active">
+                                          <span>2013-11-11</span><span>保卫萝卜</span><span>休闲</span>
+                                          <img src="ddd_03.jpg" />
+                                      </li>
+                                      <li>
+                                          <span>2013-11-11</span><span>保卫萝卜</span><span>休闲</span>
+                                          <img src="ddd_03.jpg" />
+                                      </li>
+                                      <li>
+                                          <span>2013-11-11</span><span>保卫萝卜</span><span>休闲</span>
+                                          <img src="ddd_03.jpg" />
+                                      </li>
+                                      <li>
+                                          <span>2013-11-11</span><span>保卫萝卜</span><span>休闲</span>
+                                          <img src="ddd_03.jpg" />
+                                      </li>
+                                      <li>
+                                          <span>2013-11-11</span><span>保卫萝卜</span><span>休闲</span>
+                                          <img src="ddd_03.jpg" />
+                                      </li>
+                                      <li>
+                                          <span>2013-11-11</span><span>保卫萝卜</span><span>休闲</span>
+                                          <img src="ddd_03.jpg" />
+                                      </li>
+                                      <li>
+                                          <span>2013-11-11</span><span>保卫萝卜</span><span>休闲</span>
+                                          <img src="ddd_03.jpg" />
+                                      </li>
+                                      <li>
+                                          <span>2013-11-11</span><span>保卫萝卜</span><span>休闲</span>
+                                          <img src="ddd_03.jpg" />
+                                      </li>
+                                      <li>
+                                          <span>2013-11-11</span><span>保卫萝卜</span><span>休闲</span>
+                                          <img src="ddd_03.jpg" />
+                                      </li>
+                                      <li>
+                                          <span>2013-11-11</span><span>保卫萝卜</span><span>休闲</span>
+                                          <img src="ddd_03.jpg" />
+                                      </li>
+                               </ul>
+                         </div>
+                  </div>
+        </div>
+        <div class="footer">                乐乐出品  版权所有©小猪设计
+        </div>
+</body>
+</html>

@@ -1,0 +1,60 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+*{margin:0;padding:0}
+#box{width:402px;height:400px; background:#ccc}
+#box div{width:400px;height:350px; border:1px solid #000; display:none}
+#box div.show{display:block}
+#box input{height:50px; display:inline-block;width:100px;}
+#box input.active{ background:#0f0;}
+</style>
+<script>
+window.onload=function()
+{
+	var oBox=document.getElementById('box');
+	var aInput=oBox.getElementsByTagName('input');
+	var aDiv=oBox.getElementsByTagName('div');
+	
+
+	//选项卡原理：点击一个按钮，让跟他相同下标的div显示，其他都隐藏。基本选项卡结构：按钮的个数=div的个数
+	aInput[0].onclick=function()
+	{
+		
+	};
+	
+	aInput[1].onclick=function()
+	{
+		aInput[0].className='';
+		aInput[2].className='';
+		//aInput[1].className='';
+		this.className='active';
+		
+		aDiv[0].className='';
+		aDiv[2].className='';
+		aDiv[1].className='show';
+	};
+	
+	aInput[2].onclick=function()
+	{
+		
+	};
+	
+};
+
+</script>
+</head>
+
+<body>
+<div id="box">
+    <input class="active" type="button" value="aa">
+    <input type="button" value="bb">
+    <input type="button" value="cc">
+    <div class="show">1111111111111111</div>
+     <div>2222222222</div>
+     <div>3333333333</div>
+</div>
+</body>
+</html>

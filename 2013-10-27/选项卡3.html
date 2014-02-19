@@ -1,0 +1,57 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+*{margin:0;padding:0}
+#box{width:402px;height:400px; background:#ccc}
+#box div{width:400px;height:350px; border:1px solid #000; display:none}
+#box div.show{display:block}
+#box input{height:50px; display:inline-block;width:100px;}
+#box input.active{ background:#0f0;}
+</style>
+<script>
+window.onload=function()
+{
+	var oBox=document.getElementById('box');
+	var aInput=oBox.getElementsByTagName('input');
+	var aDiv=oBox.getElementsByTagName('div');
+	
+	for(var i=0;i<aDiv.length;i++)
+	{
+		aInput[i].onclick=function()
+		{
+			for(var i=0;i<aDiv.length;i++)
+			{
+				aInput[i].className='';
+				//aDiv[i].style.display='none';
+				aDiv[i].className='';
+			};
+			
+			
+			this.className='active';
+			console.log(i) //3
+			//console.log(aDiv[i]);
+			//this.className='show';  //不能再用this  this指向按钮
+			aDiv[i].className='show'; // i也不能用,这里获取的i值是循环结束后的，也就是3，而div的下标最大是2，aDiv[3]不存在
+			//aDiv[i].className='show';
+		};
+	}
+	
+};
+
+</script>
+</head>
+
+<body>
+<div id="box">
+    <input class="active" type="button" value="aa">
+    <input type="button" value="bb">
+    <input type="button" value="cc">
+    <div class="show">1111111111111111</div>
+     <div>2222222222</div>
+     <div>3333333333</div>
+</div>
+</body>
+</html>

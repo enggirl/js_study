@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<style>
+#div1 {width:200px; height:200px; background:#CCC;}
+</style>
+<script>
+
+	window.onload = function(){
+		var Osel = document.getElementById('sel');
+		var Otxt = document.getElementById('txt');
+		var Odiv = document.getElementById('div1');
+		var Obtn = document.getElementById('btn');
+
+
+		Obtn.onclick = function(){
+			Odiv.style[Osel.value] = Otxt.value;
+		}
+
+	};
+</script>
+</head>
+
+<body>
+<select id='sel'>
+	<option value="width">width</option>
+	<option value="height">height</option>
+	<option value="background">background</option>
+	<option value="display">display</option>
+</select>
+<input type="text" id='txt'/>
+<input type="button" value="变" id='btn'/>
+<div id="div1"></div>
+</body>
+</html>

@@ -1,0 +1,26 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script>
+var a=0;
+window.onload=function()
+{
+	document.getElementById('btn').onclick=function()
+	{
+		//因为每点一次。就打开一个新的定时器，所以数字变化越来越快，在+1前后，都有可能有新的定时器出现，进行+1运算
+		setInterval(function(){
+			a++;
+			document.getElementById('tex').value=a;	
+		},1000);
+	};	
+};
+</script>
+</head>
+
+<body>
+<input type="text" id="tex" value="0">
+<input type="button" value="aa" id="btn">
+</body>
+</html>

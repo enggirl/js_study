@@ -1,0 +1,49 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+div{width:200px;height:200px; background:red; display:
+none;}
+</style>
+<script>
+/*打断点后发现，当oBtn.onclick=a; 执行时，代码里并没有html代码，页面上也没有input按钮，这也充分说明js是在html之前运行的，所以当页面上还没有元素的时候，js对页面元素操作，就会造成Cannot set property 'onclick' of null 的错误，这个错误往往就是绑定事件的元素不存在造成的
+解决办法：a。把js代码放到</body>之前执行，这个不需要window.onload
+		  b.把js放到window.onload()=function(){}里面执行
+*/
+	var oBox=document.getElementById('box');
+	var oBtn=document.getElementById('btn');
+	var oBtn2=document.getElementById('btn2');
+	alert(13);
+	oBtn.onclick=a;  // 会报错
+	
+	oBtn2.onclick=a;
+	
+	function a()  //匿名函数，事件函数
+	{
+		//alert(n);
+		if(b==1)
+		{
+		   oBox.style.display='block';
+		   b=2;
+		}
+		else
+		{
+		   oBox.style.display='none';
+		   b=1;
+		};
+	
+	};
+	var b=1;  // 全局变量
+
+</script>
+</head>
+
+<body>
+<input type="button" value="aaa" id="btn">
+<input type="button" value="bbb" id="btn2">
+<div id="box">sdfsd</div>
+
+</body>
+</html>

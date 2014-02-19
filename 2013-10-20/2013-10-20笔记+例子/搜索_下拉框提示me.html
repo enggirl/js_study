@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+  <style>
+*{margin:0;padding:0}
+div{width:200px;height:30px; position:relative;border:1px solid #ccc;margin:100px auto;}
+div span{ position:absolute;width:200px;height:30px; line-height:30px; top:0;left:0;}
+div input{ position:absolute; background:none;width:200px;height:30px; line-height:30px; top:0;left:0; }
+div ul{ display:none; list-style:none; position:absolute;top:32px; left:0px;border:1px solid #000;width:200px; overflow:hidden;}
+div ul li{height:30px; line-height:30px;border-bottom:1px solid #000; cursor:pointer;}
+div ul li:hover{ background:#ccc; color:#fff;}
+div ul li a{ display:block;height:30px; line-height:30px; text-align:center;width:200px;}
+</style>
+
+<script>
+  window.onload = function(){
+    //点击文本框，出现下拉框，选中下拉框的某项，文本框内容就被替换成下拉框的某项
+   /*
+   1.点击文本框，触发文本框focus，span里面的内容为空
+     点击文本框，下拉框显示 
+     focus事件   span消失
+                 下拉框显示
+   2.当鼠标移开文本框，点击页面其他地方，就触发了文本框的blur事件，这时，需要判断一下，如果文本框里面没有内容，也就是文本框为空，就显示让span显示 ,不管文本框是否有内容，都让下拉框消失
+    blur事件  if 文本框为空  span显示
+              下拉框消失 
+   3.下拉框显示  鼠标选中某项，某项就显示在文本框里，也就是鼠标在下拉框某项按下，那么下拉框选中的文本替换span原来的文本，然后让下拉框消失
+   下拉框显示   mousedown某项  span的文本被改写
+                               下拉框消失     
+   */
+   
+   var oS1 = document.getElementById("s1");
+   var oTex = document.getElementById("tex");
+   var oUl = document.getElementById("ul1");
+
+   //1.focus事件   span消失
+   //              下拉框显示
+
+   oTex.onfocus = function(){
+     oS1.style.display = "none";
+     oUl.style.display = "block";
+
+  //3.下拉框显示   mousedown某项  span的文本被改写
+  //                             下拉框消失
+     // var aLi = oUl.children;
+     // for(var i=0; i<aLi.length; i++){
+     //   aLi[i].onmousedown = function(){
+     //    var str = this.children[0].innerHTML;
+     //    // alert(str)
+     //    oS1.innerHTML = str;
+     //   };
+     // }
+     replaceDetail();
+     function replaceDetail(){
+       var aLi = oUl.children;
+       for(var i=0; i<aLi.length; i++){
+         aLi[i].onmousedown = function(){
+          var str = this.children[0].innerHTML;
+          // alert(str)
+          oS1.innerHTML = str;
+         };
+       }
+     }
+   };
+  //2.   blur事件  if 文本框为空  span显示
+  //               下拉框消失 
+   oTex.onblur = function(){
+     if(this.value == ''){
+       oS1.style.display = "block";
+     }
+     oUl.style.display = "none";
+   }
+  };
+  
+</script>
+</head>
+<body>
+<div>
+  <!--给span和input添加背景色发现这个结构里面，input是在span上面-->
+  <span id="s1">请输入内容</span>
+    <input id="tex" type="text">
+    <ul id="ul1">
+      <li><a href="javascript:;">内容1</a></li>
+        <li><a href="javascript:;">内容2</a></li>
+        <li><a href="javascript:;">内容3</a></li>
+        <li><a href="javascript:;">内容4</a></li>
+        <li><a href="javascript:;">内容5</a></li>
+        <li><a href="javascript:;">内容6</a></li>
+    </ul>
+</div>
+</body>
+</html>

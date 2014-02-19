@@ -1,0 +1,55 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+*{margin:0;padding:0}
+div{width:200px;height:30px; position:relative;border:1px solid #ccc;margin:100px auto;}
+div span{ position:absolute;width:200px;height:30px; line-height:30px; top:0;left:0;}
+div input{ position:absolute; background:none;width:200px;height:30px; line-height:30px; top:0;left:0; }
+div ul{ display:none; list-style:none; position:absolute;top:32px; left:0px;border:1px solid #000;width:200px; overflow:hidden;}
+div ul li{height:30px; line-height:30px;border-bottom:1px solid #000; cursor:pointer;}
+div ul li:hover{ background:#ccc; color:#fff;}
+div ul li a{ display:block;height:30px; line-height:30px; text-align:center;width:200px;}
+</style>
+<script>
+window.onload=function()
+{
+	var oTex=document.getElementById('tex');
+	var oSpan=document.getElementById('s1');
+	
+	oTex.onfocus=function()
+	{
+		oSpan.style.display='none';
+			
+	};
+	
+	oTex.onblur=function()
+	{
+		if(this.value=='')
+		{
+			oSpan.style.display='block';
+		}		
+	};
+};
+
+</script>
+</head>
+
+<body>
+
+<div>
+	<span id="s1">请输入内容</span>
+    <input id="tex" type="text">
+    <ul>
+    	<li><a href="javascript:;">内容1</a></li>
+        <li><a href="javascript:;">内容2</a></li>
+        <li><a href="javascript:;">内容3</a></li>
+        <li><a href="javascript:;">内容4</a></li>
+        <li><a href="javascript:;">内容5</a></li>
+        <li><a href="javascript:;">内容6</a></li>
+    </ul>
+</div>
+</body>
+</html>

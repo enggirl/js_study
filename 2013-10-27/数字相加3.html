@@ -1,0 +1,34 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script>
+window.onload=function()
+{
+	var aInput=document.getElementsByTagName('input');
+	aInput[2].onclick=function()
+	{
+		var n1=	parseInt(aInput[0].value);
+		var n2=	parseInt(aInput[1].value);
+		
+		if(isNaN(n1))//n1不是数字
+		{
+		   alert('第一个文本框输入数字');	
+		}
+		else
+		{
+			alert(n1+n2);
+		};
+	};	
+};
+</script>
+</head>
+
+<body>
+<input type="text" >
++
+<input type="text" >
+<input type="button" value="aa">
+</body>
+</html>

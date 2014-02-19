@@ -1,0 +1,230 @@
+复习：
+
+document.getElementById  只能从document下获取
+
+
+document.getElementsByTagName('div')  
+oDIV1.getElementsByTagName('p') [0]
+
+children  也是一组,只是子代已经，不包含孙子  
+
+
+for(var i=0;i<xxx.length;i++)
+{
+	
+}
+
+
+var i=0;
+while(i<4)   
+{
+   js语句
+   自增
+}
+
+
+onfocus  焦点
+onblur   失去焦点
+
+
+this---- 当前使用事件的元素，标签
+
+obj.onclick=function()
+{
+   this  ->obj
+}
+
+alert(this)   
+
+如果没有事件函数，this指向window
+
+-----------------
+
+<input a='0' class="active" type="button" value="aa">
+this.a  自定义的属性
+
+
+浏览器解析html代码的顺序
+
+1.加载DOM
+2.过滤掉自定义的属性  不认识   高级浏览器
+  
+   2.5 偷偷的加属性  所以在他过滤完加自定义属性，因为dom已经加载完了，所以自定义属性需要用js动态加
+3.执行JS和其它
+
+
+aInput[i].index=i;  索引值
+
+
+
+－－－－－－－
+代码重用   onload法
+
+
+------------
+
+普通变量：一个变量只能存一个值
+数组：一个变量里面存了很多值
+每一个之间用逗号隔开
+length
+[0]  下标
+可以存多类型，数字，字符串，变量，函数，数组
+var a=1111;
+
+var s=[12,34];
+
+如var arr=[a,function(){alert('abc')},s]  ，arr[1]=function(){alert('abc')}
+
+所以arr[1]()=》函数执行
+
+[a,function(){alert('abc')},[12,34]]   arr[2]=[12,34]  arr[2][0]=12 arr[2][1]=34
+
+
+
+字符串相加，是连在一起，组成一个新的字符串
+如果是数字与字符串相加，也是一样.
+从左向右相加   
+alert('a'+1+2);  //a12 
+alert(1+2+'a');    //3a
+
+
+
+---------
+
+setInterval(function(){
+	alert(13);	
+},1000)
+
+定时器，走N次
+
+clearInterval(定时器名称);	关掉定时器
+
+
+
+setTimeout
+clearTimeout(名称)
+
+
+
+
+
+
+作业：
+
+所有的新浪选项卡重用
+新浪淘宝选项卡
+
+
+
+－－－－－－－－－
+第三课：
+
+chrome的  F12
+ff        fireBug   错误控制台ctrl+shift+j
+
+IE－〉F12－〉 脚本
+
+
+
+
+----------
+
+JS组成
+
+ECMAScript		核心、翻译  var for if   兼容
+
+       
+
+DOM			操作HTML		document
+                        document.getElementById
+                        大部份兼容，小部份不兼容，可以写兼容
+
+
+BOM			操作浏览器		window
+                        基本不兼容
+
+
+－－－－－－－－－－－－－－
+
+
+typeof  查看类型
+
+object,function,number,boolean,string,undefined
+
+
+基本类型： 数字，字符串
+复合类型：
+
+---------------------
+
+value className  取出来的是字符串
+
+NaN==   not a number
+        is not a number
+isNaN   判断是不是数字
+
+
+强制转换：
+parseInt     干掉小数 干掉后面的字母
+parseFloat   可以转带小数
+Number       可以带小数，但是必须纯数字，不能带字母
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

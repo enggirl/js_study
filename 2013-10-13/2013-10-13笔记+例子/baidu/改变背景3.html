@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>智能社 - www.zhinengshe.com</title>
+<meta name="author" content="智能社 - zhinengshe.com">
+<meta name="copyright" content="智能社 - zhinengshe.com">
+<style>
+
+.b1{ background:red}
+.b1 input{ border:10px solid #000;}
+
+.b2{ background:blue}
+.b2 input{ border:10px solid yellow;}
+
+
+
+</style>
+<script>
+function skin1()
+{
+	var oBody=document.getElementById('body1');
+	oBody.className='b1';
+	alert(oBody.className);
+};
+
+function skin2()
+{
+	var oBody=document.getElementById('body1');
+	oBody.className='b2';
+};
+</script>
+</head>
+
+<body class="b1" id="body1">
+<input type="button" value="css1" onclick="skin1()">
+<input type="button" value="css2" onclick="skin2()">
+</body>
+</html>

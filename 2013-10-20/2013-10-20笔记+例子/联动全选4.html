@@ -1,0 +1,51 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script>
+window.onload=function()
+{
+	var oBox=document.getElementById('box');
+	var aInput=oBox.getElementsByTagName('input');
+	var oBtn=document.getElementById('btn');
+	
+	
+	for(var i=0;i<aInput.length;i++)
+	{
+		aInput[i].onclick=function()//每点击一个就遍历所有的input，看看是不是checked
+		{
+			var n=0;
+			for(var i=0;i<aInput.length;i++){
+				if(aInput[i].checked)
+				{
+					n++;
+				}
+			}
+			if(n==6){
+				oBtn.checked=true;
+			}
+			else
+			{
+				oBtn.checked=false;
+			}
+		};	
+	}
+		
+};
+
+</script>
+</head>
+
+<body>
+<input type="checkbox" id="btn">全选<br />
+<div id="box">
+    <input type="checkbox">
+    <input type="checkbox">
+    <input type="checkbox">
+    <input type="checkbox">
+    <input type="checkbox">
+    <input type="checkbox">
+</div>
+</body>
+</html>

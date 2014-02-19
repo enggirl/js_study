@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+	<style>
+		body{font-size:12px;}
+		ul,li{padding:0;margin:0;list-style:none;}
+		a{text-decoration:none;}
+		.leftNav a{color:#666;padding:5px 10px;}
+		.leftNav a:hover{color:#000;}
+		.navlist{float:left;}
+		.help{float:left;}
+		.help .hpbtn em{display:inline-block;width:10px;height:16px;margin-left:3px;vertical-align:middle;font-style:normal;transform:rotate(90deg);-webkit-transform:rotate(90deg);text-align:center;}
+		.help:hover .hpbtn em{-webkit-transform:rotate(-90deg);}
+		.helpLContent{display:block;position:absolute;top:25px;left:315px;border:1px solid #ccc;}
+		.helpLContent li{line-height:1.8;}
+		.helpLContent li a{display:block;padding:5px;}
+		.helpLContent li a:hover{background:#f1f1f1;}
+	</style>
+	<script>
+		function showHelpList(){
+			var OhelpList = document.getElementById('helpList');
+			OhelpList.style.display = 'block';
+		}
+		function hideHelpList(){
+			var OhelpList = document.getElementById('helpList');
+			OhelpList.style.display = 'none';
+		}
+	</script>
+</head>
+<body>
+		<div class="leftNav">
+			<div class='navlist'><a href="#">手机新闻客户端</a><a href="#">WAP版</a>|<a href="#">设为首页</a><a href="#">网站地图</a></div>
+			<div class='help' onmouseover= 'showHelpList()' onmouseout = 'hideHelpList()'>
+				<a href="#" class='hpbtn'>帮助<em>&gt;</em></a>
+				<ul id='helpList' class='helpLContent'>
+					<li><a href="#">腾讯客服</a></li>
+					<li><a href="#">帐号申诉</a></li>
+					<li><a href="#">反馈建议</a></li>
+					<li><a href="#">帮助中心</a></li>  
+				</ul>
+			</div>
+		</div>
+</body>
+</html>

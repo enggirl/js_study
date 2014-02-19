@@ -1,0 +1,24 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+div{width:200px;height:200px; background:red; display:none}
+</style>
+<script>
+//这个例子充分体现了，浏览器顺序解析代码，即先解析js代码，因为他写在他们前面，此时body的html代码并没有解析到，所以input按钮都没有出现
+var a=13;
+
+alert(a);
+
+
+</script>
+</head>
+
+<body>
+<input type="button" value="点击" onclick="document.getElementById('box').style.display='block'">
+<div id="box"></div>
+
+</body>
+</html>
