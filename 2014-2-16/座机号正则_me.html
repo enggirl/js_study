@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+  <style>
+   
+  </style>
+  <script>
+  window.onload = function(){
+    /*
+      座机号 有这样的特点，有区号和没区号的两种，
+      有区号的需要分两段来说：1. 区号：3/4个  0开头、第二位不能是0
+                              2. 座机号： 第一个不能是0,  7、8位
+      步骤：1.需求分段
+            2.把每段用中文描述完
+            3.分段写规则
+            4.把分段连起来就是要求的整体正则
+    */
+    //1. 区号：3/4个  0开头、第二位不能是0,也就是说只能是1-9,因为首位0，第二位[1-9],而总共3- 4位，所以剩余只有1-2位了，所以\d只能{1,2}.但是不要忘了，座机的区号可有可无，也就是0-1次，所以整个？
+    //1.1.       (0[1-9]\d{1,2})?
+    // 2. 座机号： 第一个不能是0,  7、8位
+    //2.1          [1-9]\d{6,7}
+    //3.拼接整体正则：(0[1-9]\d{1,2})?[1-9]\d{6,7}
+
+    //问题：re直接如下这样写，fgd20111111sdfsdf字符串这样的也会返回true，那是因为test()的特性，默认——字符串中有一部分符合要求，就是true。所以重写规则，加首尾限制
+    //var re = /(0[1-9]\d{1,2})?[1-9]\d{6,7}/;
+    //new:
+    var re = /^(0[1-9]\d{1,2})?[1-9]\d{6,7}$/;
+    var oBtn = document.getElementById("btn1");
+    var oTxt = document.getElementById("txt1");
+    oBtn.onclick = function(){
+      var str = oTxt.value;
+      alert(re.test(str));
+    }
+
+  }
+  </script>
+</head>
+<body>
+  座机号：<input type="text" id="txt1" style="width:200px;" />
+<input type="button" value="校验" id="btn1" />
+</body>
+</html>

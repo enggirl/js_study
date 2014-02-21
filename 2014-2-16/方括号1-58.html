@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+  <style>
+   
+  </style>
+  <script>
+  window.onload = function(){
+    //这个规则表示从1到5以及8，注意规则里面并不包含6,7，所以不是1-8
+    var re = /[1-58]/g;
+str = "sdfg 30 18 6 sd 59 7";
+document.write(str.replace(re,"."));//结果：sdfg .0 .. 6 sd .9 7
+    }
+  </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<style>
+span {display:inline-block; width:100px; text-align:right;}
+
+input {border:1px solid #CCC; outline:none;}
+input.ok {border:1px solid green;}
+input.error {border:1px solid red;}
+</style>
+<script src="formCheck.js"></script>
+<script>
+window.onload=function ()
+{
+	formCheck('form1', function (oTxt){
+		if(oTxt.name=='pass2')
+		{
+			var oPass=document.getElementsByName('pass')[0];
+			
+			if(oPass.value!=oTxt.value)
+			{
+				return false;
+			}
+		}
+	});
+};
+</script>
+</head>
+
+<body>
+<form id="form1" action="http://localhost/project/zns" method="get">
+	<span>邮箱：</span><input type="text" name="email" /><br>
+    <span>姓名：</span><input type="text" name="name" /><br>
+	<span>密码：</span><input type="password" name="pass" /><br>
+	<span>确认密码：</span><input type="password" name="pass2" /><br>
+    <span>座机号：</span><input type="text" name="tel" /><br>
+    <span>QQ号：</span><input type="text" name="qq" /><br>
+    <span>年龄：</span><input type="text" name="age" /><br>
+	<input type="submit" />
+</form>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<style>
+#div1 {width:200px; height:200px; background:#CCC;}
+</style>
+<script>
+function addClass(obj, sClass)
+{
+	if(!/\bactive\b/.test(obj.className))
+	{
+		if(obj.className=='')
+		{
+			obj.className=sClass;
+		}
+		else
+		{
+			obj.className+=' '+sClass;
+		}
+	}
+}
+
+function removeClass(obj, sClass)
+{
+	obj.className=obj.className.replace(/\bactive\b/g, '').replace(/\s+/g, ' ');
+}
+
+window.onload=function ()
+{
+	var oDiv=document.getElementById('div1');
+	
+	//addClass(oDiv, 'active');
+	removeClass(oDiv, 'active');
+};
+</script>
+</head>
+
+<body>
+<div id="div1" class="aaa box bbbb active active2"></div>
+</body>
+</html>

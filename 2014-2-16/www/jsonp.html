@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<script>
+function jsonp(url, data, fnSucc)
+{
+	var fnName='jsonp_'+Math.random();
+	window[fnName]=function (json)	//?
+	{
+		fnSucc && fnSucc(json);
+		
+		//原则：不用的东西，尽快删
+		oHead.removeChild(oS);
+		window[fnName]=null;
+	};
+	
+	data.cb=fnName;
+	
+	//拼url
+	var arr=[];
+	
+	for(var i in data)
+	{
+		arr.push(i+'='+encodeURIComponent(data[i]));
+	}
+	
+	//创建script
+	var oS=document.createElement('script');
+	oS.src=url+arr.join('&');
+	
+	var oHead=document.getElementsByTagName('head')[0];
+	
+	oHead.appendChild(oS);
+}
+</script>
+</head>
+
+<body>
+
+</body>
+</html>

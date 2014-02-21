@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<style>
+span {display:inline-block; width:100px; text-align:right;}
+
+input {border:1px solid #CCC; outline:none;}
+input.ok {border:1px solid green;}
+input.error {border:1px solid red;}
+</style>
+<script>
+window.onload=function ()
+{
+	var oForm=document.getElementById('form1');
+	
+	var oEmail=document.getElementsByName('email')[0];
+	var re_email=/^[\w\.]+@[0-9a-z\-]+(\.[a-z]{2,4}){1,2}$/i;
+	
+	var oTel=document.getElementsByName('tel')[0];
+	var re_tel=/^(0[1-9]\d{1,2}\-)?[1-9]\d{6,7}$/;
+	
+	oForm.onsubmit=function ()
+	{
+		if(re_email.test(oEmail.value)==false)
+		{
+			oEmail.className='error';
+			return false;
+		}
+		else
+		{
+			oEmail.className='ok';
+		}
+		
+		if(re_tel.test(oTel.value)==false)
+		{
+			oTel.className='error';
+		}
+	};
+};
+</script>
+</head>
+
+<body>
+<form id="form1" action="http://localhost/project/zns" method="get">
+	<span>邮箱：</span><input type="text" name="email" /><br>
+    <span>座机号：</span><input type="text" name="tel" /><br>
+	<input type="submit" />
+</form>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

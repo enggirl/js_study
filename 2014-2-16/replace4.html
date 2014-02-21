@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+  <style>
+   
+  </style>
+  <script>
+  window.onload = function(){
+    //替换‘淘宝’ ‘js’字为*，有几个字替换几个*
+      var str='智能社的JS课程——由前淘宝核心开发工程师Blue倾力打造，将其近10年程序经验、领悟投入到本课程上——只求将一线宝贵工作经验传授给学员，打造国内一流的JS培训课程js。';
+     var re = /'淘宝'|js|工作经验/gi;//正则里面字符，字符串不用加''
+      document.write(str.replace(re,function(s){
+        var aa = '';
+        for(var i=0; i<s.length; i++){
+          aa += '*';
+        }
+        return aa;
+      }));
+    }
+  </script>
+</head>
+<body>
+
+</body>
+</html>

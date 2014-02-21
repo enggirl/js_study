@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<style>
+
+</style>
+<script>
+window.onload=function ()
+{
+	var oTxt1=document.getElementById('txt1');
+	var oBtn=document.getElementById('btn1');
+	var oTxt2=document.getElementById('txt2');
+	
+	oBtn.onclick=function ()
+	{
+		oTxt2.value=oTxt1.value.replace(/^/mg, '\t');
+	};
+};
+</script>
+</head>
+
+<body>
+<textarea id="txt1" rows="10" cols="80"></textarea><br>
+<input type="button" value="整理" id="btn1" /><br>
+<textarea id="txt2" rows="30" cols="80"></textarea>
+</body>
+</html>

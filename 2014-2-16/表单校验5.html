@@ -1,0 +1,106 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<style>
+span {display:inline-block; width:100px; text-align:right;}
+
+input {border:1px solid #CCC; outline:none;}
+input.ok {border:1px solid green;}
+input.error {border:1px solid red;}
+</style>
+<script>
+var reg={
+	email:	/^[\w\.]+@[0-9a-z\-]+(\.[a-z]{2,4}){1,2}$/i,
+	tel:	/^(0[1-9]\d{1,2}\-)?[1-9]\d{6,7}$/,
+	qq:		/^[1-9]\d{4,12}$/
+};
+
+window.onload=function ()
+{
+	var oForm=document.getElementById('form1');
+	
+	var aInput=oForm.getElementsByTagName('input');
+	
+	for(var i=0;i<aInput.length;i++)
+	{
+		var re=reg[aInput[i].name];
+		
+		if(re)
+		{
+			/*(function (re){
+				aInput[i].onblur=function ()
+				{
+					checkInput(this, re);
+				};
+			})(re);*/
+			aInput[i].onblur=function ()
+			{
+				var re=reg[this.name];
+				
+				checkInput(this, re);
+			};
+		}
+	}
+	
+	function checkInput(oTxt, re)
+	{
+		if(re.test(oTxt.value))
+		{
+			oTxt.className='ok';
+			return true;
+		}
+		else
+		{
+			oTxt.className='error';
+			return false;
+		}
+	}
+	
+	oForm.onsubmit=function ()
+	{
+		var ok=true;
+		
+		for(var i=0;i<aInput.length;i++)
+		{
+			var re=reg[aInput[i].name];
+			
+			if(re)
+			{
+				if(false==checkInput(aInput[i], re))
+				{
+					ok=false;
+				}
+			}
+		}
+		
+		if(!ok)
+		{
+			return false;
+		}
+	};
+};
+</script>
+</head>
+
+<body>
+<form id="form1" action="http://localhost/project/zns" method="get">
+	<span>邮箱：</span><input type="text" name="email" /><br>
+    <span>座机号：</span><input type="text" name="tel" /><br>
+    <span>QQ号：</span><input type="text" name="qq" /><br>
+	<input type="submit" />
+</form>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
