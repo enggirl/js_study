@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+  <style>
+    *{margin:0;padding:0;}
+    form{margin:20px;}
+    .frm{margin-bottom:10px;}
+    .frm label{float:left;width:80px;text-align:right;}
+    .frm input{height:30px;border:1px solid #dadada;}
+    .ok{border:1px solid green;}
+    .error{border:1px solid red;}
+    #btn{padding:10px;}
+  </style>
+  <script>
+    window.onload = function(){
+      /*
+        规则如下：邮箱     英文、数字、下划线、点  @ 数字、字母、中划线 (.  字母(2-4))1-2个
+                  年龄     12-500
+                  生日     支持1984/03/5 | 1984-3-05 | 1984 3 05 | 1984年3月05日 4种格式
+                  身份证   18位 最后一位有可能是x
+                  手机号    
+        效果：点击提交按钮 对所有文本框内容验证，正确的绿框，错误的红框
+        步骤：1.写所有的规则
+              2.点击按钮，验证规则
+      */
+       //1.写所有的规则,用json格式 名字用name
+       var reg = {
+          email : /^[\w\.]+@[0-9a-z\-]+(\.[a-z]{2,4}){1,2}$/i,
+          age   : /^1[2-9]|[2-9]\d|[1-4]\d{2}|500$/,
+          birth : //
+       }
+       //2.点击按钮，验证规则
+        var oBtn = document.getElementById("btn");
+        var oForm = document.getElementById("form1");
+        var aInput = document.getElementsByTagName("input");
+        oForm.onsubmit = function(){
+          for(var i=0; i<2; i++){
+            //2.1 先获取文本框的内容
+            var val = aInput[i].value;
+            //2.2 将文本框内容套用规则判断是否符合,正确的给input添加ok类，错误的给input添加error类
+            var re = reg[aInput[i].name];
+            if(re.test(val)){
+              alert("对了")
+            }else{
+              alert("错啦")
+            }
+          }
+          return false;//取消默认提交
+        };
+    };
+  </script>
+</head>
+<body>
+  <form action="http://www.baidu.com" method="get" id="form1">
+    <div class="frm"><label for="">邮箱:</label><input type="text" name="email"></div>
+    <div class="frm"><label for="">年龄:</label><input type="text" name="age"></div>
+    <div class="frm"><label for="">生日:</label><input type="text" name="birth"></div>
+    <div class="frm"><label for="">身份证:</label><input type="text" name="personality"></div>
+    <div class="frm"><label for="">手机号:</label><input type="text" name="cellphone"></div>
+    <div class="frm"><label for="">网址:</label><input type="text" name="website"></div>
+    <div class="frm"><input type="submit" value="提交" id="btn"></div>
+  </form>
+</body>
+</html>
