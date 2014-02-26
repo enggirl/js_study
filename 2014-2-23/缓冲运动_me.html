@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+  <style>
+    div{position:absolute;top:100px;left:100px;width:100px;height:100px;background:#ccc;}
+  </style>
+  <script>
+    window.onload = function(){
+      /*
+        效果：点击div，让他从起点移动到500的距离。因为要移动，所以必须是绝对定位或是相对定位。
+        分析：1.匀速移动，就是走得速度一直不变
+              2.缓冲移动，依赖距离远近，越远移动越快，越近移动越慢
+        步骤：1.开一个定时器让div自己动
+              2.当div没有走到目的，需要一个不断变化的值，当div走到目的地时候，div定下来
+              3.缓冲运动
+      */
+      var oDiv = document.getElementsByTagName("div")[0];
+      var timer = null;
+
+      oDiv.onclick = function(){
+        move(oDiv,500); 
+      }
+
+      //1.为什么div要动？因为他的起点< 目的地，怎么知道到没到目的地，起点+一定时间走的距离(速度)跟目的地比较，
+      // function move(obj,target){
+      //   clearInterval(timer);
+      //   timer = setInterval(function(){
+      //     var speed = 0;
+      //     if(obj.offsetLeft < target){
+      //       speed = 10;
+      //     }
+
+      //     //2.2当div走到目的地时候，div停下来
+      //     if(obj.offsetLeft == target){
+
+      //       clearInterval(timer);
+      //     }else{
+      //       //2.1当div没有走到目的，需要一个不断变化的值
+      //       obj.style.left = obj.offsetLeft + speed + "px";
+      //     }
+      //     console.log(obj.style.left);
+      //   },30);
+      // }
+
+      //3.缓冲运动，由上面分析发现，缓冲运动跟匀速运动的一个区别，就是speed不一样,距离大速度大，距离小距离小，而这个距离就是起点到终点的距离，而怎么才能让speed不一样,距离大速度大，距离小距离小？
+       function move(obj,target){
+        clearInterval(timer);
+        timer = setInterval(function(){
+          //3.缓冲运动的关键，对speed的处理，加Math.floor(speed)，是因为当speed不足1的时候，也就是很接近目标500时候，就走不动了。当>0的时候，Math.round()也到不了目标，走到498就走不动了。当>0的时候，parseInt()也到不了目标，走到495就走不动了
+          var speed = (target-obj.offsetLeft)/6;
+          speed = speed>0 ? Math.ceil(speed):1;
+
+          //2.2当div走到目的地时候，div停下来
+          if(obj.offsetLeft == target){
+
+            clearInterval(timer);
+          }else{
+            //2.1当div没有走到目的，需要一个不断变化的值
+            obj.style.left = obj.offsetLeft + speed + "px";
+          }
+          console.log(obj.style.left);
+        },30);
+      }
+    };
+  </script>
+</head>
+<body>
+  <div></div>
+</body>
+</html>

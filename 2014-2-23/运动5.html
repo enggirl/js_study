@@ -1,0 +1,94 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<style>
+div {width:200px; height:40px; background:green; margin:10px; opacity:0.3; filter:alpha(opacity:30);}
+</style>
+<script>
+window.onload=function ()
+{
+	var aDiv=document.getElementsByTagName('div');
+	
+	for(var i=0;i<aDiv.length;i++)
+	{
+		aDiv[i].onmouseover=function ()
+		{
+			startMove(this, {width: 500, height: 41, opacity: 100});
+		};
+		aDiv[i].onmouseout=function ()
+		{
+			startMove(this, {width: 200, height: 40, opacity: 30});
+		};
+	}
+};
+
+function getStyle(obj, name)
+{
+	return obj.currentStyle?obj.currentStyle[name]:getComputedStyle(obj, false)[name];
+}
+
+function startMove(obj, json, end)
+{
+	clearInterval(obj.timer);
+	obj.timer=setInterval(function (){
+		var end=true;
+		
+		for(var name in json)
+		{
+			if(name=='opacity')
+			{
+				var cur=Math.round(parseFloat(getStyle(obj, name))*100);
+			}
+			else
+			{
+				var cur=parseInt(getStyle(obj, name));
+			}
+			
+			var speed=(json[name]-cur)/6;
+			speed=speed>0?Math.ceil(speed):Math.floor(speed);
+			
+			if(name=='opacity')
+			{
+				obj.style.opacity=(cur+speed)/100;
+				obj.style.filter='alpha(opacity:'+(cur+speed)+')';
+			}
+			else
+			{
+				obj.style[name]=cur+speed+'px';
+			}
+			
+			if(cur!=json[name])
+			{
+				end=false;
+			}
+		}
+		
+		if(end)
+		{
+			clearInterval(obj.timer);
+			
+			end && end();
+		}
+	}, 30);
+}
+</script>
+</head>
+
+<body>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+</body>
+</html>
+
+
+
+
+
+
+
