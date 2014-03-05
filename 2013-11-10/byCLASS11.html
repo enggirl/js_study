@@ -1,0 +1,64 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+div{width:300px;height:300px; background:red; opacity:0.9;}
+li{height:20px; background:blue;margin-top:3px;}
+span{ display:block;height:10px;width:200px;}
+</style>
+<script>
+window.onload=function()
+{
+	var oUl=document.getElementById('ul1');
+	
+	// 第一版
+	function getByClass(oParent,iClass) 
+	{
+		//IE678用咱们自己写的  要不然就用原生的
+	   
+	   if(document.getElementsByClassName)
+	   {
+		 return oParent.getElementsByClassName(iClass); 
+	   }	
+	     //else可以省  上面return 之后下面就不会再走
+		    
+		   var aEl=oParent.getElementsByTagName('*');
+		   var arr=[];
+			for(var i=0;i<aEl.length;i++)
+			{
+			   if(aEl[i].className==iClass)
+			   {
+				   arr[arr.length]=aEl[i];
+				}	
+			};
+			
+			return arr; 
+	   
+	};
+	
+	var aShow=getByClass(oUl,'show');
+	for(var i=0,m=aShow.length;i<m;i++)
+	{
+	   	aShow[i].style.background='red';
+		// IE78下面不能有多个class
+	}
+};
+
+</script>
+</head>
+
+<body>
+
+<UL id="ul1">
+    <li>1</li>
+	<li>2
+    </li>
+	<li class="show show2">3</li>
+	<li>4</li>
+	<li class="show">5</li>
+	<li>6</li>
+</UL>
+</body>
+</html>

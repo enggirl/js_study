@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>天际网|webapp</title>
+	<link rel="stylesheet"  href="./core/css/jquery.mobile.structure-1.4.1.css">
+    <link rel="stylesheet"  href="./css/ui_base.css">
+    <link rel="stylesheet"  href="./css/mobile_h5.css">
+    <script defer async="true" src="./core/require.js?versions=1.00" data-main="./libs/controller/IndexController"></script>
+</head>
+<body>
+    <!--@欢迎页-->
+    <div data-role="page" id='welcome'>
+　    <div data-role="content">
+        <div class="wrap index">
+          <!-- index -->
+          <h2 class="logo"><a href="#">天际网</a></h2>
+          <div class="logo_sense">
+            <div class="sense"></div>
+          </div>
+          <div class="btns">
+            <p><a href="#famousPerson"  data-transition="slideup" class="tolook"><span>名人、名企都在这里，快去看看</span><i class="arrow">&nbsp;</i></a></p>
+            <a href="javascript:;"  class="register addInformation clicked">注册</a><a href="javascript:;" class="login addInformation unclicked">登录</a>
+            <!-- <a href="javascript:;" class="register reged">注册</a><a href="javascript:;" class="login">登录</a> -->
+          </div>
+          <div class="register_form" data-role="none">
+            <span class="reg_arrow1"></span><span class="reg_cover"></span>
+            <form action="" method="post" id="resgeter">
+                <div class="frm">
+                  <input type="text" id='myname' data-limitCharacter='64' verify data-type='notnull,chinese' data-msg='不能为空,请填写真实姓名' data-target='#mynameError' placeholder="真实姓名">
+                  <p id='mynameError' class="error">
+                    <!-- <span class="arrow1"></span><span class="arrow2"></span> -->
+                    <em>×</em>请填写真实姓名
+                  </p>
+                </div>
+                <div class="frm">
+                  <input type="text" id='myemail' verify data-type='email' data-ajaxMsg='' data-ajaxUrl='' data-msg='请输入正确邮箱' data-target='#myemailError' placeholder="邮箱">
+                  <p class="error" id='myemailError'>
+                    <!-- <span class="arrow1"></span><span class="arrow2"></span> -->
+                    <em>×</em>邮箱地址错误
+                  </p>
+                </div>
+                <div class="frm">
+                  <input type="password" id='mypassword' verify data-type='password' data-msg="请设置6-16位英文字母，数字，符号密码" data-target='#mypasswordError' placeholder="密码">
+                  <p id='mypasswordError' class="error">
+                <!--     <span class="arrow1"></span><span class="arrow2"></span> -->
+                    <em>×</em>密码错误
+                  </p>
+                </div>
+                <a id="registerBtn" class="registerBtn" data-form='#resgeter'>立即注册</a>
+            </form>
+            <form action="" method="post" id="login">
+                <!-- <div class="frm">
+                  <input type="text" id='myname' data-limitCharacter='64' verify data-type='notnull,chinese' data-msg='不能为空,请填写真实姓名' data-target='#mynameError' placeholder="真实姓名">
+                  <p id='mynameError' class="error"><em>×</em>请填写真实姓名</p>
+                </div> -->
+                <div class="frm">
+                  <input type="text" id='loginmyemail' verify data-type='email' data-ajaxMsg='' data-ajaxUrl='' data-msg='请输入正确邮箱' data-target='#loginmyemailError' placeholder="邮箱">
+                  <p class="error" id='loginmyemailError'>
+                    <!-- <span class="arrow1"></span><span class="arrow2"></span> -->
+                    <em>×</em>邮箱地址错误
+                  </p>
+                </div>
+                <div class="frm">
+                  <input type="password" id='loginmypassword' verify data-type='password' data-msg="请设置6-16位英文字母，数字，符号密码" data-target='#loginmypasswordError' placeholder="密码">
+                  <p id='loginmypasswordError' class="error">
+                    <!-- <span class="arrow1"></span><span class="arrow2"></span> -->
+                    <em>×</em>密码错误
+                  </p>
+                </div>
+                <div class="frm about_password">
+                  <label><input type="checkbox">下次自动登录</label>
+                  <a href="#" class="ui-btn">忘记密码</a>
+                </div>
+                <a id="loginBtn" class="registerBtn" data-form='#login'>立即登陆</a>
+            </form>
+
+            <hr class="spacing">
+            <a class="registerBtn weibo"><em>&nbsp;</em>新浪微博账号注册</a>
+          </div>
+
+            
+            
+        </div>
+      </div>
+    </div>
+    <!--@名人展示-->
+    <div data-role="page" id='famousPerson'>
+        　    <div data-role="content">
+        <div class="wrap">
+            <div class="header first">
+<<<<<<< HEAD
+                <h1 class="backWelcome goUrl" route-transition='slide' route-target="./index.html"><a href="javascript:void(0)">天际网</a></h1>
+                <a href="#">登录</a>
+                <a href="#">注册</a>
+                
+=======
+                <h1 class="backWelcome goUrl" route-transition='slide' route-target="./index.html"><a data-transition="slidedown" href="#welcome">天际网</a></h1>
+                <a href="javascript:void(0)" class="backWelcome">注册</a>
+                <a href="javascript:void(0)" class="backWelcome">登录</a>
+>>>>>>> d0f2d51c68bf6d4d33054de43da62713173bdf70
+            </div>
+            <div class="main goUrl">
+                <h2><i>500</i>位名人、<i>2000</i>家名企,都在这里!</h2>
+                <ul class="famous_persons">
+                    <li>
+                        <img src="./images/person1.jpg" alt="">
+                        <div>
+                            <p class="name">郎咸平</p><p>极视智库经济学家</p>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="./images/person2.jpg" alt="">
+                        <div>
+                            <p class="name">高群耀</p><p>新闻集团副总裁</p>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="./images/person1.jpg" alt="">
+                        <div>
+                            <p class="name">潘茜</p><p>康泰纳仕(中国)新媒体</p>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="./images/person2.jpg" alt="">
+                        <div>
+                            <p class="name">胡慎之</p><p>关系心理学专家</p>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="famouse_companies">
+                    <li>腾讯网</li>
+                    <li>家乐福</li>
+                    <li>网易</li>
+                    <li>百度</li>
+                    <li>三星</li>
+                </ul>
+                <h2>他们选择加入天际网！</h2>
+                <ul class="join_persons">
+                    <li>
+                        <div class="person">
+                            <img src="./images/demo.png" alt="">
+                            <div class="pinfo">
+                                <p class="name">谢英华</p>
+                                <p>资深产品经理</p>
+                            </div>
+                        </div>
+                        <p>在天际网结识的好友都是专业背景、职业履历近似的，大家讨论的话题很对工作很有帮助，由此也建立起高度互信的关系。</p>
+                    </li>
+                    <li>
+                        <div class="person">
+                            <img src="./images/demo.png" alt="">
+                            <div class="pinfo">
+                                <p class="name">Daniel  Christopher</p>
+                                <p>500强HR经理</p>
+                            </div>
+                        </div>
+                        <p>In Tianji,job seekers can take the initiative to show themselves, so it is ea-sier for us to understand a candidate much more all-round and deeper.</p>
+                    </li>
+                    <li>
+                        <div class="person">
+                            <img src="./images/demo.png" alt="">
+                            <div class="pinfo">
+                                <p class="name">曾彦</p>
+                                <p>运营副总裁</p>
+                            </div>
+                        </div>
+                        <p>在我决定寻求更好的发展机会之前就已经在天际网结交了一些猎头好友，大家早已推心置腹。因此他们向我发出工作邀约后，很快就实现了双赢的结果。</p>
+                    </li>
+                    <li>
+                        <div class="person">
+                            <img src="./images/demo.png" alt="">
+                            <div class="pinfo">
+                                <p class="name">齐心</p>
+                                <p>外资律所市场主管</p>
+                            </div>
+                        </div>
+                        <p>目前的岗位要求需要我更好地提升自己，在天际网可以有的放矢看到很多精英教育资讯展示，我还获得了优惠的机会！</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="footer">
+                <div class="lite_shop">
+                    <a href="#"><span>app store</span></a>
+                    <a href="#"><span>google play</span></a>
+                </div>
+                <p><a href="#">人脉圈</a><a href="#">职位</a><a href="#">教育</a><a href="#">职业测评</a></p>
+                <p><a href="#">关于天际</a><a href="#">联系方式</a><a href="#">对外合作</a><a href="#">合作伙伴</a><a href="#">手机客户端</a></p>
+                <p><a href="#">天际Blog</a><a href="#">招贤纳士</a><a href="#">服务条款</a><a href="#">隐私政策</a><a href="#">问题建议</a></p>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+</body>
+</html>

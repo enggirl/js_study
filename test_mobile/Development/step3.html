@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>天际网|webapp</title>
+    <link rel="stylesheet"  href="./core/css/jquery.mobile.structure-1.4.1.css">
+  <link rel="stylesheet"  href="./css/ui_base.css">
+  <link rel="stylesheet"  href="./css/mobile_h5.css">
+  <script defer async="true" src="./core/require.js?versions=1.00" data-main="./libs/controller/FirstController"></script>
+</head>
+<body>
+  <!--@step2-->
+    <div data-role="page" id='in1'>
+　    <div data-role="content">
+        <div class="wrap step">
+          <div class="header">
+            <h2>邀请好友<a href="#" class="skip">跳过>></a></h2>
+          </div>
+          <div class="main" >
+            <h2>据统计，邀请好友认证自己能获得10倍的<br/>工作邀约，让猎头优先关注。</h2>
+            <div class="invite_friend"></div>
+            <form action="" >
+              <div class="frm email">
+               <!--  <p>选择你所在的地区</p> -->
+                <input type="text" placeholder="输入好友的邮件地址"/>
+                <input type="text" placeholder=" 输入好友的邮件地址(选填)"/>
+              </div>
+              <div class="frm ncard" data-role="none">
+                <a href="#" class="btn" data-role="none">立即邀请</a>
+              </div>
+            </form>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+</body>
+</html>

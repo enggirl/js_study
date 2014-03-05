@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<style>
+* {margin:0; padding:0; list-style:none;}
+
+#div1 {width:712px; height:108px; position:relative; margin:10px auto; background:red; overflow:hidden;}
+#div1 ul {position:absolute; height:108px; left:0; top:0;}
+#div1 ul li {float:left;}
+</style>
+<script>
+window.onload=function ()
+{
+	var oDiv=document.getElementById('div1');
+	var oUl=oDiv.children[0];
+	var aLi=oUl.children;
+	
+	//oUl.innerHTML=oUl.innerHTML+oUl.innerHTML;
+	oUl.innerHTML+=oUl.innerHTML;
+	
+	oUl.style.width=aLi[0].offsetWidth*aLi.length+'px';
+	
+	
+	
+	
+	var w=oUl.offsetWidth/2;
+	var left=0;
+	
+	setInterval(function (){
+		left+=10;
+		
+		if(left<0)
+		{
+			oUl.style.left=left%w+'px';
+		}
+		else
+		{
+			oUl.style.left=(left%w-w)%w+'px';
+		}
+	}, 30);
+};
+</script>
+</head>
+
+<body>
+<div id="div1">
+	<ul>
+    	<li><img src="img/1.jpg" /></li>
+    	<li><img src="img/2.jpg" /></li>
+    	<li><img src="img/3.jpg" /></li>
+    	<li><img src="img/4.jpg" /></li>
+    </ul>
+</div>
+</body>
+</html>
+
+
+
+
+
+
+

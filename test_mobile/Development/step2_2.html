@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>天际网|webapp</title>
+    <link rel="stylesheet"  href="./core/css/jquery.mobile.structure-1.4.1.css">
+  <link rel="stylesheet"  href="./css/ui_base.css">
+  <link rel="stylesheet"  href="./css/mobile_h5.css">
+  <script defer async="true" src="./core/require.js?versions=1.00" data-main="./libs/controller/FirstController"></script>
+</head>
+<body>
+  <!--@step2-->
+    <div data-role="page" id='in1'>
+　    <div data-role="content">
+        <div class="wrap step">
+          <div class="header">
+            <h1>完善资料</h1>
+          </div>
+          <div class="main" >
+            <h2>名片是新朋友互相认识、自我介绍的<br/>最快有效的方法！</h2>
+            <form action="" >
+              <div class="namecard">
+                <div class="infor">
+                  <p >张峰</p>
+                  <input type="text" placeholder="请输入当前职位"/>
+                  <input type="text" placeholder="请输入当前公司"/>
+                </div>
+                <div class="frm">
+                  <input type="text" placeholder="请输入所属行业"/>
+                  <input type="text" placeholder="请输入工作职能"/>
+                </div>
+              </div>
+              <div class="frm job">
+                <p>选择你的工作时间?</p>
+                <input type="text" placeholder="开始时间" />
+                <input type="text" placeholder="结束时间" class="end"/>
+                <a href="#" class="now">至今</a>
+                <input type="text" placeholder="至今" class="end"/>
+                <a href="#" class="now bynow">至今</a>
+                <p>请输入你的手机号</p>
+                <input type="text" placeholder="手机号(选填)" />
+              </div>
+              <!-- <div class="frm">
+                <p>选择你所在的地区</p>
+                <input type="text" placeholder="结束时间"/>
+              </div> -->
+              <!-- <div class="frm">
+                <!-- <p>选择你的职业身份</p> >
+                <input type="text" placeholder="专业名称(选填) "/>
+              </div> -->
+              <div class="frm ncard" data-role="none">
+                <a href="#" class="btn" data-role="none">创建名片</a>
+              </div>
+            </form>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+</body>
+</html>

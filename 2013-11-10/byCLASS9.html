@@ -1,0 +1,67 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+div{width:300px;height:300px; background:red; opacity:0.9;}
+li{height:20px; background:blue;margin-top:3px;}
+span{ display:block;height:10px;width:200px;}
+</style>
+<script>
+window.onload=function()
+{
+	alert(document.getElementsByClassName);
+	var oUl=document.getElementById('ul1');
+	function getByClass(oParent,iClass) 
+	{
+		//IE678用咱们自己写的  要不然就用原生的
+	   
+	   if(document.getElementsByClassName)
+	   {
+		     
+	   }	
+	   else
+	   {
+		    //IE678
+		   var aEl=oParent.getElementsByTagName('*');
+		   var arr=[];
+			for(var i=0;i<aEl.length;i++)
+			{
+			   if(aEl[i].className==iClass)
+			   {
+				   arr[arr.length]=aEl[i];
+				}	
+			};
+			
+			return arr; 
+	   }
+		
+		
+	};
+	
+	var aShow=getByClass(oUl,'show');
+	//alert(aShow.length);
+	aShow[0].style.background='red';
+	aShow[1].style.background='yellow';
+	
+	// 想要一组去做同样的事 for
+};
+
+</script>
+</head>
+
+<body>
+
+<UL id="ul1">
+    <li>1</li>
+	<li>2
+      <span class="show">span</span>
+    </li>
+	<li class="show">3</li>
+	<li>4</li>
+	<li class="show">5</li>
+	<li>6</li>
+</UL>
+</body>
+</html>

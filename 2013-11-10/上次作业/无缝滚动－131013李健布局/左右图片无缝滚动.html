@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+*{ margin:0; padding:0;}
+#div1{ width:980px; margin:20px auto; position:relative;}
+.cont{ height:120px; width:840px; overflow:hidden; position:relative; float:left;}
+#div1 a{ width:60px; height:30px; display:block; background:#369; color:#fff; text-align:center; line-height:30px; text-decoration:none; margin-top:50px; }
+#div1 a.leftBtn{ float:left; margin-right:10px;}
+#div1 a.rightBtn{float:left; margin-left:10px;}
+.ul1{   position:absolute; height:auto; overflow:hidden; top:0;}
+.ul1 li{ width:200px; height:120px; float:left; padding:5px; list-style:none;}
+.ul1 li img{ width:200px; height:120px;}
+</style>
+<script>
+window.onload=function()
+{
+	var oDiv=document.getElementById('div1');
+    var oBtnLeft=oDiv.getElementsByTagName('a')[0];
+    var oBtnRight=oDiv.getElementsByTagName('a')[1];
+	var oUl=oDiv.getElementsByTagName('ul')[0];
+	var aLi=oUl.children;
+	var iSpeed=5;
+	var timer=null;
+	
+	oUl.innerHTML+=oUl.innerHTML;
+	oUl.style.width=aLi.length*aLi[0].offsetWidth+'px';
+	
+	starMove();
+	function starMove()
+	{
+	
+		timer=setInterval(function()
+		{
+			oUl.style.left=oUl.offsetLeft-iSpeed+'px';
+			if(oUl.offsetLeft<-oUl.offsetWidth/2)
+			{
+				oUl.style.left=0;
+			}
+			else if(oUl.offsetLeft>0)
+			{
+				oUl.style.left=-oUl.offsetWidth/2+'px';
+			}
+			//console.log(oUl.offsetLeft)
+		},30)
+	}
+	oBtnLeft.onmouseover=function()
+	{
+		iSpeed=5;
+	}
+	oBtnRight.onmouseover=function()
+	{
+		iSpeed=-5;
+	}
+	oUl.onmouseover=function()
+	{
+		clearInterval(timer);
+	}
+	oUl.onmouseout=function()
+	{
+		starMove();
+	}
+	
+}
+</script>
+</head>
+
+<body>
+<div id="div1">
+	<a class="leftBtn" href="javascript:;">向左</a>
+    <div class="cont">
+        <ul class="ul1">
+            <li>
+                <img src="images/1.jpg" />
+            </li>
+            <li>
+                <img src="images/2.jpg" />
+            </li>
+            <li>
+                <img src="images/3.jpg" />
+            </li>
+            <li>
+                <img src="images/4.jpg" />
+            </li>
+            
+        </ul>
+    </div>
+    <a class="rightBtn" href="javascript:;">向右</a>
+</div>
+</body>
+</html>

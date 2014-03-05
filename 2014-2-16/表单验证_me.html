@@ -31,24 +31,34 @@
           age   : /^1[2-9]|[2-9]\d|[1-4]\d{2}|500$/,
           birth : //
        }
-       //2.点击按钮，验证规则
+       //2.点击按钮，验证规则  文本框blur，也验证规则，所以验证部分需要提出单独写函数
         var oBtn = document.getElementById("btn");
         var oForm = document.getElementById("form1");
         var aInput = document.getElementsByTagName("input");
+
+        for(var i=0; i<2; i++){
+          aInput[i].onblur = function(){
+            checkInput(aInput[i],reg[aInput[i].name]);
+          }
+        }
         oForm.onsubmit = function(){
           for(var i=0; i<2; i++){
-            //2.1 先获取文本框的内容
-            var val = aInput[i].value;
+            checkInput(aInput[i],reg[aInput[i].name]);
+          }
+          return false;//取消默认提交
+        };
+
+        function checkInput(obj,re){
+          //2.1 先获取文本框的内容
+            var val = obj.value;
             //2.2 将文本框内容套用规则判断是否符合,正确的给input添加ok类，错误的给input添加error类
-            var re = reg[aInput[i].name];
+            //var re = re[obj.name];
             if(re.test(val)){
               alert("对了")
             }else{
               alert("错啦")
             }
-          }
-          return false;//取消默认提交
-        };
+        }
     };
   </script>
 </head>

@@ -1,0 +1,44 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+div{ position:absolute;top:100px;left:0;width:200px;height:200px; background:red;}
+li{height:50px; background:red;margin-top:3px; list-style:none; width:100px;}
+</style>
+<script>
+window.onload=function()
+{
+    var oDate=new Date();  //创建日期对象
+    oDate.setFullYear(2014,0,1);  //2014 1 1
+    oDate.setHours(0,0,0,0);
+	var newT=oDate.getTime();  //毫秒
+	
+	var oDate=new Date();
+	var nowT=oDate.getTime();
+	//转成秒，干掉小数
+	var time=parseInt( (newT-nowT)/1000 ); 
+	var d=parseInt( time/86400 );
+	time%=86400;
+	var h=parseInt( time/3600 );
+	time%=3600;
+	var m=parseInt( time/60 )
+	var s=time%60;
+
+	document.body.innerHTML='距离2014年1月1日还有'+d+'天'+h+'小时'+m+'分'+s+'秒 ';
+    
+
+};
+
+function toDou(n)
+{
+	return n<10?'0'+n:''+n;
+}
+</script>
+</head>
+
+<body>
+
+</body>
+</html>

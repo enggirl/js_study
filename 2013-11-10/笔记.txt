@@ -1,0 +1,139 @@
+需要问题：
+F12   
+
+调试：没有报错，效果不对
+alert();
+document.title
+console.log()
+
+-----------------
+
+<script>  JS </script>
+
+1.window.onload=function(){}  页面加载完成之后执行
+2. 获取元素
+   document.getElementByID
+           .  getTagName
+           .children      只能获取一组
+
+3.  写JS语句，更改样式
+
+
+function show()  定义一个函数
+{
+   代码块
+};
+
+show();  调用函数
+
+传参:  在调用的时候传参数，在定义函数后面的括号接收
+return 将相应的值返回到函数调用的地方
+
+
+for(var i=0;i<xxx.length;i++)   次数已定
+{
+   if()
+  {
+     break;
+  }    
+  
+  if()
+  {
+    continue;
+  }
+}
+
+while(条件)      目标已定
+{
+  条件一直成立，一直执行
+}
+
+typeof  查看类型
+number string function boolean object undefined
+
+
+true false  判断逻辑
+
+0  false
+1  true
+
+
+parseInt  转数字，干掉字母和小数点后面
+parseFloat  保留小数
+Number     只能转纯数字  '234234d'不行
+
+
+arr数组，一个变量可以存很多值，多类型的值都可以
+
+
+
+获取元素
+byClass
+
+
+str.charAt(下标)  取字符串的第几个，兼容
+str.substring(0,2);// 开始  结束  不包括结束位置
+
+
+eval(字符串)  它能将字符串解析成为真成的JS代码
+eval在公司里面基本上不让用
+或者是核心人员才让用
+或者是核心人员封装好之后给你用
+
+注入攻击
+
+
+作业：
+hao.360.cn 运动菜单
+数码图片时钟
+倒计时
+360判断浏览器
+360选项卡，点第二次走链接
+选做：雷电
+
+
+
+
+
+
+2014－1－1 离现在多少天
+
+－－－－－－－－－－－
+
+return false;  阻止浏览器默认
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

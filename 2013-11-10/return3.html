@@ -1,0 +1,26 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script>
+
+function rnd(n,m)  //传两个值，随机数的范围 
+{
+	//return n+m
+	//return Math.random()
+	//return Math.random()*(m-n)+n;
+	//return parseInt(Math.random()*(m-n)+n);  //88不会有
+	return parseInt(Math.random()*(m-n+1)+n);
+};
+var number=rnd(3,88);
+
+alert(number);
+alert(rnd(0,100));
+alert(rnd(10,40));
+</script>
+</head>
+
+<body>
+</body>
+</html>

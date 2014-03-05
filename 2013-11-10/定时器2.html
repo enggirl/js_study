@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script>
+window.onload=function()
+{
+	var oBtn=document.getElementsByTagName('input');
+	
+	oBtn[1].onclick=function()
+	{
+	    var number=oBtn[0].value;
+
+
+		setInterval(function(){
+			//alert(number);
+			
+			var m=parseInt(number/60);  
+			var s=number%60;
+			oBtn[0].value=m+'分'+s+'秒';	
+			number--;
+			
+		},1000);
+	};
+};
+
+</script>
+</head>
+
+<body>
+<input type="text" />
+<input type="button" value="计算" />
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

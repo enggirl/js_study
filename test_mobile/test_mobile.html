@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  <title>Document</title>
+  <style>
+    *{margin:0;padding:0;}
+    body{font:12px/1.5 '微软雅黑';}
+    ul,li{list-style:none;}
+    .wrap{width:1080px;height:1920px;margin:0 auto;}
+    .imgwrap{width:41.39%;height:45.36%;/*width:447px;height:871px;*/margin:0 auto;}
+    .imgwrap .img{width:100%;height:100%;background:url(images/welcome.png) no-repeat;background-size:100% 100%;}
+    li{padding:3.33em 4.75em;/*padding:40px 57px;*/height:182px;border-bottom: 1px solid #e5e5e5;}
+    li a{float: left;width:176px;height:176px;margin-right:40px;}
+    li a img{width:100%;height:100%;}
+    .info{float:left;color:#7d7d7d;font-size:3em;/*font-size:36px;*/}
+    li .info p:nth-of-type(1){color:#343434;font-size:3.5em;/*font-size:42px;*/}
+    li .add_friend{float:right;width:227px;height:82px;margin-top:3.33em;/*margin-top:40px;*/line-height:72px;color:#3598db;font-size:3em;/*font-size:36px;*/border:3px solid #3598db;text-align:center;}
+    li .add_friend em{display:inline-block;margin-right:20px;font-style:normal;font-size:80px;vertical-align:-13px;}
+    /*问题：1。上面font-size改为em后太大了
+            2.这里的height应该怎么百分比啊，是跟整个页面1920px做比例吗
+            3.li a这里的w和h也弄成百分比，是跟整个li比吗，那么li的w：1980 h：182  应该怎么弄啊
+            4.里面的padding margin是不是都弄成em？
+    */
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="imgwrap">
+      <div class="img"></div>
+    </div>
+    <ul>
+      <li>
+        <div class="job_friend">
+          <a href="#"><img src="./images/demo.jpg" alt="" /></a>
+          <div class="info">
+            <p>李佳佳</p>
+            <p>产品经理</p>
+            <p>同一公司</p>
+          </div>
+        </div>
+        <a href="#" class="add_friend"><em>+</em>加好友</a>
+      </li>
+      <li>
+        <div class="job_friend">
+          <a href="#"><img src="./images/demo.jpg" alt="" /></a>
+          <div class="info">
+            <p>李佳佳</p>
+            <p>产品经理</p>
+            <p>同一公司</p>
+          </div>
+        </div>
+        <a href="#" class="add_friend"><em>+</em>加好友</a>
+      </li>
+    </ul>
+  </div>
+</body>
+</html>

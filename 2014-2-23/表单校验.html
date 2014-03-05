@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<style>
+input {border:1px solid #CCC;}
+
+input.ok {border:1px solid green;}
+input.error {border:1px solid red;}
+</style>
+<script>
+var re={
+	birth:	/^(19|[2-4]\d)\d{2}[\/\-\s年](0?[1-9]|1[0-2])[\/\-\s月](0?[1-9]|[1-2]\d|3[01])日?$/,
+	url:	/^(https?:\/\/)?([a-z0-9\-]+\.)+[a-z]{2,5}(\.[a-z]{2,5})?\/?$/i,
+	mobile:	/^1(4[78]|[358]\d)\d{8}$/
+};
+
+function formCheck(id)
+{
+	var oForm=document.getElementById(id);
+	var aInput=oForm.getElementsByTagName('input');
+	
+	oForm.onsubmit=function ()
+	{
+		var ok=true;
+		
+		for(var i=0;i<aInput.length;i++)
+		{
+			var oRe=re[aInput[i].name];
+			if(oRe)
+			{
+				if(false==check(aInput[i], oRe))
+				{
+					ok=false;
+				}
+			}
+		}
+		
+		if(ok==false)
+		{
+			return false;
+		}
+	};
+	
+	function check(oTxt, re)
+	{
+		if(re.test(oTxt.value))
+		{
+			oTxt.className='ok';
+			return true;
+		}
+		else
+		{
+			oTxt.className='error';
+			return false;
+		}
+	}
+}
+
+window.onload=function ()
+{
+	formCheck('form1');
+};
+</script>
+</head>
+
+<body>
+<form id="form1">
+	生日：<input type="text" name="birth" /><br>
+	网址：<input type="text" name="url" /><br>
+	手机：<input type="text" name="mobile" /><br>
+	<input type="submit" />
+</form>
+</body>
+</html>
+
+
+
+
+
+
+

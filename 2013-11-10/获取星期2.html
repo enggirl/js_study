@@ -1,0 +1,31 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+div{ position:absolute;top:100px;left:0;width:200px;height:200px; background:red;}
+li{height:50px; background:red;margin-top:3px; list-style:none; width:100px;}
+</style>
+<script>
+window.onload=function()
+{
+   var oDate=new Date();  //创建日期对象
+  // alert(oDate.getDay());  //周日：0   周1：1   0－6
+  
+  var arr=['日','一','二','三','四','五','六'];
+   alert('今天是星期'+arr[oDate.getDay()]);
+
+};
+
+function toDou(n)
+{
+	return n<10?'0'+n:''+n;
+}
+</script>
+</head>
+
+<body>
+
+</body>
+</html>

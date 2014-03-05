@@ -1,0 +1,37 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+div{width:300px;height:300px; background:red; opacity:0.9;}
+</style>
+<script>
+window.onload=function()
+{
+	//offset  没有透明度
+	
+	function getStyle(obj,attr)  //取谁的样式，什么样式
+	{
+	  	if(obj.currentStyle)  //IE才认识
+		{
+			return obj.currentStyle[attr];
+		}
+		else
+		{
+		  	return getComputedStyle(obj,false)[attr];
+		}
+		
+	};
+	
+	var opa=getStyle(document.getElementById('box'),'opacity')
+	alert(opa);
+};
+
+</script>
+</head>
+
+<body>
+<div id="box"></div>
+</body>
+</html>

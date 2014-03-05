@@ -1,0 +1,24 @@
+body,dl,dd,dt,input,ul,li{margin:0; padding:0; font-size:14px;}
+
+dl,dd,dt,li,ul{ list-style:none;}
+a{ text-decoration:none;}
+
+#search{ width:960px; margin:20px auto; background:#f3f3f3; border:1px solid #f60; padding:10px; overflow:hidden;}
+.choos,.searCon{ height:30px; padding:10px;}
+.choose dl{ width:940px; height:30px; line-height:30px;}
+.choose dl dt,.choose dl dd{ float:left; width:100px;}
+.choose dl dd{ width:60px; background:#999; text-align:center; margin-right:5px; color:#fff;}
+.choose dl dd.active{background:#f60;}
+
+.searCon input{ margin-top:-2px; margin-right:5px;vertical-align:middle;}
+.chooseAll{ margin-bottom:5px;}
+.soft dl{ margin:2px; float:left; background:#f2f2f2; width:230px; height:260px; padding-bottom:10px; background:url(bg.png) no-repeat 0px 0;}
+.soft dl.checkedDl{background:url(bg.png) no-repeat -230px 0;}
+.soft div{ display:none;}
+.soft div.show{ display:block;}
+.soft dl dt{ height:35px; line-height:35px; padding-left:25px;}
+.soft dl dd{ width:225px; height:220px;}
+.soft dl dd ul{ width:225px; height:220px; overflow:hidden; padding:5px;}
+.soft dl dd li{ float:left; width:73px; height:72px; margin:19px; background:#ccc; background:url(bg.png) no-repeat 0 -270px;}
+.soft dl dd li.checkedLi{background:url(bg.png) no-repeat -75px -270px;}
+

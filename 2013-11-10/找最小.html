@@ -1,0 +1,35 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+div{width:300px;height:300px; background:red; opacity:0.9;}
+li{height:20px; background:blue;margin-top:3px;}
+span{ display:block;height:10px;width:200px;}
+</style>
+<script>
+window.onload=function()
+{
+	var n=9999999999999999999999999999999999999;
+    var arr=[3,5,345,654,0,7,88,9,10,1];
+	
+	for(var i=0;i<arr.length;i++)
+	{
+	    if(arr[i]<n)
+		{
+		   n=arr[i];	
+		}	
+	}
+  
+   alert(n);
+};
+
+
+</script>
+</head>
+
+<body>
+
+</body>
+</html>

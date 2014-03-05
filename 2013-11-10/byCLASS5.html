@@ -1,0 +1,53 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+div{width:300px;height:300px; background:red; opacity:0.9;}
+li{height:20px; background:blue;margin-top:3px;}
+</style>
+<script>
+window.onload=function()
+{
+	var oUl=document.getElementById('ul1');
+	/*var aLi=oUl.getElementsByTagName('li');
+	for(var i=0;i<aLi.length;i++)
+	{
+	   if(aLi[i].className=='show')
+	   {
+		   aLi[i].style.background='red'; 
+		}	
+	}*/
+	
+	function getByClass(oParent,iClass)  // 从谁下面找， 找什么class
+	{
+	   var aLi=oParent.getElementsByTagName('li');
+		for(var i=0;i<aLi.length;i++)
+		{
+		   if(aLi[i].className==iClass)
+		   {
+			   aLi[i].style.background='red'; 
+			}	
+		}
+		
+	};
+	
+	getByClass(oUl,'show');
+};
+
+</script>
+</head>
+
+<body>
+
+<UL id="ul1">
+    <li>1</li>
+	<li>2</li>
+	<li class="show">3</li>
+	<li>4</li>
+	<li class="show">5</li>
+	<li>6</li>
+</UL>
+</body>
+</html>
