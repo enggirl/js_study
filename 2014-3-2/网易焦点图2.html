@@ -1,0 +1,108 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<style>
+* {margin:0; padding:0; list-style:none;}
+
+#div1 {width:500px; height:300px; position:relative; margin:10px auto; overflow:hidden;}
+#div1 ul {height:300px; position:absolute; left:0; top:0;}
+#div1 ul li {width:500px; height:300px; background:#CCC; float:left;}
+#div1 ol {position:absolute; width:500px; left:0; bottom:30px;}
+#div1 ol li {width:80px; height:20px; background:#0FF; float:left; margin:0 10px;}
+#div1 ol li span {width:0px; height:20px; background:#0033FF; display:block;}
+</style>
+<script src="move2.js"></script>
+<script>
+window.onload=function ()
+{
+	var oDiv=document.getElementById('div1');
+	var oUl=oDiv.getElementsByTagName('ul')[0];
+	var aLi=oUl.children;
+	
+	var aOlLi=oDiv.getElementsByTagName('ol')[0].children;
+	var aSpan=oDiv.getElementsByTagName('span');
+	
+	oUl.innerHTML+=oUl.innerHTML;
+	oUl.style.width=aLi[0].offsetWidth*aLi.length+'px';
+	
+	var w=oUl.offsetWidth/2;
+	
+	var now=0;
+	
+	function next()
+	{
+		for(var i=0;i<aSpan.length;i++)
+		{
+			aSpan[i].style.width=0;
+		}
+		startMove(aSpan[now%aOlLi.length], {width: aOlLi[0].offsetWidth}, {time: 1000, end: function (){
+			now++;
+			
+			startMove2(oUl, -now*aLi[0].offsetWidth, next);
+		}});
+	}
+	
+	next();
+	
+	
+	var left=0;
+	
+	function startMove2(obj, iTarget, end)
+	{
+		clearInterval(obj.timer);
+		obj.timer=setInterval(function (){
+			var speed=(iTarget-left)/6;
+			speed=speed>0?Math.ceil(speed):Math.floor(speed);
+			
+			left+=speed;
+			
+			if(left<0)
+			{
+				obj.style.left=left%w+'px';
+			}
+			else
+			{
+				obj.style.left=(left%w-w)%w+'px';
+			}
+			
+			if(left==iTarget)
+			{
+				clearInterval(obj.timer);
+				
+				end && end();
+			}
+		}, 30);
+	}
+};
+</script>
+</head>
+
+<body>
+<div id="div1">
+	<ul>
+    	<li style="background:#CCCCCC;"></li>
+    	<li style="background:green;"></li>
+    	<li style="background:pink;"></li>
+    	<li style="background:#99CC33;"></li>
+    	<li style="background:#CCCC66;"></li>
+    </ul>
+    <ol>
+    	<li><span></span></li>
+    	<li><span></span></li>
+    	<li><span></span></li>
+    	<li><span></span></li>
+    	<li><span></span></li>
+    </ol>
+</div>
+</body>
+</html>
+
+
+
+
+
+

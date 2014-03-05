@@ -1,0 +1,228 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<style>
+* {margin:0; padding:0; list-style:none;}
+
+#ul1 {width:688px; height:688px; margin:10px auto; position:relative;}
+#ul1 li {width:150px; height:150px; background:#CCC; margin:10px; float:left; border:1px solid black; text-align:center; line-height:150px; font-size:30px; z-index:1;}
+</style>
+<script src="move2.js"></script>
+<script>
+window.onload=function ()
+{
+	var oUl=document.getElementById('ul1');
+	var aLi=oUl.children;
+	
+	var zIndex=2;
+	
+	//看着方便
+	for(var i=0;i<aLi.length;i++)
+	{
+		aLi[i].innerHTML=i;
+	}
+	
+	//布局转换
+	var aPos=[];
+	
+	for(var i=0;i<aLi.length;i++)
+	{
+		aPos[i]={left: aLi[i].offsetLeft, top: aLi[i].offsetTop};
+		aLi[i].style.left=aPos[i].left+'px';
+		aLi[i].style.top=aPos[i].top+'px';
+		
+		aLi[i].index=i;
+	}
+	for(var i=0;i<aLi.length;i++)
+	{
+		aLi[i].style.position='absolute';
+		aLi[i].style.margin='0';
+	}
+	
+	var ready=true;		//有没有运动正在执行
+	
+	//拖拽
+	function drag(obj)
+	{
+		obj.onmousedown=function (ev)
+		{
+			var oEvent=ev||event;
+			
+			var disX=oEvent.clientX-obj.offsetLeft;
+			var disY=oEvent.clientY-obj.offsetTop;
+			
+			clearInterval(obj.timer);
+			
+			obj.style.zIndex=zIndex++;
+			
+			document.onmousemove=function (ev)
+			{
+				var oEvent=ev||event;
+				
+				obj.style.left=oEvent.clientX-disX+'px';
+				obj.style.top=oEvent.clientY-disY+'px';
+								
+				//检测碰撞
+				var oNear=findNearest(obj);
+				
+				if(oNear)
+				{
+					if(ready==false)
+					{
+						return;
+					}
+					ready=false;
+					
+					oNear.style.background='#CCC';
+					
+					//交换
+					//startMove(obj, aPos[oNear.index], {type: 'buffer'});
+					startMove(oNear, aPos[obj.index], {type: 'buffer', end: function (){ready=true;}});
+					
+					/*
+					oNear.style.left=aPos[obj.index].left+'px';
+					oNear.style.top=aPos[obj.index].top+'px';
+					*/
+					
+					var tmp;
+					
+					tmp=oNear.index;
+					oNear.index=obj.index;
+					obj.index=tmp;
+				}
+			};
+			
+			document.onmouseup=function ()
+			{
+				document.onmousemove=null;
+				document.onmouseup=null;
+				
+				obj.releaseCapture && obj.releaseCapture();
+				
+				//回去
+				startMove(obj, aPos[obj.index], {type: 'buffer'});
+			};
+			
+			obj.setCapture && obj.setCapture();
+			
+			return false;
+		};
+	}
+	
+	for(var i=0;i<aLi.length;i++)
+	{
+		drag(aLi[i]);
+	}
+	
+	//碰撞检测
+	function collTest(obj1, obj2)
+	{
+		var l1=obj1.offsetLeft;
+		var r1=obj1.offsetLeft+obj1.offsetWidth;
+		var t1=obj1.offsetTop;
+		var b1=obj1.offsetTop+obj1.offsetHeight;
+		
+		var l2=obj2.offsetLeft;
+		var r2=obj2.offsetLeft+obj2.offsetWidth;
+		var t2=obj2.offsetTop;
+		var b2=obj2.offsetTop+obj2.offsetHeight;
+		
+		if(r1<l2 || l1>r2 || b1<t2 || t1>b2)
+		{
+			return false;
+		}
+		else
+		{
+			return true;
+		}
+	}
+	
+	//算距离
+	function getDis(obj1, obj2)
+	{
+		/*
+		var x1=obj1.offsetLeft+obj1.offsetWidth/2;
+		var y1=obj1.offsetTop+obj1.offsetHeight/2;
+		var x2=obj2.offsetLeft+obj2.offsetWidth/2;
+		var y2=obj2.offsetTop+obj2.offsetHeight/2;
+		
+		var a=x2-x1;
+		*/
+		
+		//每个块儿一样大
+		var a=obj2.offsetLeft-obj1.offsetLeft;
+		var b=obj2.offsetTop-obj1.offsetTop;
+		
+		return Math.sqrt(a*a+b*b);
+	}
+	
+	/*
+	1.碰上的
+	2.最近的
+	*/
+	function findNearest(obj)
+	{
+		var iMin=99999999999;
+		var iMinIndex=-1;
+		
+		for(var i=0;i<aLi.length;i++)
+		{
+			if(obj==aLi[i])continue;		//?
+			
+			if(collTest(obj, aLi[i]))
+			{
+				var dis=getDis(obj, aLi[i]);
+				
+				if(dis<iMin)
+				{
+					iMin=dis;
+					iMinIndex=i;
+				}
+			}
+		}
+		
+		if(iMinIndex==-1)
+		{
+			return null;
+		}
+		else
+		{
+			return aLi[iMinIndex];
+		}
+	}
+};
+</script>
+</head>
+
+<body>
+<ul id="ul1">
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+</ul>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

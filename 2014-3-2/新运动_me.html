@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+  <style>
+    div{width:200px; height:40px;background:green; margin:10px;opacity:0.3;filter:alpha(opacity:30);}
+  </style>
+  <script>
+    window.onload = function(){
+      /*
+      新运动理论：已知运动多少次到达终点，起点已知，终点已知，这样就可以知道每次走多少。
+              距离=终点-起点，每次走多少=距离/次数
+      步骤：1.鼠标移入移出调用运动函数
+            2.由新运动理论可知，运动函数需要终点，总时间
+            3.获取元素，书写触发运动函数的事件
+            4.写运动函数
+
+      */
+      var oDiv = document.getElementsByTagName("div")[0];
+      oDiv.onmouseover = function(){
+        Move(this,500,5000);
+      }
+      oDiv.onmouseout = function(){
+        Move(this,200,500);
+      }
+    };
+    //4.写运动函数
+    function Move(obj,target,time){
+      //4.1获取起点
+      var start = obj.offsetWidth;
+      //4.2获取距离
+      var dis = target - start;
+      //4.3获取运动次数
+      var count = parseInt(time/30);
+      //4.4关闭定时器
+      var n=0;
+      clearInterval(obj.timer);
+      obj.timer = setInterval(function(){
+        n++;
+        //4.5获取当前值
+        var cur = parseInt(dis/count);
+        if(n == count){
+          clearInterval(obj.timer);
+        }else{
+          obj.style.width = start + cur*n + 'px';
+        }
+
+      },30);
+    }
+    
+  </script>
+</head>
+<body>
+  <div></div>
+</body>
+</html>

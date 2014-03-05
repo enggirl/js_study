@@ -12,13 +12,14 @@ window.onload=function ()
 	
 	var last=0;
 	
+	//说明：时间间隔不能太小——到不了，而且定时器不稳定——越小越不稳定。这里虽然写的是1的时间间隔，但是根本到不了，而是从3-十几之间随机的一样
 	var timer=setInterval(function (){
 		var now=new Date().getTime();
 		
 		oTxt.value+=now-last+'\n';
 		
 		last=now;
-	}, 20);
+	}, 1);
 	
 	document.onclick=function ()
 	{

@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<style>
+* {margin:0; padding:0; list-style:none;}
+
+#div1 {width:500px; height:300px; position:relative; margin:10px auto; overflow:hidden;}
+#div1 ul {height:300px; position:absolute; left:0; top:0;}
+#div1 ul li {width:500px; height:300px; background:#CCC; float:left;}
+#div1 ol {position:absolute; width:500px; left:0; bottom:30px;}
+#div1 ol li {width:80px; height:20px; background:#0FF; float:left; margin:0 10px;}
+#div1 ol li span {width:0px; height:20px; background:#0033FF; display:block;}
+</style>
+<script src="move2.js"></script>
+<script>
+window.onload=function ()
+{
+	var oDiv=document.getElementById('div1');
+	var oUl=oDiv.getElementsByTagName('ul')[0];
+	var aLi=oUl.children;
+	
+	var aOlLi=oDiv.getElementsByTagName('ol')[0].children;
+	var aSpan=oDiv.getElementsByTagName('span');
+	
+	oUl.style.width=aLi[0].offsetWidth*aLi.length+'px';
+	
+	var now=0;
+	
+	function next()
+	{
+		for(var i=0;i<aSpan.length;i++)
+		{
+			aSpan[i].style.width=0;
+		}
+		startMove(aSpan[now], {width: aOlLi[0].offsetWidth}, {time: 3000, end: function (){
+			now++;
+			if(now==aLi.length)now=0;
+			
+			startMove(oUl, {left: -now*aLi[0].offsetWidth}, {end: next, type: 'buffer'});
+		}});
+	}
+	
+	next();
+};
+</script>
+</head>
+
+<body>
+<div id="div1">
+	<ul>
+    	<li style="background:#CCCCCC;"></li>
+    	<li style="background:green;"></li>
+    	<li style="background:pink;"></li>
+    	<li style="background:#99CC33;"></li>
+    	<li style="background:#CCCC66;"></li>
+    </ul>
+    <ol>
+    	<li><span></span></li>
+    	<li><span></span></li>
+    	<li><span></span></li>
+    	<li><span></span></li>
+    	<li><span></span></li>
+    </ol>
+</div>
+</body>
+</html>
+
+
+
+
+
+

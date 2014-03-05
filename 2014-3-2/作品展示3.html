@@ -1,0 +1,143 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<style>
+* {margin:0; padding:0; list-style:none;}
+
+#div1 {position:relative; width:700px; height:400px; background:#33FF99; margin:10px auto; overflow:hidden;}
+#div1 ul {position:absolute; height:172px; top:114px;}
+#div1 ul li {width:100px; height:150px; background:yellow; border:1px solid black; margin:10px; float:left; text-align:center; line-height:150px; font-size:30px;}
+</style>
+<script>
+window.onload=function ()
+{
+	var oDiv=document.getElementById('div1');
+	var oUl=oDiv.children[0];
+	var aLi=oUl.children;
+	
+	oUl.style.width=aLi.length*(aLi[0].offsetWidth+20)+'px';
+	
+	//设置ul的left——控制ul的left，就可以解决问题
+	//oUl.style.left=-54+'px';
+	function setCenter(n)
+	{
+		//div.w/2-(n+0.5)*li.w-(n*2+1)*border-(n*2+1)*margin
+		oUl.style.left=oDiv.offsetWidth/2-(n+0.5)*100-(n*2+1)*1-(n*2+1)*10+1+'px';
+	}
+	
+	setCenter(2);
+	
+	//布局转换
+	var aPos=[];
+	
+	for(var i=0;i<aLi.length;i++)
+	{
+		aPos[i]={left: aLi[i].offsetLeft, top: aLi[i].offsetTop};
+		aLi[i].style.left=aPos[i].left+'px';
+		aLi[i].style.top=aPos[i].top+'px';
+	}
+	
+	for(var i=0;i<aLi.length;i++)
+	{
+		aLi[i].style.position='absolute';
+		aLi[i].style.margin='0';
+	}
+	
+	//拖拽
+	oUl.onmousedown=function (ev)
+	{
+		var oEvent=ev||event;
+		
+		var disX=oEvent.clientX-oUl.offsetLeft;
+		
+		document.onmousemove=function (ev)
+		{
+			var oEvent=ev||event;
+			
+			var l=oEvent.clientX-disX;
+			
+			if(l>oDiv.offsetWidth/2-(0+0.5)*100-(0*2+1)*1-(0*2+1)*10+1)
+			{
+				l=oDiv.offsetWidth/2-(0+0.5)*100-(0*2+1)*1-(0*2+1)*10+1;
+			}
+			else if(l<oDiv.offsetWidth/2-(aLi.length-1+0.5)*100-((aLi.length-1)*2+1)*1-((aLi.length-1)*2+1)*10+1)
+			{
+				l=oDiv.offsetWidth/2-(aLi.length-1+0.5)*100-((aLi.length-1)*2+1)*1-((aLi.length-1)*2+1)*10+1;
+			}
+			//oDiv.offsetWidth/2-(n+0.5)*100-(n*2+1)*1-(n*2+1)*10+1
+			
+			oUl.style.left=l+'px';
+			
+			setPos();
+		};
+		
+		document.onmouseup=function ()
+		{
+			document.onmousemove=null;
+			document.onmouseup=null;
+			
+			oUl.releaseCapture && oUl.releaseCapture();
+		};
+		
+		oUl.setCapture && oUl.setCapture();
+		
+		return false;
+	};
+	
+	function setPos()
+	{
+		//算距离
+		var divCenter=oDiv.offsetWidth/2;
+		
+		for(var i=0;i<aLi.length;i++)
+		{
+			var left=aPos[i].left+oUl.offsetLeft+50;
+			//var left=aLi[i].offsetLeft+oUl.offsetLeft+50;
+			var dis=Math.abs(left-divCenter);
+			
+			var scale=1-dis/600;
+			
+			if(scale<0.5)
+			{
+				scale=0.5;
+			}
+			
+			aLi[i].style.width=200*scale+'px';
+			aLi[i].style.height=300*scale+'px';
+			aLi[i].style.marginLeft=-(aLi[i].offsetWidth-100)/2+'px';
+			aLi[i].style.marginTop=-(aLi[i].offsetHeight-150)/2+'px';
+			aLi[i].style.zIndex=parseInt(scale*10000);
+			
+			aLi[i].style.filter='alpha(opacity:'+scale*100+')';
+			aLi[i].style.opacity=scale;
+			
+			aLi[i].innerHTML=parseInt(scale*10000);
+		}
+		
+		//算大小
+	}
+	
+	setPos();
+};
+</script>
+</head>
+
+<body>
+<div id="div1">
+	<ul>
+    	<li></li>
+    	<li></li>
+    	<li></li>
+    	<li></li>
+    	<li></li>
+    	<li></li>
+    	<li></li>
+    	<li></li>
+    </ul>
+</div>
+</body>
+</html>

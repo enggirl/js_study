@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+  <style>
+    div{width:200px; height:40px;background:green; margin:10px;opacity:0.3;filter:alpha(opacity:30);}
+  </style>
+  <script>
+    window.onload = function(){
+      /*
+       多个运动效果：鼠标移入某个，透明度变为1，鼠标移出某个，透明度变为0.3
+       分析：透明度作为动画效果，从0.3变为1，一直都是自动进行的，所以需要一个定时器一直运行，但是到1后，需要停止定时器
+            因为是多个物体运动，而他们运动有是有先后顺序的，所以导致不能用一个定时器，所以需要每个物体配一个自己的定时器
+        步骤：1.获取要作为动画效果变化的属性
+              2.如果该属性是尺寸属性，就+px  ，如果该属性是透明度，就另作处理opacity:0.3;filter:alpha(opacity:30)
+              3.移入移出都是调用运动函数
+              4.切记要把动画效果属性，放在定时器里取值，因为他是动态变化的
+      */
+      var aDiv = document.getElementsByTagName("div");
+      for(var i=0; i<aDiv.length; i++){
+        aDiv[i].onmouseover = function(){
+          Move(this,"width",500);
+        }
+        aDiv[i].onmouseout = function(){
+          Move(this,"width",200);
+        }
+      }
+    };
+    function getStyle(obj,name){
+      return obj.currentStyle ? obj.currentStyle[name]:getComputedStyle(obj,false)[name];
+    }
+    function Move(obj,name,target){
+      //var cur = parseInt(getStyle(obj,name));
+      //var timer;
+      clearInterval(obj.timer);
+      obj.timer = setInterval(function(){
+        //cur是当前属性值，是一直变化的，所以应该在定时器里随时取
+        var cur = parseInt(getStyle(obj,name));
+        //缓冲运动速度
+        var speed = (target-cur)/6;
+        speed = speed>0?Math.ceil(speed):Math.floor(speed);
+        if(cur == target){
+          clearInterval(obj.timer);
+        }else{
+          obj.style.width = cur + speed + "px";
+        }
+      },30);
+      
+    }
+  </script>
+</head>
+<body>
+  <div></div>
+<div></div>
+<div></div>
+<div></div>
+</body>
+</html>

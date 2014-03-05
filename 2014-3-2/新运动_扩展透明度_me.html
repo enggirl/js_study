@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+  <style>
+    div{width:200px; height:40px;background:green; margin:10px;opacity:0.3;filter:alpha(opacity:30);}
+  </style>
+  <script>
+    window.onload = function(){
+      /*
+      新运动理论：已知运动多少次到达终点，起点已知，终点已知，这样就可以知道每次走多少。
+              距离=终点-起点，每次走多少=距离/次数
+      步骤：1.鼠标移入移出调用运动函数
+            2.由新运动理论可知，运动函数需要终点，总时间
+            3.获取元素，书写触发运动函数的事件
+            4.写运动函数
+      扩展：不知道是什么属性，所以运动函数需要加一个新参数——动画的属性
+      添加：获取属性值函数
+      扩展2：如果属性是透明度，需要判断专门为透明度写赋值和获取
+      */
+      var oDiv = document.getElementsByTagName("div")[0];
+      oDiv.onmouseover = function(){
+        Move(this,'opacity',100,5000);
+      }
+      oDiv.onmouseout = function(){
+        Move(this,'opacity',30,500);
+      }
+    };
+
+    //5.获取元素属性函数
+    function getStyle(obj,name){
+      return obj.currentStyle ? obj.currentStyle[name]: getComputedStyle(obj,false)[name];
+    }
+    //4.写运动函数
+    function Move(obj,name,target,time){
+      //4.1获取起点
+      //旧start：var start = obj.offsetWidth;
+      //6.如果属性是透明度
+      if(name == 'opacity'){
+        var start = Math.round(parseFloat(getStyle(obj,name))*100);
+      }else{
+        var start = parseInt(getStyle(obj,name));
+      }
+      //4.2获取距离
+      var dis = target - start;
+      //4.3获取运动次数
+      var count = parseInt(time/30);
+      //4.4关闭定时器
+      var n=0;
+      clearInterval(obj.timer);
+      obj.timer = setInterval(function(){
+        n++;
+        //4.5获取当前值
+        var cur = start+dis/count*n;
+        if(name == 'opacity'){
+          obj.style.filter = 'alpha(opacity:'+cur+')';
+          obj.style.opacity = cur/100;
+        }else{
+          obj.style[name] = cur + 'px';
+        }
+        if(n == count){
+          clearInterval(obj.timer);
+        }
+      },30);
+    }
+    
+  </script>
+</head>
+<body>
+  <div></div>
+</body>
+</html>

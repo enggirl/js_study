@@ -1,0 +1,150 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<style>
+* {margin:0; padding:0; list-style:none;}
+
+#ul1 {width:688px; height:688px; margin:10px auto;}
+#ul1 li {width:150px; height:150px; background:#CCC; margin:10px; float:left; border:1px solid black; text-align:center; line-height:150px; font-size:30px; z-index:1;}
+</style>
+<script>
+window.onload=function ()
+{
+	var oUl=document.getElementById('ul1');
+	var aLi=oUl.children;
+	
+	var zIndex=2;
+	
+	//看着方便
+	for(var i=0;i<aLi.length;i++)
+	{
+		aLi[i].innerHTML=i;
+	}
+	
+	//布局转换
+	var aPos=[];
+	
+	for(var i=0;i<aLi.length;i++)
+	{
+		aPos[i]={left: aLi[i].offsetLeft, top: aLi[i].offsetTop};
+		aLi[i].style.left=aPos[i].left+'px';
+		aLi[i].style.top=aPos[i].top+'px';
+	}
+	for(var i=0;i<aLi.length;i++)
+	{
+		aLi[i].style.position='absolute';
+		aLi[i].style.margin='0';
+	}
+	
+	//拖拽
+	function drag(obj)
+	{
+		obj.onmousedown=function (ev)
+		{
+			var oEvent=ev||event;
+			
+			var disX=oEvent.clientX-obj.offsetLeft;
+			var disY=oEvent.clientY-obj.offsetTop;
+			
+			obj.style.zIndex=zIndex++;
+			
+			document.onmousemove=function (ev)
+			{
+				var oEvent=ev||event;
+				
+				obj.style.left=oEvent.clientX-disX+'px';
+				obj.style.top=oEvent.clientY-disY+'px';
+				
+				//检测碰撞
+				for(var i=0;i<aLi.length;i++)
+				{
+					if(obj==aLi[i])continue;
+					
+					if(collTest(obj, aLi[i]))
+					{
+						aLi[i].style.background='yellow';
+					}
+					else
+					{
+						aLi[i].style.background='#CCC';
+					}
+				}
+			};
+			
+			document.onmouseup=function ()
+			{
+				document.onmousemove=null;
+				document.onmouseup=null;
+				
+				obj.releaseCapture && obj.releaseCapture();
+			};
+			
+			obj.setCapture && obj.setCapture();
+			
+			return false;
+		};
+	}
+	
+	for(var i=0;i<aLi.length;i++)
+	{
+		drag(aLi[i]);
+	}
+	
+	//碰撞检测
+	function collTest(obj1, obj2)
+	{
+		var l1=obj1.offsetLeft;
+		var r1=obj1.offsetLeft+obj1.offsetWidth;
+		var t1=obj1.offsetTop;
+		var b1=obj1.offsetTop+obj1.offsetHeight;
+		
+		var l2=obj2.offsetLeft;
+		var r2=obj2.offsetLeft+obj2.offsetWidth;
+		var t2=obj2.offsetTop;
+		var b2=obj2.offsetTop+obj2.offsetHeight;
+		
+		if(r1<l2 || l1>r2 || b1<t2 || t1>b2)
+		{
+			return false;
+		}
+		else
+		{
+			return true;
+		}
+	}
+};
+</script>
+</head>
+
+<body>
+<ul id="ul1">
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+</ul>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

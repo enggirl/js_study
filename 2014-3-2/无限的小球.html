@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<style>
+#div1 {width:130px; height:130px; position:absolute; background:url(ball.jpg) no-repeat; left:0; top:0; z-index:1;}
+#btn1 {position:relative; z-index:2;}
+</style>
+<script src="move2.js"></script>
+<script>
+var arr=[
+	{left: 0, top: 0},
+	{left: 100, top: 300},
+	{left: 200, top: 90},
+	{left: 60, top: 200},
+	{left: 870, top: 96}
+];
+
+window.onload=function ()
+{
+	var oDiv=document.getElementById('div1');
+	var oBtn=document.getElementById('btn1');
+	
+	oBtn.onclick=function ()
+	{
+		/*
+		//时间不是特别准
+		var now=0;
+		
+		setInterval(function (){
+			now++;
+			if(now==arr.length)now=0;
+			
+			startMove(oDiv, arr[now]);
+		}, 700);
+		*/
+		
+		var now=0;
+		
+		function next()
+		{
+			now++;
+			
+			if(now==arr.length)now=0;
+			
+			startMove(oDiv, arr[now], {end: next});
+		}
+		
+		next();
+		
+		/*startMove(oDiv, arr[1], {end: function (){
+			startMove(oDiv, arr[2], {end: function (){
+				startMove(oDiv, arr[3], {end: function (){
+					startMove(oDiv, arr[0], {end: function (){
+						startMove(oDiv, arr[1]);
+					}});
+				}});
+			}});
+		}});*/
+	};
+};
+</script>
+</head>
+
+<body>
+<input type="button" value="走" id="btn1" />
+<div id="div1"></div>
+</body>
+</html>
+
+
+
+

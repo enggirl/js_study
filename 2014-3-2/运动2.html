@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<style>
+#div1 {width:200px; height:200px; background:#CCC; position:absolute;}
+</style>
+<script>
+window.onload=function ()
+{
+	var oDiv=document.getElementById('div1');
+	
+	oDiv.onmouseover=function ()
+	{
+		startMove(oDiv, 'height', 500, 1000);
+	};
+	oDiv.onmouseout=function ()
+	{
+		startMove(oDiv, 'height', 200, 1000);
+	};
+};
+
+function getStyle(obj, name)
+{
+	return obj.currentStyle?obj.currentStyle[name]:getComputedStyle(obj, false)[name];
+}
+
+function startMove(obj, name, iTarget, time)
+{
+	//width
+	
+	//不能整除
+	var count=parseInt(time/30);
+	var n=0;
+	
+	//起点、距离
+	var start=parseInt(getStyle(obj, name));
+	var dis=iTarget-start;
+	
+	clearInterval(obj.timer);
+	obj.timer=setInterval(function (){
+		n++;
+		
+		//算当前到哪儿了
+		obj.style[name]=start+n*dis/count+'px';
+		
+		if(n==count)
+		{
+			clearInterval(obj.timer);
+		}
+	}, 30);
+}
+</script>
+</head>
+
+<body>
+<div id="div1"></div>
+</body>
+</html>
