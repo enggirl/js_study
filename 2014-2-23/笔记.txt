@@ -118,7 +118,7 @@ getComputedStyle(oDiv, ':after').width   通常写伪类的地方写false，因为兼容性问题
 
 距离：600
 
-每次：30ms
+每次：30ms   这个指30ms运行一次定时器，也就是每隔30ms，改变一次
 时间：3000ms
 
 

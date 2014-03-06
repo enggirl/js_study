@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+  <style>
+    div{width:200px; height:40px;background:green; margin:10px;opacity:0.3;filter:alpha(opacity:30);}
+  </style>
+  <script>
+    window.onload = function(){
+      /*
+        新运动下的缓冲运动，理论：距离远，跑的快，距离近，跑得慢
+        改善：从前的运动函数，只能改变一个属性动画，多个属性就不行了
+        步骤：1.把运动函数单一属性，变成接纳多属性的json
+              2.把原来的匀速运动，变成缓冲
+              3.把多种运动归整，修改运动函数，加一个运动类型
+      */
+      var oDiv = document.getElementsByTagName("div")[0];
+      oDiv.onmouseover = function(){
+        // Move(this,{'width':500,'opacity':100},5000);
+        Move(this,{'width':500,'opacity':100},'huanchu',5000);
+      }
+      oDiv.onmouseout = function(){
+        // Move(this,{'width':200,'opacity':30},500);
+         Move(this,{'width':200,'opacity':30},'jiashu',5000);
+      }
+    };
+
+    function getStyle(obj,name){
+      return obj.currentStyle?obj.currentStyle[name]:getComputedStyle(obj,false)[name];
+    }
+    //1.把运动函数单一属性，变成接纳多属性的json
+    // function Move(obj,json,time){
+    //   var n=0;
+    //   //time/30这里是因为每隔30ms，执行一次定时器，也就是动画执行一次
+    //   var count = parseInt(time/30);
+
+    //   //1.1既然变成json，那么原来起始值start，距离dis就不再是单一值，而是一组对应的值，所以都是变为json
+    //   var start = {};
+    //   var dis = {};
+
+    //   //问题：这部分是获取属性初始值的，因为他不会随时间改变，所以，把它从原来定时器里拿出来，是因为这样快？
+    //   for(var name in json){
+    //     if(name == 'opacity'){
+    //         start[name]=Math.round(parseFloat(getStyle(obj, name))*100);
+    //         // var start[name] = Math.round(parseFloat(getStyle(obj,name))*100);
+    //       }else{
+    //         start[name] = parseInt(getStyle(obj,name));
+    //       }
+    //       dis[name] = json[name]-start[name];
+    //       console.log(n+' start[name]:'+start[name]+'|'+'dis[name]:'+dis[name]);
+    //   }
+    //   clearInterval(obj.timer);
+    //   obj.timer = setInterval(function(){
+    //     n++;
+    //     //1.2既然变成json,所以原来对一个值操作的，现在变成对一组值做相同的操作，所以用循环
+    //     for(var name in json){
+    //       // if(name == 'opacity'){
+    //       //   start[name]=Math.round(parseFloat(getStyle(obj, name))*100);
+    //       //   // var start[name] = Math.round(parseFloat(getStyle(obj,name))*100);
+    //       // }else{
+    //       //   start[name] = parseInt(getStyle(obj,name));
+    //       // }
+    //       // dis[name] = json[name]-start[name];
+    //       // console.log(n+' start[name]:'+start[name]+'|'+'dis[name]:'+dis[name]);
+
+    //       // 2.把原来的匀速运动，变成缓冲,这里a称为缓冲系数
+    //       /*以下是推出的加速运动
+    //       var a = n/count;
+    //       var cur = start[name] + dis[name]*a*a*a;
+    //       */
+    //       //以下是推出的缓冲运动
+    //       var a = 1-n/count;
+    //       var cur = start[name] + dis[name]*(1-a*a*a);
+          
+    //       if(name == 'opacity'){
+    //         obj.style.opacity = cur / 100;
+    //         obj.style.filter = 'alpha(opacity:' + cur +')';
+    //       }else{
+    //         obj.style[name] = cur + "px";
+    //       }
+    //       if(n==count){
+    //         clearInterval(obj.timer);
+    //       }
+    //     }
+    //   },30);
+      
+    // }
+    // 3.把多种运动归整，修改运动函数，加一个运动类型
+    function Move(obj,json,type,time){
+      var n=0;//当前走的次数
+      var count = parseInt(time/30);
+      var start = {};
+      var dis = {};
+      //获取初始值 距离
+      for(var name in json){
+        if(name == 'opacity'){
+          start[name] = Math.round(parseFloat(getStyle(obj,name))*100);
+        }else{
+          start[name] = parseInt(getStyle(obj,name));
+        }
+        dis[name] = json[name] - start[name];
+      }
+
+      clearInterval(obj.timer);
+      obj.timer = setInterval(function(){
+        n++;
+        //赋值运动后改变的值
+        for(var name in json){
+          //根据不同的运动类型，算当前值
+          switch(type){
+            case 'yunsu':
+            var cur = start[name] + dis[name]*n/count;
+            break;
+            case 'huanchu':
+            var a =1- n/count;
+            var cur = start[name] + dis[name]*(1-a*a*a);
+            break;
+            case 'jiashu':
+            var a =n/count;
+            var cur = start[name] + dis[name]*a*a*a;
+            break;
+          }
+          if(name == 'opacity'){
+            obj.style.opacity = cur/100;
+            obj.style.filter = 'alpha(opacity:' + cur + ')';
+          }else{
+            obj.style[name] = cur + 'px';
+          }
+
+          if(n==count){
+            clearInterval(obj.timer);
+          }
+        }
+      },30);
+    }
+  </script>
+</head>
+<body>
+  <div></div>
+</body>
+</html>
