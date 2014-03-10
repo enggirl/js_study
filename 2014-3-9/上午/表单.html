@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<script>
+window.onload=function ()
+{
+	var oForm=document.getElementById('form1');
+	var aInput=oForm.getElementsByTagName('input');
+	var aSel=oForm.getElementsByTagName('select');
+	
+	oForm.onsubmit=function ()
+	{
+		var result={};
+		
+		for(var i=0;i<aInput.length;i++)
+		{
+			if(aInput[i].name)
+			{
+				result[aInput[i].name]=aInput[i].value;
+			}
+		}
+		for(var i=0;i<aSel.length;i++)
+		{
+			if(aSel[i].name)
+			{
+				result[aSel[i].name]=aSel[i].value;
+			}
+		}
+		
+		console.log(result);
+		
+		return false;
+	};
+};
+</script>
+</head>
+
+<body>
+<form action="http://www.zhinengshe.com/" id="form1">
+	用户：<input type="text" name="user" /><br>
+    密码：<input type="password" name="pass" /><br>
+    性别：<select name="sex"><option value="m">男</option><option value="f">女</option><option value="u">未知</option></select><br>
+    <input type="submit" />
+</form>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<style>
+#div1 input {background:#CCC;}
+#div1 input.active {background:yellow;}
+#div1 div {width:200px; height:200px; background:#CCC; border:1px solid black; display:none;}
+</style>
+<script src="jquery-1.7.2.js"></script>
+<script>
+$(function (){
+	var aBtn=$('#div1 input');
+	var aDiv=$('#div1 div');
+	
+	aBtn.click(function (){
+		aBtn.removeClass('active');
+		$(this).addClass('active');
+		
+		aDiv.hide();
+		aDiv.eq($(this).index()).show();
+		
+		//alert($(this).index());
+	});
+});
+</script>
+</head>
+
+<body>
+<div id="div1">
+	<input type="button" value="aaa" class="btn active" />
+	<input type="button" value="bbb" class="btn" />
+	<input type="button" value="ccc" class="btn" />
+    <div style="display:block;">asdfasdfsaf</div>
+    <div>341234</div>
+    <div>vbvbcvb</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<script src="jquery-1.7.2.js"></script>
+<script>
+$(function (){
+	$('#txt1').css('color', 'red').attr('value', '123456789').click(function (){
+		alert('a');
+	}).hover(function (){
+		$(this).css('color','green');
+	}, function (){
+		$(this).css('color','red');
+	});
+});
+</script>
+<style>
+</style>
+</head>
+
+<body>
+<input type="text" value="aaa" id="txt1" />
+</body>
+</html>

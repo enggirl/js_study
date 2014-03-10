@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<script src="jquery-1.7.2.js"></script>
+<script>
+$.ajax({
+	url:		'2.php',
+	data:		{a: 12, b: 5},
+	type:		'POST',
+	success:	function (str)
+	{
+		alert(str);
+	},
+	error:		function ()
+	{
+		alert('出错');
+	},
+	complete:	function ()
+	{
+		alert('完成');
+	}
+});
+</script>
+</head>
+
+<body>
+
+</body>
+</html>

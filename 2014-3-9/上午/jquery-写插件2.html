@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<script src="jquery-1.7.2.js"></script>
+<script>
+//定义插件
+$.fn.toRed=function ()
+{
+	//this是jq对象
+	//this->$('li');
+	this.css('background', 'red');
+};
+
+$(function (){
+	//调用插件
+	$('li').toRed();
+});
+</script>
+</head>
+
+<body>
+<ul>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+</ul>
+</body>
+</html>
