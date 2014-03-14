@@ -32,13 +32,16 @@ window.onload=function ()
 			
 			var dis=Math.sqrt(a*a+b*b);
 			
-			var scale=1-dis/300;	//感应距离
+			//300是感应距离，通俗讲也就是鼠标移到什么范围内，图片就会有大小反应，这个值越大，那么鼠标在很远处就会让图片做出大小反应
+			var scale=1-dis/300;	
 			
+			//这样做不至于当比例过小，或者为负的时候，图片太小
 			if(scale<0.5)
 			{
 				scale=0.5;
 			}
 			
+			//这个scale就是一个比例，0-1之间，表示图片最终呈现的大小
 			aImg[i].width=128*scale;
 			
 			aInput[i].value=scale.toFixed(2);

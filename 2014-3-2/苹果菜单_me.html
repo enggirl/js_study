@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+  <style>
+   * {margin:0; padding:0;}
+#div1 {position:absolute; bottom:0; width:100%; text-align:center;}
+
+  </style>
+  <script>
+  window.onload = function(){
+    /*
+    模拟苹果电脑下方桌面菜单，
+    效果：鼠标移到哪个图片，哪个图片就变大，然后鼠标移出，图片由恢复原来大小
+    步骤：1.获取图片的中心点位置
+          2.知道鼠标与图片中心点之间的距离
+          3.根据2的距离可知，当距离越小，说明越接近图片中心
+          4.根据2得出图片的缩放比例
+    */
+    var oDiv = document.getElementById("div1");
+    var aImg = document.getElementsByTagName("img");
+    var aInput = document.getElementsByTagName("input");
+    console.log(aImg.length)
+    
+      document.onmousemove = function(ev){
+      var event = ev || event;
+      for(var i=0; i<aImg.length; i++){
+        //1.获取图片的中心点位置
+        var x = aImg[i].offsetLeft + aImg[i].offsetWidth/2;
+        //注意：这里需要添加oDiv.offsetTop，因为offset是相对于父级而言的，而div是定位到bottom的
+        var y = aImg[i].offsetTop + oDiv.offsetTop + aImg[i].offsetHeight/2;
+        aInput[i].value = x+','+y;
+        //2.知道鼠标与图片中心点之间的距离
+        var a = event.clientX - x;
+        var b = event.clientY - y;
+        var dis = Math.sqrt(a*a + b*b);
+        aInput[i].value = parseInt(dis);
+        // // 4.根据2得出图片的缩放比例，缩放比例需要缩放距离，其实就是感应距离，就是当距离多远的时候，图片尺寸会有变化,这里的300就是感应距离，这个值越大，说明距离越远图片尺寸就会改变
+        var scale = 1 - dis/300;
+        if(scale < 0.5) scale = 0.5;
+        //问题：img没有style.width吗，为什么aImg[i].style.width=""?
+        aImg[i].width = 128 * scale;
+        aInput[i].value=scale.toFixed(2);
+      }
+    }
+
+  }
+  </script>
+</head>
+<body>
+<input type="text" />
+<input type="text" />
+<input type="text" />
+<input type="text" />
+<input type="text" />
+<div id="div1">
+    <img src="img/1.png" width="64" />
+    <img src="img/2.png" width="64" />
+    <img src="img/3.png" width="64" />
+    <img src="img/4.png" width="64" />
+    <img src="img/5.png" width="64" />
+</div>
+
+</body>
+</html>
