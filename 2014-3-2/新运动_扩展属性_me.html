@@ -44,17 +44,27 @@
       var n=0;
       clearInterval(obj.timer);
       obj.timer = setInterval(function(){
-        n++;
+        
         //4.5获取当前值
         var cur =dis/count;
-        //obj.style[name] = start + cur*n + 'px';//问题：为什么把这句放到else里面，每次mouseout都回不到40，而是比40多
+
+        /*blue的写法*/
+        n++;
+        //他这样先赋值再判断，就不会出现少执行一次的问题，也是由于我的地方
+        obj.style[name] = start + cur*n + 'px';
+
+        /*me的写法
         if(n == count){
           clearInterval(obj.timer);
         }
         else{
+        //问题：为什么把赋值这句放到else里面，每次mouseout都回不到40，而是比40多，
+        //分析：原因是原来n++放在外面，当n++后等于count，这时关闭了定时器，而不在执行赋值语句了，这样就少执行了一次
+        //解决：把n++也放到else里面就好了
+          n++;
           obj.style[name] = start + cur*n + 'px';
         }
-
+        */
       },30);
     }
     

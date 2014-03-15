@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+  <style>
+    
+#div1 {width:130px; height:130px; position:absolute; background:url(ball.jpg) no-repeat; left:0; top:0; z-index:1;}
+#btn1 {position:relative; z-index:2;}
+#btn2 {position:relative; z-index:2;}
+</style>
+  <script>
+    window.onload = function(){
+      /*
+       效果：1.小球无限运动
+              点击走按钮，小球无限运动。具体说就是从一个点到另一个点，然后再从另一个点到其他一个点，等等，最后再转回起始点，然后重复以前的轨迹一直运动下去
+             扩展 2.小球可控运动
+        步骤：1.先给出小球的运动轨迹
+              2.点击按钮走，小球开始运动，调用运动框架
+              3.小球从一个点移动到另一个点
+              4.扩展添加一个停止按钮，当点击他小球停止运动，然后点击走按钮，小球又继续运动
+              5.对move函数做调整，以前的参数太多，而且还没有默认值
+      */
+      //1.先给出小球的运动轨迹
+      var arr = [
+        {left: 0, top: 0},
+        {left: 0, top: 300},
+        {left: 300, top: 0},
+        {left: 300, top: 300}
+      ];
+      console.log(arr)
+
+      var oBtn1 = document.getElementById("btn1");
+      var oBtn2 = document.getElementById("btn2");
+      var oDiv = document.getElementById("div1");
+      var startime=0;
+      var time = 0;
+      var now = 0;
+      oBtn1.onclick = function(){
+       // 2.点击按钮走，小球开始运动，调用运动框架
+       //3.当小球从arr[0]运动到arr[1]后，然后从arr[1]运动到arr[2]，再然后从arr[2]运动到arr[3]，再然后从arr[3]运动到arr[0]，再重新开始,重复以上的运动轨迹
+        // Move(oDiv,arr[1],3000,function(){
+        //    Move(oDiv,arr[2],3000,function(){
+        //      Move(oDiv,arr[3],3000,function(){
+        //        Move(oDiv,arr[0],3000,function(){
+        //          Move(oDiv,arr[1],3000);
+        //        });
+        //      });
+        //    });
+        // });
+        
+        //从一点移动到另一点
+      //表示路径数组当前值
+       
+        function next(){
+          now++;
+          //当走到路径数组最后一个点，然后再重新开始
+          if(now == arr.length) now = 0;
+          startime = new Date().getTime();
+          // Move(oDiv,arr[now],3000,next);
+          // time = startime.getTime();
+          // Move(oDiv,arr[now],time,next);
+          Move(oDiv,arr[now],{end:next,type:'huanchong'});
+          if(time) time =0;
+        }
+        //问题：一开始小球不运动
+        //原因：next()在变量now定义前执行，导致now为NAN
+        next();
+        //4.1点击走按钮，小球应该按照原来走的轨迹继续走，但是问题是他怎么知道继续走？其实这里就需要两点：1.他在哪里停的 2.距离这条轨迹终点，还差多少距离没走，那么就只需让小球走这剩下的距离。但是根据move函数的参数可知，有个整个运动时间，那么是不是可以知道停下来的时候已经走了多少时间，那么让小球走剩下的时间。所以，点击走按钮记下当前时间，然后点击停按钮，在记下时间，然后两个时间做差，就知道走了多少时间，然后用总时间-已经走的时间，就是剩余时间
+
+        //问题，1.点完停按钮，再点走按钮，小球越走越快 2.为什么点击第一次走按钮，小球不动，需要点击一次停按钮，第二次点击走按钮才走
+      }
+      //4.扩展添加一个停止按钮，当点击他小球停止运动
+      oBtn2.onclick = function(){
+        now--;
+        if (now == -1) {now = arr.length-1;}
+        time = new Date().getTime()-startime;
+        clearInterval(oDiv.timer);
+      }
+
+    };
+
+    function getStyle(obj,name){
+      return obj.currentStyle?obj.currentStyle[name]:getComputedStyle(obj,false)[name];
+    }
+    //5.对move函数做调整，以前的参数太多，而且还没有默认值
+    function Move(obj,json,options){
+     // function Move(obj,json,time,end){
+      //如果不传值，用默认值
+      options = options || {};
+      options.time = options.time || 700;
+      options.type = options.type || 'yunsu';
+      //当前次数
+      var n=0;
+      //总的执行次数
+      // var count = parseInt(time/30);
+      var count = parseInt(options.time/30);
+      //存放属性初始值和距离，都不在是一个值，而是一组
+      var start = {};
+      var dis = {};
+      for(var name in json){
+        if(name == 'opacity'){
+          start[name] = Math.round(parseFloat(getStyle(obj,name))*100);
+        }else{
+          start[name] = parseInt(getStyle(obj,name));
+        }
+        dis[name] = json[name] - start[name];
+      }
+
+      clearInterval(obj.timer);
+      obj.timer = setInterval(function(){
+        n++;
+        
+        for(var name in json){
+          switch(options.type){
+            case 'yunsu':
+            var cur = start[name]+ dis[name]*n/count;
+            break;
+            case 'huanchong':
+            var a = 1- n/count;
+            var cur = start[name]+ dis[name]*(1-a*a*a);
+            break;
+            case 'jiasu':
+            var a = n/count;
+            var cur = start[name]+ dis[name]*a*a*a;
+            break;
+          }
+          //var cur = start[name]+ dis[name]*n/count;
+          if(name == 'opacity'){
+            obj.style.opacity = cur / 100;
+            obj.style.filter = 'alpha(opacity' + cur + ')';
+          }else{
+            obj.style[name] = cur + 'px';
+          }
+          // if(n==count){
+          //   clearInterval(obj.timer);
+          //   end && end();
+          // } 
+        }
+        //问题2：小球总在两个点直接来回运动，而不是所有arr都走遍
+        //原因：把if(n==count) 放到for里面了,n跟循环没有关系，不管是什么属性变化，都是走的相同的次数n
+        if(n==count){
+            clearInterval(obj.timer);
+            // end && end();
+            options.end && options.end();
+          }
+      },30);
+
+    }
+   
+  </script>
+</head>
+<body>
+  <input type="button" value="走" id="btn1">
+  <input type="button" value="停" id="btn2">
+  <div id="div1"></div>
+</body>
+</html>
