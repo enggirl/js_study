@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<style>
+#div1 {width:600px; height:400px; background:#CCC;}
+</style>
+<script>
+var a=0;
+
+window.onload=function ()
+{
+	//var a=0;
+	
+	var start=new Date().getTime();
+	
+	for(var i=0;i<1000000000;i++)		//局部：3000		全局4250
+	{
+		a++;
+	}
+	
+	alert(new Date().getTime()-start);
+};
+</script>
+</head>
+
+<body>
+<div id="div1"></div>
+</body>
+</html>

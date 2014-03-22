@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<script>
+function Person(name, age)
+{
+	this.name=name;
+	this.age=age;
+	
+	/*this.showName=function ()
+	{
+		alert(this.name);
+	};
+	this.showAge=function ()
+	{
+		alert(this.age);
+	};*/
+}
+
+Person.prototype.showName=function ()
+{
+	alert(this.name);
+};
+Person.prototype.showAge=function ()
+{
+	alert(this.age);
+};
+
+//Person.prototype.name='';
+
+var p1=new Person('blue', 18);
+var p2=new Person('张三', 25);
+
+//alert(p1.showName==Person.prototype.showName);
+
+//p1.showName();
+
+alert(p1.showName==p2.showName);
+</script>
+</head>
+
+<body>
+
+</body>
+</html>

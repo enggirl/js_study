@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<script>
+Date.prototype.getCnDay=function ()
+{
+	var arr=['日', '一', '二', '三', '四', '五', '六'];
+	
+	var n=this.getDay();
+	
+	return arr[n];
+};
+
+var oDate=new Date();
+
+alert('今天是：星期'+oDate.getCnDay());
+
+
+////////////////////////////////////////////
+//写一个可以显示出星期几
+/*这是我写的
+Date.prototype.getMyDay = function(){
+  var day = this.getDay();
+  var today = "";
+  alert(day);
+  switch(day){
+    case 0:
+      today = "星期日";
+      break;
+    case 1:
+      today = "星期一";
+      break;
+    case 2:
+      today = "星期二";
+      break;
+    case 3:
+      today ="星期三";
+      break;
+    case 4:
+      today ="星期四";
+      break;
+    case 5:
+      today ="星期五";
+      break;
+    case 6:
+     today ="星期六";
+      break;
+  }
+  alert("今天是："  + today);
+};
+var d = new Date();
+d.getMyDay();
+/*
+</script>
+</head>
+
+<body>
+
+</body>
+</html>
