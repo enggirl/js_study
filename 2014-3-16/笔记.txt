@@ -219,7 +219,7 @@ Object		没有功能
 1.new——到底是啥？
 2.每个对象都有一套自己的方法（功能一样——浪费资源）
 
-var oDate=new Date();
+var oDate=new Date();   
 var re=new RegExp();
 var obj=new Object();
 
