@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<script>
+var arr1=[12,5,8];
+var arr2=[5,9,13];
+
+//类似行间
+//arr1.sum=function ()
+
+//prototype类似于class——一次给一组东西加方法
+Array.prototype.sum=function ()
+{
+	var result=0;
+	
+	for(var i=0;i<this.length;i++)
+	{
+		result+=this[i];
+	}
+	
+	return result;
+};
+
+alert(arr1.sum());	//25
+alert(arr2.sum());	//27
+</script>
+</head>
+
+<body>
+
+</body>
+</html>

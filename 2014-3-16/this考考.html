@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<script>
+function ChangeColor(obj, arr)
+{
+	this.obj=obj;
+	this.arr=arr;
+	
+	this.now=0;
+	
+	var _this=this;
+	
+	setInterval(function (){
+		_this.next();
+	}, 1000);
+}
+
+ChangeColor.prototype.next=function ()
+{
+	this.obj.style.background=this.arr[this.now];
+	
+	this.now++;
+	if(this.now==this.arr.length)
+	{
+		this.now=0;
+	}
+};
+
+window.onload=function ()
+{
+	var oDiv=document.getElementById('div1');
+	
+	var obj=new ChangeColor(oDiv, ['red', 'green', 'yellow']);
+};
+</script>
+<style>
+#div1 {width:200px; height:200px; background:#CCC;}
+</style>
+</head>
+
+<body>
+<div id="div1"></div>
+</body>
+</html>

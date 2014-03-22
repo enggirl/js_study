@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<script>
+function createPerson(name, age)
+{
+	var obj=new Object();
+	
+	obj.name=name;
+	obj.age=age;
+	
+	obj.showName=function ()
+	{
+		alert(this.name);
+	};
+	obj.showAge=function ()
+	{
+		alert(this.age);
+	};
+	
+	return obj;
+}
+
+var p1=createPerson('blue', 18);
+var p2=createPerson('张三', 25);
+
+p1.showName();
+p1.showAge();
+
+p2.showName();
+p2.showAge();
+</script>
+</head>
+
+<body>
+
+</body>
+</html>
+
+
+
