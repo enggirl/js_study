@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<style>
+
+</style>
+<script>
+window.onload=function ()
+{
+	var oUl=document.getElementById('ul1');
+	
+	//childNodes
+	/*
+	高级——包含空文本
+	IE6-8——不包含空文本
+	*/
+	alert(oUl.childNodes.length);
+};
+</script>
+</head>
+
+<body>
+<ul id="ul1">
+	aaa
+	<li></li>
+	<li></li>
+	<li></li>
+</ul>
+</body>
+</html>

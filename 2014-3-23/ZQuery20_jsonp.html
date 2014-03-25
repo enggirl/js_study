@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<script src="zQuery.js"></script>
+<script>
+$(function (){
+	//http://suggestion.baidu.com/su?wd=a&cb=window.bdsug.sug
+	
+	$.ajax({
+		url:		'http://suggestion.baidu.com/su',
+		type:		'jsonp',
+		data:		{wd:	'aaa'},
+		cbName:		'cb',
+		success:	function (json)
+		{
+			alert(json.s);
+		},
+		complete:	function ()
+		{
+			alert('完成');
+		}
+	});
+});
+</script>
+</head>
+
+<body>
+</body>
+</html>
