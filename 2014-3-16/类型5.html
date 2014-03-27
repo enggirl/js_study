@@ -23,7 +23,15 @@ Person.prototype.showAge=function ()
 
 var p1=new Person('blue', 18);
 
-alert(p1.constructor);
+alert(p1.constructor);  //这个证明对象实例的构造器就是构造函数
+/*
+alert结果
+function Person(name, age)
+{
+  this.name=name;
+  this.age=age;
+}
+*/
 </script>
 </head>
 
