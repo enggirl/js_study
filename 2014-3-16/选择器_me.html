@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title></title>
+	<script>
+	/*
+		模仿jq写选择器
+		分析：
+				1.如果要找 #div2 ul .box input，过程其实是先文档中找到所有的div，然后再从前面找到的结果中找id是div2的，然后再从前面找到的结果中找ul，然后从ul中找出所有带有.box的东西，最后从前面的结果中再找含有的input
+
+				2.从上面分析发现，查找的过程每次总是从前面找到的结果里面再找，一次次的缩小范围，而这也是选择器的核心，因为第一次是从文档中找所有的div，所以就是从document里面找。又因为找到的东西不止一个，很多情况是一组，所以用数组存放
+
+				3.在写选择器的时候，不知道怎么写，其实可以先看看，你想怎么用这个选择器，然后根据你的需要去写，去完善他
+
+				4.每写完一个小点功能，就要在window.onload里面测试一下
+
+		步骤：1.先写想如何使用这个选择器
+					2.处理传入的字符串
+					3.写获取元素的函数
+					4.写获取类的函数
+	*/
+//4.写获取类的函数
+	function getClass(obj,aClass){
+		if(obj.getElementByClassName){
+			return obj.getElementByClassName(aClass);
+		}
+		for(var i=0; i<.length; i++){
+			if(.className == aClass){
+				return i;
+			}
+		}
+		return -1;
+	}
+//3.写获取元素的函数
+//注意，这里要查找的是个字符串
+	function getStr(aParent,str){
+		var aChild = [];
+		for(var i=0; i<aParent.length; i++){
+			//3.1根据# .判断字符串是id  类 还是标签，然后调用原生方法获取
+			//var type = str.substring(0);  //获取整个字符串
+			var type = str.charAt(0);   //获取字符串首字母
+			//console.log(type)
+			switch(type){
+				case '#':
+					var obj = document.getElementById(str.substring(1));
+					aChild.push(obj);
+				break;
+				case '.':
+					var arr = getClass();
+					for(var j=0; j<arr.length; j++){
+						aChild.push(arr[i]);
+					}
+				break;
+				default:
+			}
+		}
+		return aChild;
+	}
+
+//2.处理传入的字符串
+	function getElem(str){
+		//2.1有可能传入的字符串前后，以及中间有很多空格，所以先去首尾空格，然后合并中间多个空格为1个
+		//注意：1.书写正则规则不需要引号  2.split也可以用正则
+		var arr =  str.replace(/^\s+|\s+$/g,'').split(/\s+/g);
+		//alert('|'+arr+'|')
+
+
+		//2.2需要一个存放查找结果，以及每次查找的父级，而他们的关系：每次查找的父级，就是上一次查找的结果
+		var aParent = [document];//初始值文档
+		var aChild = [];
+		for(var i=0; i<arr.length; i++){
+			//2.3调用一个查找的函数
+			aChild = getStr(aParent,arr[i]);
+			//2.4每次查找完，把结果赋值给父级，作为下一次查找的父级
+			aParent = aChild;
+		}
+		return aChild;
+	}
+
+//1.先写想如何使用这个选择器
+	window.onload = function(){
+		//1.1最简单的想用一个函数选出一组元素，然后给他们每个添加样式,这里模仿jq获取元素的方式$('#div1 ul li.box')
+		var oBox = getElem("     #div1");
+		//因为是一组元素，所以需要循环加样式
+		for(var i=0; i<oBox.length; i++){
+			oBox[i].style.background = "red";
+		}
+	}
+	</script>
+</head>
+<body>
+<div id="div1">
+	<ul>
+    	<li class="box"><input type="button" value="aaa" /></li>
+    	<li class="box active"><input type="button" value="bbb" /></li>
+    	<li></li>
+    </ul>
+	<ol>
+    	<li class="box"></li>
+    	<li class="box active"><input type="text" value="bbb" /></li>
+    	<li><input type="text" value="aaa" /></li>
+    </ol>
+</div>
+<div id="div2">
+	<ul>
+    	<li class="box"><input type="button" value="aaa" /></li>
+    	<li class="box active"><input type="button" value="bbb" /></li>
+    	<li></li>
+    </ul>
+	<ol>
+    	<li class="box"></li>
+    	<li class="box active"><input type="text" value="bbb" /></li>
+    	<li><input type="text" value="aaa" /></li>
+  </ol>
+</div>
+
+</body>
+</html>
