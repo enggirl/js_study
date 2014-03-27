@@ -6,6 +6,7 @@
 <meta name="copyright" content="智能社 - zhinengshe.com" />
 <title>智能社 - www.zhinengshe.com</title>
 <script>
+//这个是写一个兼容数组的indexOf函数，如果支持indexOf就用系统的，如果不支持就用自己写的
 Array.prototype.indexOf=Array.prototype.indexOf||function (n)
 {
 	for(var i=0;i<this.length;i++)

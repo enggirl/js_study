@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<script>
+//call	强制改变this
+
+function show(a, b)
+{
+	alert(
+		'this是：'+this+'\n'+
+		'a是：'+a+'\n'+
+		'b是：'+b
+	);
+}
+
+//show(12, 5);
+show.call('abc', 12, 5);
+</script>
+</head>
+
+<body>
+
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>不能用this的</title>
+	<script>
+	/*
+	1.定时器
+	setTimeout(function(){
+	  alert(this);   //window
+	},100)
+	*/
+	/*
+	2.行间事件
+	function show(){
+	  alert(this);    //window
+	}
+	*/
+	/*
+	3.1套一层函数
+	function show(){
+		function a(){
+			alert(this);    //window
+		}
+		a();
+	}
+	show();
+	*/
+	/*
+	3.2套一层定时器
+	function show(){
+	  alert(this);     //window
+	}
+	setTimeout(function(){
+		show();
+	},100)
+*/
+	</script>
+</head>
+<body>
+	<!-- 2.行间事件 -->
+	<input type="button" value="click on me" onclick="alert(show());"/>
+
+	<!-- 4.IE attachEvent绑定事件 -->
+	<div id="div1" style="border:1px solid #000;width:100px;height:100px;background:#ccc;"></div>
+	<script>
+	var oDiv = document.getElementById("div1");
+	oDiv.attachEvent("onclick",function(){
+
+		alert(this);   //window
+	});
+	</script>
+</body>
+</html>

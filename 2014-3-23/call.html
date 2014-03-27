@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<script>
+//call	强制改变this指向  他们传入的this是什么，this就是什么
+
+function show()
+{
+	alert('this是：'+this);  //this->true
+}
+
+show.call(true);
+
+function show()
+{
+	alert('this是：'+this);   //this->asdfasdrqwerdfer
+}
+
+show.call("asdfasdrqwerdfer");
+
+function show()
+{
+	alert('this是：'+this);   //this->.............
+}
+
+show.call(".............");
+
+function show()
+{
+	alert('this是：'+this);  //this->#@$a%&&*
+}
+
+show.call("#@$a%&&*");   
+</script>
+</head>
+
+<body>
+
+</body>
+</html>

@@ -15,9 +15,11 @@ window.onload=function ()
 {
 	var start=new Date().getTime();
 	
+
 	for(var i=0;i<100000000;i++)		//全局425	 360    window.a 70000   36000
 	{
-		a++;
+		//a++;
+		window.a++;
 	}
 	
 	alert(new Date().getTime()-start);

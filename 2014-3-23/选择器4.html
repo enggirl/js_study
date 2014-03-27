@@ -1,0 +1,241 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<script>
+Array.prototype.indexOf=Array.prototype.indexOf||function (n)
+{
+	for(var i=0;i<this.length;i++)
+	{
+		if(this[i]==n)return i;
+	}
+	
+	return -1;
+};
+
+Array.prototype.pushUnique=function (obj)
+{
+	if(this.indexOf(obj)==-1)
+	{
+		this.push(obj);
+	}
+};
+
+function getByClass(oParent, sClass)
+{
+	if(oParent.getElementsByClassName)
+	{
+		return oParent.getElementsByClassName(sClass);
+	}
+	
+	var aEle=oParent.getElementsByTagName('*');
+	var result=[];
+	
+	var re=new RegExp('\\b'+sClass+'\\b');
+	
+	for(var i=0;i<aEle.length;i++)
+	{
+		if(re.test(aEle[i].className))
+		{
+			result.push(aEle[i]);
+		}
+	}
+	
+	return result;
+}
+
+function getByStr(aParent, str)
+{
+	var aChild=[];
+	
+	for(var i=0;i<aParent.length;i++)
+	{
+		//aParent[i]->str
+		switch(str.charAt(0))
+		{
+			case '#':
+				var obj=document.getElementById(str.substring(1));
+				
+				aChild.pushUnique(obj);
+				break;
+			case '.':
+				var arr=getByClass(aParent[i], str.substring(1));
+				
+				for(var j=0;j<arr.length;j++)
+				{
+					aChild.pushUnique(arr[j]);
+				}
+				break;
+			default:
+				//li	li.box li#li1 li[value=ab cd] li:first
+				
+				//li.box
+				if(/\w+\.\w+/.test(str))
+				{
+					var aStr=str.split('.');
+					//aStr[0]	标签
+					//aStr[1]	class
+					
+					//第一关
+					var arr=aParent[i].getElementsByTagName(aStr[0]);
+					
+					var re=new RegExp('\\b'+aStr[1]+'\\b');
+					for(var j=0;j<arr.length;j++)
+					{
+						//第二关
+						if(re.test(arr[j].className))
+						{
+							aChild.pushUnique(arr[j]);
+						}
+					}
+				}
+				//li#li1
+				else if(/\w+#\w+/.test(str))
+				{
+					var aStr=str.split('#');
+					//aStr[0]		标签
+					//aStr[1]		id
+					
+					var arr=aParent[i].getElementsByTagName(aStr[0]);
+					
+					for(var j=0;j<arr.length;j++)
+					{
+						if(arr[j].id==aStr[1])
+						{
+							aChild.pushUnique(arr[j]);
+						}
+					}
+				}
+				//li[xxx=xxx]
+				else if(/\w+\[\w+=.+\]/.test(str))
+				{
+					//input[type=button]
+					var aStr=str.split(/\[|=|\]/g);
+					//aStr[0]	标签
+					//aStr[1]	属性名
+					//aStr[2]	属性值
+					
+					var arr=aParent[i].getElementsByTagName(aStr[0]);
+					
+					for(var j=0;j<arr.length;j++)
+					{
+						if(arr[j].getAttribute(aStr[1])==aStr[2])
+						{
+							aChild.push(arr[j]);
+						}
+					}
+				}
+				//li:first	li:eq(0)	li:has(.box)
+				else if(/\w+:\w+(\(.+\))?/.test(str))
+				{
+					var aStr=str.split(/:|\(|\)/g);
+					//aStr[0]	标签
+					//aStr[1]	名字
+					//aStr[2]	[可能有]参数
+					
+					var arr=aParent[i].getElementsByTagName(aStr[0]);
+					
+					switch(aStr[1])
+					{
+						case 'first':
+							aChild.push(arr[0]);
+							break;
+						case 'eq':
+							var n=parseInt(aStr[2]);
+							
+							if(!isNaN(n) && n>=0 && n<arr.length)
+							{
+								aChild.pushUnique(arr[aStr[2]]);
+							}
+							break;
+						case 'odd':		//单数、奇数
+							/*for(var j=0;j<arr.length;j++)
+							{
+								if(j%2)
+								{
+									aChild.pushUnique(arr[j]);
+								}
+							}*/
+							for(var j=1;j<arr.length;j+=2)
+							{
+								aChild.pushUnique(arr[j]);
+							}
+							break;
+					}
+				}
+				//li
+				else
+				{
+					var arr=aParent[i].getElementsByTagName(str);
+					
+					for(var j=0;j<arr.length;j++)
+					{
+						aChild.pushUnique(arr[j]);
+					}
+					break;
+				}
+		}
+	}
+	
+	return aChild;
+}
+
+function getEle(str)
+{
+	var arr=str.replace(/^\s+|\s+$/g, '').split(/\s+/g);
+	
+	var aParent=[document];
+	var aChild=[];
+	
+	for(var i=0;i<arr.length;i++)
+	{
+		aChild=getByStr(aParent, arr[i]);
+		
+		aParent=aChild;
+	}
+	
+	return aChild;
+}
+
+window.onload=function ()
+{
+	var aBox=getEle('div .box');
+	
+	for(var i=0;i<aBox.length;i++)
+	{
+		aBox[i].style.background='yellow';
+	}
+};
+</script>
+</head>
+
+<body>
+<div id="div1">
+	<ul id="ul1">
+    	<li id="li1" class="box"><input aaa="12" type="button" value="aaa" /></li>
+    	<li class="box active"><input type="button" value="bbb" /></li>
+    	<li id="li1"></li>
+    </ul>
+	<ol>
+    	<li id="li1" class="box"></li>
+    	<li id="li1" class="box active"><input type="text" value="bbb" /></li>
+    	<li><input type="text" value="aaa" /></li>
+    </ol>
+</div>
+<div id="div2">
+	<ul>
+    	<li class="box"><input type="button" value="aaa" /></li>
+    	<li class="box active"><input type="button" value="bbb" /></li>
+    	<li></li>
+    </ul>
+	<ol>
+    	<li class="box"></li>
+    	<li class="box active"><input type="text" value="bbb" /></li>
+    	<li><input type="text" value="aaa" /></li>
+    </ol>
+</div>
+</body>
+</html>
