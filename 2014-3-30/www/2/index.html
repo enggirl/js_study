@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<script src="sea.js"></script>
+<script>
+seajs.use('a.js', function (modA){	//回调函数
+	seajs.use('b.js', function (modB){
+		alert(modA.a);
+		alert(modB.num2);
+	});
+});
+</script>
+</head>
+
+<body>
+
+</body>
+</html>

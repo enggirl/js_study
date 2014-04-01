@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<script>
+function appendTo(oParent, str)
+{
+	var oTmp=document.createElement('div');
+	
+	oTmp.innerHTML=str;
+	
+	/*for(var i=0;i<oTmp.children.length;i++)
+	{
+		oParent.appendChild(oTmp.children[i]);
+		i--;
+	}*/
+	
+	while(oTmp.childNodes.length)
+	{
+		oParent.appendChild(oTmp.childNodes[0]);
+	}
+}
+
+window.onload=function ()
+{
+	appendTo(document.body, '<span>aaa</span>111<span>bbb</span><span>ccc</span>');
+};
+</script>
+</head>
+
+<body>
+
+</body>
+</html>

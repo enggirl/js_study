@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<script>
+function Person(name, age)
+{
+	//期望this是new Person
+	this.name=name;
+	this.age=age;
+}
+
+Person.prototype.showName=function ()
+{
+	alert(this.name);
+};
+Person.prototype.showAge=function ()
+{
+	alert(this.age);
+};
+
+//--------------------------------------
+
+//子级≥父级
+function Worker(name, age, job)
+{
+	//this==oW->new出来的Worker
+	
+	//父级的构造函数
+	//构造函数伪装
+	Person.call(this, name, age);
+	
+	this.job=job;
+}
+
+
+var oW=new Worker('blue', 18, '打杂的');
+
+alert(oW.name);
+</script>
+</head>
+
+<body>
+
+</body>
+</html>

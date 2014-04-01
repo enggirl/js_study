@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<style>
+#div1 {width:200px; height:200px; background:#CCC; position:absolute;}
+</style>
+<script>
+window.onload=function ()
+{
+	var oDiv1=document.getElementById('div1');
+	
+	var obj=new Drag(oDiv1);
+};
+
+function Drag(obj)
+{
+	var _this=this;
+	this.obj=obj;
+	
+	this.obj.onmousedown=function (ev)
+	{
+		_this.fnDown(ev);
+	};
+}
+
+Drag.prototype.fnDown=function (ev)
+{
+	var _this=this;
+	var oEvent=ev||event;
+	
+	this.disX=oEvent.clientX-this.obj.offsetLeft;
+	this.disY=oEvent.clientY-this.obj.offsetTop;
+	
+	document.onmousemove=function (ev)
+	{
+		_this.fnMove(ev);
+	};
+	document.onmouseup=function ()
+	{
+		_this.fnUp();
+	};
+	
+	return false;
+};
+
+Drag.prototype.fnMove=function (ev)
+{
+	var oEvent=ev||event;
+	
+	this.obj.style.left=oEvent.clientX-this.disX+'px';
+	this.obj.style.top=oEvent.clientY-this.disY+'px';
+};
+
+Drag.prototype.fnUp=function ()
+{
+	document.onmousemove=null;
+	document.onmouseup=null;
+};
+</script>
+</head>
+
+<body>
+<div id="div1"></div>
+</body>
+</html>

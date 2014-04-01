@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<script>
+function Person(name, age)
+{
+	this.name=name;
+	this.age=age;
+}
+
+Person.prototype.showName=function ()
+{
+	alert(this.name);
+};
+Person.prototype.showAge=function ()
+{
+	alert(this.age);
+};
+
+//--------------------------------------
+
+function extend(父级, 子级的属性, 子级的方法)
+{
+	//Child——子级的构造函数
+	function Child()
+	{
+		//arguments->['blue', 18, '打杂的']
+		
+		//1.继承父级的属性
+		父级.apply(this, arguments);
+		
+		//2.添加子级的属性
+		子级的属性.apply(this, arguments);
+	}
+	
+	//3.继承父级的方法
+	Child.prototype=new 父级();
+	Child.prototype.constructor=Child;
+	
+	//4.添加子级的方法
+	for(var i in 子级的方法)
+	{
+		Child.prototype[i]=子级的方法[i];
+	}
+	
+	return Child;
+}
+
+var Worker=extend(Person, function (name, age, job){
+	this.job=job;
+}, {
+	showJob:	function ()
+	{
+		alert(this.job);
+	}
+});
+
+var oW=new Worker('blue', 18, '打杂的');
+
+oW.showName();
+oW.showAge();
+oW.showJob();
+
+alert(oW instanceof Person);
+
+alert(oW.constructor==Worker);
+</script>
+</head>
+
+<body>
+
+</body>
+</html>
+
+
+

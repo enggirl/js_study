@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<script>
+function dumpEle(obj)
+{
+	var oTmp=document.createElement('div');
+	
+	oTmp.innerHTML=obj.outerHTML;
+	
+	return oTmp.children[0];
+}
+
+window.onload=function ()
+{
+	var oTmpLi=document.getElementById('tmp_li');
+	var oUl=document.getElementById('ul1');
+	
+	var oNewLi=dumpEle(oTmpLi);
+	
+	oUl.appendChild(oNewLi);
+};
+</script>
+</head>
+
+<body>
+姓名：<input type="text" id="txt1" /><br>
+年龄：<input type="text" id="txt2" /><br>
+<input type="button" value="创建" id="btn1" />
+<ul id="ul1">
+	<li id="tmp_li">我的名字是：{$name}，我的年龄：{$age}</li>
+</ul>
+</body>
+</html>

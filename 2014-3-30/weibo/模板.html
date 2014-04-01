@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<script>
+var str='我叫：{$name}，今年{$age}岁';
+var data={name: 'blue', age: 18};
+
+str=str.replace(/\{\$\w+\}/g, function (s){
+	s=s.substring(2, s.length-1);
+	
+	return data[s];
+});
+
+alert(str);
+</script>
+</head>
+
+<body>
+
+</body>
+</html>

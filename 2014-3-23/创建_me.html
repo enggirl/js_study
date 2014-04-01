@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+	<script>
+	/*
+	写创建元素的函数，需要知道把谁插入到哪里，所以需要两个参数：插入的是谁，插入到哪里
+	步骤：1.先创建一个空div
+				2.把str赋值给空div
+				3.把tmp的子集一个个添加到父级去，循环
+	*/
+		window.onload = function(){
+		 //调用创建函数 appendTo(document.body,'<span>aaa</span>111<span>bbb</span><span>ccc</span>');
+		  appendTo(document.body,'<span>aaa</span>111<span>bbb</span><span>ccc</span>');
+		};
+
+		function appendTo(aParent,str){
+		  //1.先创建一个空div
+		  var tmp = document.createElement("div");
+		  //2.把str赋值给空div
+		  tmp.innerHTML = str;
+		  //3.把tmp的子集一个个添加到父级去，循环,因为tmp子集个数会变化，所以循环用while更好
+		  /*for(var i=0; i<tmp.children.length; i++){
+		    aParent.appendChild(tmp.children[i]);
+		    i--;
+		  }*/
+		  while(tmp.children.length>0){
+		  	//因为每添加一个，就从tmp里面减少一个，后面顶上来变成新的第一个，所以，每次添加的都是tmp的第一个
+		  	//注意：children只算元素节点，而文本节点被忽略了，所以改用childNodes
+		  	//aParent.appendChild(tmp.children[0]);
+		  	//改进
+		  	aParent.appendChild(tmp.childNodes[0]);
+		  }
+		}
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

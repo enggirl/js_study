@@ -8,17 +8,23 @@
 <script>
 function appendTo(oParent, str)
 {
+	//1.如下的写法实质innerHTML被重新赋值了，所以原来的innerHTML被innerHTML+str覆盖了，所以导致a上的click事件没了,所以不可取
 	//oParent.innerHTML+=str;
-	
-	var oTmp=document.createElement('div');
+	//改写：新建一个空的div，然后把str赋值给这个空div，再把它插入到父级里，但是发现父级里多了一层div，也就是说只需要把新建的div里面内容插入到父级里,所以改进，把新建div里面内容，一项项插入到父级里
+	/*var oTmp=document.createElement('div');
 	
 	oTmp.innerHTML=str;
 	
-	//oParent.appendChild(oTmp);
+	oParent.appendChild(oTmp);
+	*/
+	var oTmp=document.createElement('div');
 	
+	oTmp.innerHTML=str;
 	for(var i=0;i<oTmp.children.length;i++)
 	{
+		//这样只会添加第一项h1，然后就跳出循环了，原因是插入一项，oTmp.children里面元素就会减少一个，所以oTmp里面子集的个数就减少了。这里是因为appendChild是move操作，而不是复制操作，他是两个动作的结合：append和remove，append到新的地方，然后从原有的地方remove掉这一项。所以appendChild一个，原来集合里就少一个，后面的就顶上来变成新的第一个
 		oParent.appendChild(oTmp.children[i]);
+		//所以，这里需要改进一下,重新修正i，跟i++抵消，相当于没有变化，也就是i依旧是0
 		i--;
 	}
 }

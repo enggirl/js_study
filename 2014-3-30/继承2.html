@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<script>
+function Person(name, age)
+{
+	this.name=name;
+	this.age=age;
+}
+
+//这样写，会破坏constructor，所以，如果一定要这么写，记得重置constructor
+Person.prototype={				//破坏constructor
+	showName:	function ()
+	{
+		alert(this.name);
+	},
+	showAge:	function ()
+	{
+		alert(this.age);
+	}
+};
+Person.prototype.constructor=Person;
+
+var p1=new Person('blue', 18);
+
+//alert(p1 instanceof Person);
+alert(p1.constructor);
+
+/*p1.showName();
+p1.showAge();*/
+</script>
+</head>
+
+<body>
+
+</body>
+</html>
