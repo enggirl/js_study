@@ -32,7 +32,7 @@ function Worker(name, age, job)
 	//父级的构造函数
 	//构造函数伪装
 	//Person.call(this, name, age);
-	Person.apply(this, arguments);
+	Person.apply(this, arguments);//如果不需要知道父级有多少参数，可以用apply，然后参数统一用arguments代替
 	
 	this.job=job;
 }

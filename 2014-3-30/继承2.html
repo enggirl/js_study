@@ -12,7 +12,7 @@ function Person(name, age)
 	this.age=age;
 }
 
-//这样写，会破坏constructor，所以，如果一定要这么写，记得重置constructor
+//这样写，会破坏constructor，为什么说破坏constructor？下面代码相当于Person.prototype={};也就是说给person的原型上赋值一个空json。而alert({}.constructor) =>object 所以还是推荐把函数单写给原型
 Person.prototype={				//破坏constructor
 	showName:	function ()
 	{
@@ -23,6 +23,7 @@ Person.prototype={				//破坏constructor
 		alert(this.age);
 	}
 };
+//所以，如果一定要这么写，记得重置constructor
 Person.prototype.constructor=Person;
 
 var p1=new Person('blue', 18);

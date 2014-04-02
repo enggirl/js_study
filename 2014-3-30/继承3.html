@@ -24,13 +24,13 @@ Person.prototype.showAge=function ()
 
 //--------------------------------------
 
-//子级≥父级
+//子级≥父级，这个意思是父级有的东西，子集一定有，所以子集至少等于父级，还因为子集有的东西，父级不一定有，所以子集也可能大于父级
 function Worker(name, age, job)
 {
 	//this==oW->new出来的Worker
 	
 	//父级的构造函数
-	//构造函数伪装
+	//构造函数伪装，oW想访问父级的东西，可是父级只想让他自己的对象去访问，所以这里oW就需要伪装成person去访问
 	Person.call(this, name, age);
 	
 	this.job=job;
