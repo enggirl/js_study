@@ -1,0 +1,73 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+*{margin:0;padding:0}
+#box{width:200px;height:200px; background:red; position:absolute;top:30px;left:0;}
+
+
+
+</style>
+<script>
+window.onload=function()
+{
+	var oBox=document.getElementById('box');
+	var oBtn=document.getElementById('btn');
+	oBtn.onclick=function()
+	{
+	   // uniform(this,{left:500,top:300,width:400});
+	   
+	   uniform(oBox,'left',500,23)	
+	};
+		
+};
+
+
+function uniform(obj,attr,target,speed)
+{
+	clearInterval(obj.timer);
+	
+	var iCur=parseInt(getStyle(attr)); //初始值
+	
+	speed=target>iCur?speed:-speed;
+	
+	obj.timer=setInterval(function(){
+		
+		if(Math.abs(target-iCur)<=Math.abs(speed))	
+		{
+			
+			obj.style[attr]=target+'px';
+					
+			clearInterval(obj.timer);			
+		}
+		else
+		{
+			iCur+=speed;
+			obj.style[attr]=iCur+'px';
+		}
+		
+		
+	},30);
+	
+	
+	
+	
+	function getStyle(attr)
+	{
+		return obj.currentStyle?obj.currentStyle[attr]:getComputedStyle(obj,false)[attr];	
+	}
+};
+</script>
+</head>
+
+<body>
+
+
+<input type="button" value="点击" id="btn">
+
+<div id="box"></div>
+
+</body>
+</html>

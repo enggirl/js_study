@@ -1,0 +1,67 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+
+<script>
+
+
+function setCookie(name,value,iDay)
+{
+	// iDay 过期时间  只用传数字  代表多少天以后过期
+	
+	var oDate=new Date();
+	oDate.setDate(  oDate.getDate()+iDay  );
+	//  iDay 选择性传
+	if(iDay)
+	{	
+		 document.cookie=name+'='+value+';expires='+oDate;		
+	}
+	else
+	{
+	   document.cookie=name+'='+value;
+	}		
+}
+
+/*setCookie('a','1',3);
+setCookie('b','2',3);
+setCookie('c','3',3);*/
+//关掉浏览器再打开就没有了
+//
+
+setCookie('c','',3);
+alert( document.cookie   );
+//alert(  getCookie('andy')  );
+alert(  getCookie('c')  );
+function getCookie(name)
+{
+	var cookies=document.cookie ;
+	//    'a=1; b=2; c=3; andy=12345 '
+	
+	var arr1=cookies.split('; ');
+	 //['a=1','b=2','c=3','andy=12345']
+	for(var i=0;i<arr1.length;i++)
+	{
+		var arr2=arr1[i].split('=');
+		//['andy','12345']
+		
+		if(arr2[0]==name)
+		{
+			
+			return arr2[1];	
+		}		
+			
+	};
+
+	return false;
+		
+}
+
+</script>
+
+</head>
+
+<body>
+</body>
+</html>

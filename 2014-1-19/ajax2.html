@@ -1,0 +1,36 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script src="ajax.js"></script>
+<script>
+window.onload=function()
+{
+	document.getElementById('btn').onclick=function()
+	{
+		
+		ajax('a.php',{},'get',function(str){
+			
+			alert(str);	
+			
+		},function(str){
+		
+				
+				alert(str);
+			
+		},2000);
+		
+			
+	};
+		
+};
+
+</script>
+
+</head>
+
+<body>
+
+<input type="button" value="aaa" id="btn">
+</html>

@@ -1,0 +1,174 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+*{margin:0;padding:0}
+#box{padding:20px}
+#box div{ float:left;width:200px;height:200px;margin:0 10px 10px 0; background:red; position:relative;}
+#box div p{width:100%;height:50px; position:absolute;left:0;bottom:0; overflow:hidden;}
+#box div span{width:100%;height:50px; background:rgba(0,0,0,0.3); color:#fff; position:absolute;left:0;top:50px;}
+</style>
+
+<script>
+
+//缓冲运动  startMove
+
+function startMove(obj,json,endFn)
+{
+	clearInterval(obj.timer);
+	obj.timer=setInterval(function(){	
+		
+		 var bStop=true;
+		
+		 for(var name in json)
+		 {
+			if(name=='opacity')
+			{	
+				var iCur=Math.round((getStyle(name))*100); //初始值	
+				
+				
+			}
+			else
+			{
+				var iCur=parseInt(getStyle(name)); //初始值	
+			}
+		
+			var iSpeed=(json[name]-iCur)/8;
+			iSpeed=iSpeed>0?Math.ceil(iSpeed):Math.floor(iSpeed);
+			
+			 iCur+=iSpeed;
+			if(name=='opacity')
+			{	
+			   obj.style.opacity=iCur/100;
+			   obj.style.filter='alpha(opacity:'+iCur+')';
+			}
+			else
+			{
+				obj.style[name]=iCur+'px';   
+			}
+			
+			
+			if(json[name]!=iCur)
+			{
+				//其中一个没有到目标
+				  bStop=false;	
+			}
+			
+		 };
+		 
+		 if(bStop)
+		 {
+			//都到了
+			clearInterval(obj.timer);
+			endFn&&endFn(obj);
+		 }
+		 
+		 
+		
+	},30);
+
+	function getStyle(attr)
+	{
+		return obj.currentStyle?obj.currentStyle[attr]:getComputedStyle(obj,false)[attr];	
+	}
+};
+
+
+</script>
+<script>
+window.onload=function()
+{
+	var oBox=document.getElementById('box');
+	var aDiv=oBox.children;
+	var aSpan=oBox.getElementsByTagName('span');
+	
+	
+	var oldX=100000000;  //初始值 代表从来没有移入过
+	var oldY=100000000;
+	
+	for(var i=0;i<aDiv.length;i++)
+	{
+		aDiv[i].index=i;
+		aDiv[i].onmouseover=function()
+		{
+			
+			var oSpan=aSpan[this.index];
+			if(oldX==100000000&&oldY==100000000)
+			{
+				//第一次移入
+				
+				oldX=this.offsetLeft;
+				oldY=this.offsetTop;
+				startMove(oSpan,{left:0,top:0})
+				return;
+			}
+			
+			
+			//	第二次以后
+			
+			if(oldY==this.offsetTop)
+			{
+				//横向	
+				if(oldX<this.offsetLeft)
+				{
+					//从左向右
+					oSpan.style.left=-200+'px';
+					oSpan.style.top=0;
+				}
+				else
+				{
+					oSpan.style.left=200+'px';
+					oSpan.style.top=0;	
+				}
+				
+			}
+			else
+			{
+				//竖向	
+				if(oldY<this.offsetTop)
+				{
+					//从上到下
+					oSpan.style.left=0;
+					oSpan.style.top=-50+'px';	
+				}
+				else
+				{
+					oSpan.style.left=0;
+					oSpan.style.top=50+'px';
+				}				
+				
+			};
+			
+			oldX=this.offsetLeft;
+			oldY=this.offsetTop;
+			startMove(oSpan,{left:0,top:0})
+				
+		};	
+	}
+	
+};
+
+</script>
+</head>
+
+<body>
+
+<div id="box">
+	<div><p><span>1111111111</span></p></div>
+	<div><p><span>2222222</span></p></div>
+	<div><p><span>33333333333</span></p></div>
+	<div><p><span>4444444444</span></p></div>
+	<div><p><span>555555555555</span></p></div>
+	<div><p><span>666666666666</span></p></div>
+	<div><p><span>77777777777</span></p></div>
+	<div><p><span>888888888888</span></p></div>
+	<div><p><span>999999999999</span></p></div>
+	<div><p><span>00000000000</span></p></div>
+	<div><p><span>5467435345</span></p></div>
+	
+</div>
+
+</body>
+</html>

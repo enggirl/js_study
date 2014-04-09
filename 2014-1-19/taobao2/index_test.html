@@ -1,0 +1,367 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>智能社 - www.zhinengshe.com</title>
+<meta name="author" content="智能社 - zhinengshe.com">
+<meta name="copyright" content="智能社 - zhinengshe.com">
+<link type="text/css" rel="stylesheet" href="style/common.css">
+<script src="ajax.js"></script>
+<script>
+function json2url(json){
+	json.t=Math.random();
+	var arr=[];
+	for(var i in json){
+		arr.push(i+'='+json[i]);
+	}
+	return arr.join('&');
+}
+window.onload=function(){
+	var oRanDiv=document.getElementById('random_div');
+	var oContentDiv=document.getElementById('content_div');
+	var oPageDiv=document.getElementById('page_div');
+	var nowPage=1;
+	
+	function create(clickUrl,imgUrl,fee,name,count,shopName,city){
+		var oNewDiv=document.createElement('div');
+		oNewDiv.className='waresList sub';
+		oNewDiv.innerHTML='<div class="warseImg">'
+			+'<a href="'+clickUrl+'"><img src="'+imgUrl+'" class="img"></a>'
+			+'</div>'
+			+'<div class="zns_mn clearfix">'
+			+'<span class="mn">￥<em>'+fee+'</em></span>'
+			+'<span class="txt">免运费</span>'
+			+'</div>'
+			+'<p><a href="'+clickUrl+'">'+name+'</a></p>'
+			+'<div class="zns_mn clearfix">'
+			+'<span class="txt">最近'+count+'人成交</span>'
+			+'</div>'
+			+'<div class="zns_mn clearfix">'
+			+'<span class="txt"><a href="#">'+shopName+'</a><span class="icon"></span></span>'
+			+'<span class="txt">'+city+'</span>'
+			+'</div>';
+		return oNewDiv;
+	}
+	function createContent(clickUrl,imgUrl,fee,name,count,shopName,city){
+		var oNewDiv=document.createElement('div');
+		oNewDiv.className='waresList';
+		oNewDiv.innerHTML=
+			'<div class="warseImg">'
+				+'<a href="'+clickUrl+'"><img src="'+imgUrl+'" class="img"></a>'
+			+'</div>'
+			+'<p><a href="'+clickUrl+'">'+name+'</a></p>'
+			+'<div class="zns_mn clearfix">'
+				+'<span class="mn fl">￥<em>'+fee+'</em></span>'
+				+'<span class="txt fr">免运费</span>'
+			+'</div>'
+			+'<div class="zns_mn clearfix">'
+				+'<span class="txt fl">最近'+count+'人成交</span>'
+				+'<span class="txt fr"><a href="#">17287条评论</a></span>'
+			+'</div>'
+			+'<div class="zns_mn clearfix">'
+				+'<span class="txt fl"><a href="#">'+shopName+'</a><span class="icon"></span></span>'
+				+'<span class="txt fr">'+city+'</span>'
+			+'</div>';
+		return oNewDiv;	
+	};
+	//右侧随机拿到的5个商品
+	function getRandom(){
+		var url='taobao.php?'+json2url({
+			act: 'random'	
+		});
+		ajax(url,function(str){
+			var arr=eval('('+str+')');
+			for(var i=0; i<arr.length; i++){
+				//创建
+				var oNewDiv=create(arr[i].click_url,arr[i].goods_img,arr[i].goods_price,arr[i].goods_name,arr[i].goods_count,arr[i].shop_name,arr[i].city);
+				oRanDiv.appendChild(oNewDiv);
+			}
+		});	
+	}
+	getRandom();
+	//搜索：
+	var oSearchBtn=document.getElementById('search_btn');
+	var oSearchT=document.getElementById('search_txt');
+	function searchFn(page,key,index){
+		oContentDiv.innerHTML='';
+		oPageDiv.innerHTML='';
+		var url='taobao.php?'+json2url({
+			act: 	'search',
+			key:	decodeURI(key),
+			page:	page	
+		});	
+		ajax(url,function(str){
+			var arr=eval('('+str+')');
+			for(var i=1; i<arr.length; i++){
+				var oNewDiv=createContent(arr[i].url,arr[i].goods_img,arr[i].goods_price,arr[i].goods_name,arr[i].goods_count,arr[i].shop_name,arr[i].city);
+				
+				oContentDiv.appendChild(oNewDiv);
+			}
+			//创建页码
+			for(var i=0; i<arr[0]; i++){
+				var oA=document.createElement('a');
+				oA.href='javascript:;';
+				oA.innerHTML=i+1;
+				oPageDiv.appendChild(oA);
+			}
+			createSearchA(oPageDiv,oSearchT.value);
+			oPageDiv.children[index].className='active';
+		});	
+	}
+	oSearchBtn.onclick=function(){
+		searchFn(1,oSearchT.value,0);
+	}
+	oSearchT.onkeydown=function(ev){
+		var oEvent=ev || event;
+		if(oEvent.keyCode==13){
+			searchFn(1,oSearchT.value,0);	
+		}
+	}
+	//获取所有商品：
+	get(1);
+	function get(page){
+		oContentDiv.innerHTML='';
+		var url='taobao.php?'+json2url({
+			act:	'get',
+			page:	page	
+		});
+		ajax(url,function(str){
+			var arr=eval('('+str+')');
+			for(var i=0; i<arr.length; i++){
+				var oNewDiv=createContent(arr[i].url,arr[i].goods_img,arr[i].goods_price,arr[i].goods_name,arr[i].goods_count,arr[i].shop_name,arr[i].city);
+				
+				oContentDiv.appendChild(oNewDiv);
+			}
+		});	
+	}
+	
+	//创建页码
+	function createA(count){
+		//if(count==1)return;
+		for(var i=0; i<count; i++){
+			var oA=document.createElement('a');
+			oA.href='javascript:;';
+			oA.innerHTML=i+1;
+			
+			oA.onclick=function(){
+				for(var i=0; i<oPageDiv.children.length; i++){
+					oPageDiv.children[i].className='';
+				}
+				this.className='active';
+				get(parseInt(this.innerHTML));
+				nowPage=parseInt(this.innerHTML);
+				//getPage();
+			}
+			/*if(i==(nowPage-1)){
+				oA.className='active';	
+			}*/
+			oPageDiv.appendChild(oA);
+			oPageDiv.children[0].className='active';
+		}	
+	}
+	
+	
+	//创建搜索分页
+	function createSearchA(obj,key){
+		for(var i=0; i<obj.children.length; i++){
+			obj.children[i].index=i;
+			obj.children[i].onclick=function(){
+				for(var i=0; i<oPageDiv.children.length; i++){
+					oPageDiv.children[i].className='';
+				}
+				this.className='active';	
+				//get(parseInt(this.innerHTML));
+				//nowPage=parseInt(this.innerHTML);
+				//getPage();
+				searchFn(parseInt(this.innerHTML),oSearchT.value,this.index);
+			}
+		}		
+	}
+	
+	//获取所有的页数
+	getPage();
+	function getPage(){
+		oPageDiv.innerHTML='';
+		var url='taobao.php?'+json2url({
+			act:	'get_page'	
+		});	
+		ajax(url,function(str){
+			var json=eval('('+str+')');
+			createA(json.count);
+		});
+	}
+}
+</script>
+</head>
+
+<body>
+<div class="header">
+	<div class="comWidth clearfix">
+		<h3 class="fl">亲，欢迎来淘宝！请<a href="#">登录</a>免费<a href="#">注册</a></h3>
+		<ul class="topMenu fr">
+			<li><a href="#">淘宝网首页</a></li>
+			<li>|</li>
+			<li><a href="#">我要逛</a></li>
+			<li>|</li>
+			<li><a href="#">我的淘宝</a></li>
+			<li>|</li>
+			<li><a href="#">卖家中心</a></li>
+			<li>|</li>
+			<li><a href="#">联系客服</a></li>
+		</ul>
+	</div>
+</div>
+<div class="hr_10"></div>
+<div class="comWidth">
+	<div class="logo fl">
+		<a href="#"><img src="img/logo.png" alt="zhinengshe.com"></a>
+	</div>
+	
+	<div class="search_box">
+		<ul class="search_tab">
+			<li class="active">宝贝</li>
+			<li>店铺</li>
+		</ul>
+		<div class="search_input">
+			<div class="input">
+				<input type="text" class="search" id="search_txt">
+			</div>
+			<input type="button" class="search_btn" value="搜&nbsp;&nbsp;索" id="search_btn">
+		</div>
+	</div>
+</div>
+<div class="comWidth">
+	<div class="zns_wrapper fl">
+		<div class="zns_main">
+			<ul class="zns_wz">
+				<li><a href="#">全部分类</a></li>
+				<li><span>&gt;</span></li>
+				<li>2891098件宝贝</li>
+			</ul>
+			<div class="hr_5"></div>
+			<div class="navigation">
+				<dl class="navigation_list">
+					<dt>品牌：</dt>
+					<dd>
+						<ul>
+							<li><a href="#">森马</a></li>
+							<li><a href="#">七匹狼</a></li>
+							<li><a href="#">阿依莲</a></li>
+							<li><a href="#">阿玛尼</a></li>
+							<li><a href="#">非主流</a></li>
+							<li><a href="#">韩都衣舍</a></li>
+							<li><a href="#">100F1/百分之一</a></li>
+							<li><a href="#">以纯</a></li>
+							<li><a href="#">OSA</a></li>
+							<li><a href="#">21TH SKON</a></li>
+							<li><a href="#">Polo</a></li>
+							<li><a href="#">海澜之家</a></li>
+							<li><a href="#">杰克琼斯</a></li>
+							<li><a href="#">Macfion</a></li>
+							<li><a href="#">潮流前线</a></li>
+							<li><a href="#">25．5℃ 二十五度半</a></li>
+							<li><a href="#">淑女屋</a></li>
+						</ul>
+					</dd>
+				</dl>
+				<dl class="navigation_list">
+					<dt>特点选购：</dt>
+					<dd>
+						<ul>
+							<li><a href="#">韩都衣舍</a></li>
+							<li><a href="#">100F1/百分之一</a></li>
+							<li><a href="#">以纯</a></li>
+							<li><a href="#">森马</a></li>
+							<li><a href="#">七匹狼</a></li>
+							<li><a href="#">阿依莲</a></li>
+							<li><a href="#">阿玛尼</a></li>
+							<li><a href="#">潮流前线</a></li>
+							<li><a href="#">25．5℃ 二十五度半</a></li>
+							<li><a href="#">非主流</a></li>
+							<li><a href="#">OSA</a></li>
+							<li><a href="#">阿依莲</a></li>
+							<li><a href="#">阿玛尼</a></li>
+							<li><a href="#">潮流前线</a></li>
+							<li><a href="#">25．5℃ 二十五度半</a></li>
+							<li><a href="#">非主流</a></li>
+							<li><a href="#">OSA</a></li>
+							<li><a href="#">21TH SKON</a></li>
+							<li><a href="#">Polo</a></li>
+							<li><a href="#">海澜之家</a></li>
+							<li><a href="#">杰克琼斯</a></li>
+							<li><a href="#">Macfion</a></li>
+							<li><a href="#">淑女屋</a></li>
+						</ul>
+					</dd>
+				</dl>
+			</div>
+			<div class="hr_20"></div>
+			<div class="zns_sortbar">
+				<ul class="col fl">
+					<li class="active">综合</li>
+					<li>人气</li>
+					<li>销量</li>
+					<li>信用</li>
+				</ul>
+				<div class="zns_jw fl">
+					<input type="text"> - <input type="text">
+				</div>
+				<ul class="zns_qj fl">
+					<li><span style="height:22%;"></span></li>
+					<li><span style="height:44%;"></span></li>
+					<li><span style="height:60%;"></span></li>
+					<li><span style="height:20%;"></span></li>
+					<li><span style="height:10%;"></span></li>
+				</ul>
+				<div class="zns_szd fr">
+					<span class="zns_szd_name">所在地<em class="zns_xsj"></em></span>
+					<div class="zns_sdz_show">此处略去一段代码,你懂的</div>
+				</div>
+			</div>
+			<div class="hr_25"></div>
+			<div class="commodity clearfix" id="content_div">
+			</div>
+			
+			
+			<div class="page" id="page_div">
+				<!--<a href="#">上一页</a>
+				<a href="#">1</a>
+				<a href="#" class="active">2</a>
+				<a href="#">3</a>
+				<a href="#">4</a>
+				<a href="#">5</a>
+				<a href="#">6</a>
+				<a href="#">...</a>
+				<a href="#">20</a>
+				<a href="#">21</a>
+				<a href="#">下一页</a>-->
+			</div>
+		</div>
+		
+		
+	</div>
+	<div class="zns_wrapper_sub fr" id="random_div">
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

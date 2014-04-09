@@ -1,0 +1,116 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+*{margin:0;padding:0}
+#box{width:200px;height:200px; background:red; position:absolute;top:30px;left:0;opacity:1;filter:alpha(opacity:100)}
+</style>
+<script>
+
+window.onload=function()
+{
+	var oBox=document.getElementById('box');
+	var oBtn=document.getElementById('btn');
+	oBtn.onclick=function()
+	{
+
+		startMove(oBox,{
+			
+			width:400,
+			height:300,
+			left:300,
+			top:200,
+			opacity:20
+				
+		},function(obj){
+			
+			startMove(obj,{
+				width:200,
+				height:200,
+				left:0,
+				top:30,
+				opacity:100
+					
+			});
+			
+		})	
+	};
+
+};
+
+//缓冲运动  startMove
+
+function startMove(obj,json,endFn)
+{
+	clearInterval(obj.timer);
+	obj.timer=setInterval(function(){	
+		
+		 var bStop=true;
+		
+		 for(var name in json)
+		 {
+			if(name=='opacity')
+			{	
+				var iCur=Math.round((getStyle(name))*100); //初始值	
+				
+				
+			}
+			else
+			{
+				var iCur=parseInt(getStyle(name)); //初始值	
+			}
+		
+			var iSpeed=(json[name]-iCur)/8;
+			iSpeed=iSpeed>0?Math.ceil(iSpeed):Math.floor(iSpeed);
+			
+			 iCur+=iSpeed;
+			if(name=='opacity')
+			{	
+			   obj.style.opacity=iCur/100;
+			   obj.style.filter='alpha(opacity:'+iCur+')';
+			}
+			else
+			{
+				obj.style[name]=iCur+'px';   
+			}
+			
+			
+			if(json[name]!=iCur)
+			{
+				//其中一个没有到目标
+				  bStop=false;	
+			}
+			
+		 };
+		 
+		 if(bStop)
+		 {
+			//都到了
+			clearInterval(obj.timer);
+			endFn&&endFn(obj);
+		 }
+		 
+		 
+		
+	},30);
+
+	function getStyle(attr)
+	{
+		return obj.currentStyle?obj.currentStyle[attr]:getComputedStyle(obj,false)[attr];	
+	}
+};
+
+</script>
+</head>
+
+<body>
+<div id="box"></div>
+<input type="button" value="点击" id="btn">
+
+<br>
+<br>
+
+</body>
+</html>

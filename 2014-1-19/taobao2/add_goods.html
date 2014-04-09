@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<meta name="description" content="智能社是一家专注于web前端开发技术的公司，目前主要提供JavaScript培训和HTML5培训两项服务，同时还推出了大量javascript基础知识教程，智能课堂为你带来全新的学习方法和快乐的学习体验。" />
+<title>智能社— http://www.zhinengshe.com</title>
+<style>
+body{ font:12px/1.5 Tahoma, Geneva, sans-serif;}
+table{ border:1px solid #000; border-collapse:collapse;}
+table td{ border:1px solid #000;}
+</style>
+<script src="ajax.js"></script>
+<script>
+function json2url(json){
+	var arr=[];
+	for(var i in json){
+		arr.push(i+'='+json[i]);
+	}
+	return arr.join('&');
+}
+window.onload=function(){
+	var oBtn=document.getElementById('btn1');
+	var oGoodsName=document.getElementById('goods_name');
+	var oGoodsPrice=document.getElementById('goods_price');
+	var oImg=document.getElementById('goods_img');
+	var oClick=document.getElementById('click_url');
+	var oGoodsCount=document.getElementById('goods_count');
+	var oShopName=document.getElementById('shop_name');
+	var oShopAddr=document.getElementById('shop_addr');
+
+	oBtn.onclick=function(){
+		var url='taobao.php?'+json2url({
+			act:	'insert',
+			goods_name: oGoodsName.value,
+			goods_price:oGoodsPrice.value,
+			goods_img:oImg.value,
+			click_url:oClick.value,
+			goods_count:oGoodsCount.value,
+			shop_name:oShopName.value,
+			shop_addr:oShopAddr.value
+		});	
+		ajax(url,function(str){
+			var json=eval('('+str+')');
+			console.log(json);
+			console.log(json.des);
+			if(json.error){
+				alert('添加失败');	
+			}else{
+				alert(json.des);	
+			}
+		});
+	}	
+}
+</script>
+</head>
+
+<body>
+<table width="500" border="0" align="center" cellpadding="5" cellspacing="1">
+  <tr>
+    <td colspan="2" align="center" valign="middle" bgcolor="#666666">商品发布</td>
+  </tr>
+  <tr>
+    <td width="167" bgcolor="#FFFFFF">商品名称：</td>
+    <td width="308" bgcolor="#FFFFFF"><label for="goods_name"></label>
+    <input type="text" name="goods_name" id="goods_name"></td>
+  </tr>
+  <tr>
+    <td bgcolor="#FFFFFF">商品价格：</td>
+    <td bgcolor="#FFFFFF"><input type="text" name="goods_price" id="goods_price"></td>
+  </tr>
+  <tr>
+    <td bgcolor="#FFFFFF">图片地址：(绝对网址)</td>
+    <td bgcolor="#FFFFFF"><input type="text" name="goods_img" id="goods_img"></td>
+  </tr>
+  <tr>
+    <td bgcolor="#FFFFFF">点击地址：</td>
+    <td bgcolor="#FFFFFF"><input type="text" name="click_url" id="click_url"></td>
+  </tr>
+  <tr>
+    <td bgcolor="#FFFFFF">商品数量：</td>
+    <td bgcolor="#FFFFFF"><input type="text" name="goods_count" id="goods_count"></td>
+  </tr>
+  <tr>
+    <td bgcolor="#FFFFFF">商店名称：</td>
+    <td bgcolor="#FFFFFF"><input type="text" name="shop_name" id="shop_name"></td>
+  </tr>
+  <tr>
+    <td bgcolor="#FFFFFF">商店地址：</td>
+    <td bgcolor="#FFFFFF"><input type="text" name="shop_addr" id="shop_addr"></td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center" bgcolor="#FFFFFF"><input type="submit" name="button" value="提交" id="btn1"></td>
+  </tr>
+</table>
+</body>
+</html>

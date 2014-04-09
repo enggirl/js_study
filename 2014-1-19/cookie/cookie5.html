@@ -1,0 +1,47 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+
+<script>
+
+
+function setCookie(name,value,iDay)
+{
+	// iDay 过期时间  只用传数字  代表多少天以后过期
+	
+	var oDate=new Date();
+	oDate.setDate(  oDate.getDate()+iDay  );
+	
+	//  iDay 选择性传
+	
+	if(iDay)
+	{
+		
+		 document.cookie=name+'='+value+';expires='+oDate;
+			
+	}
+	else
+	{
+	 
+	   document.cookie=name+'='+value;
+	 	
+	}	
+		
+}
+
+setCookie('l','i',3)
+
+//关掉浏览器再打开就没有了
+alert( document.cookie   );
+
+
+
+</script>
+
+</head>
+
+<body>
+</body>
+</html>

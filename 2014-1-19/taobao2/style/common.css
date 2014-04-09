@@ -1,0 +1,110 @@
+@charset "utf-8";
+/* 智能社 - www.zhinengshe.com */
+*{margin:0; padding:0; font-size:12px;}
+li{list-style:none;}
+img,input{border:none;}
+input,select{outline:none; background:none;}
+a{text-decoration:none;}
+a:hover{text-decoration:underline;}
+em,i{font-style:normal;}
+.clearfix:after{content:""; display:block; clear:both;}
+.clearfix{zoom:1;}
+.fl{float:left;}
+.fr{float:right;}
+
+.comWidth{margin:0 auto; min-width:950px; max-width:1366px; padding:0 3.5%;}
+
+.header{height:26px; border-bottom:#DCDCDC solid 1px; font:12px/26px Verdana; color:#999; background-color:#F5F5F5;}
+.header h3{font-weight:normal;}
+.header h3 a{color:#666; padding:0 4px;}
+.topMenu li{float:left; padding:0 3px;}
+.topMenu a{color:#999;}
+.logo{padding-top:26px;}
+
+/*搜索*/
+.search_box{ margin:0 0 0 160px;}
+.search_tab{font-size:12px; height:26px;}
+.search_tab li{height:26px; line-height:26px; padding:0 15px; float:left;}
+.search_tab .active{background-color:#F60; color:#FFF; font-weight:bold; border-radius:3px 3px 0 0 ;}
+.search_input{height:32px; padding:3px; background-color:#F60; border-radius:0 3px 3px 3px;}
+.input{margin-right:86px;}
+.search{height:14px; line-height:14px; padding:9px 0; width:100%; background-color:#FFF; display:block; text-indent:6px;}
+.search_btn{float:right; height:32px; width:80px; font:16px/32px "Microsoft YaHei"; color:#FFF; position:relative; z-index:2; top:-32px;}
+.search_btn:hover{opacity:.95;}
+
+/*内容*/
+.zns_wrapper{width:100%;}
+.zns_main{margin-right:260px;}
+.zns_wrapper_sub{width:250px;margin-left:-250px; background:#F2F2F2;}
+
+
+/*当前位置*/
+.zns_wz{height:20px; font:12px/20px Verdana;}
+.zns_wz li{float:left;}
+.zns_wz span{padding:0 5px;}
+
+/*筛选*/
+.navigation{border:#999 solid 1px; border-top:#F60 solid 2px;}
+.navigation_list{overflow:hidden; font-size:12px; margin:0 10px; border-bottom:#CCC dotted 1px; margin-bottom:-1px;}
+.navigation_list dt{width:80px; height:30px; line-height:30px; float:left; text-align:right;}
+.navigation_list dd{margin-left:80px;}
+.navigation_list dd li{float:left; padding:0 20px; line-height:30px;}
+/*筛选*/
+.zns_sortbar{border:#CCC solid 1px; height:28px; background-color:#EEE;}
+.col li{height:28px; font:12px/28px Verdana; padding:0 8px; float:left; border-right:#CCC solid 1px;}
+.col .active{color:#F60;}
+.zns_jw{padding-left:20px; padding-top:5px;}
+.zns_jw input{width:28px; padding:2px 5px; border:#CCC solid 1px; height:14px; line-height:14px; background-color:#FFF;}
+.zns_qj{padding-top:3px; padding-left:30px;}
+.zns_qj li{float:left; border:#CCC solid 1px; width:16px; height:20px; margin-right:-1px; position:relative; cursor:pointer;}
+.zns_qj span{position:absolute; width:100%; height:0; background-color:#DDD; left:0; bottom:0; border: #CCC solid 1px; margin:-1px;}
+.zns_qj li:hover span{background-color:#F90; border-color:#F60;}
+.zns_szd{margin:3px; position:relative;}
+.zns_szd_name{border:#CCC solid 1px; background:#FFF; padding:3px 16px 3px 10px; display:inline-block; border-right:#CCC solid 1px;}
+.zns_xsj{width:0; height:0; overflow:hidden;border-width:3px; border-style:solid dashed dashed dashed; border-color:#999 transparent transparent transparent; position:absolute; right:5px; top:50%; margin-top:-1px;}
+.zns_sdz_show{display:none;position:absolute; height:200px; border:#CCC solid 1px; top:20px; right:0; background-color:#FFF; width:130px; padding:10px;}
+.commodity{width:101%; margin-left:-0.5%; position:relative; left:1px;}
+.waresList{width:25%; float:left; margin-bottom:10px;}
+.warseImg{font-family:Verdana; padding:2%;}
+.waresList img{display:block; padding:3px; border:#CCC solid 1px; width:96%;}
+.waresList:hover img{border-color:#F60;}
+.waresList p{line-height:22px; padding:0 10px; margin-top:-5px;}
+.zns_mn {padding:0 10px;}
+.mn{font-size:16px;}
+.mn em{color:#F60; font-size:24px; font-family:Verdana; position:relative; top:1px;}
+.zns_mn .txt{line-height:22px; color:#666;}
+.icon{background:url(../img/t.gif) center center no-repeat; width:18px; height:18px; display:inline-block; position:relative; top:5px; margin-left:4px;}
+
+/*右侧处理小图*/
+.sub{width:93%; text-align:center; margin:10px auto; float:none;}
+.sub .mn em{font-size:16px;}
+
+
+/*分页*/
+.page{padding:20px 0; text-align:center; font-family:Verdana;}
+.page a{display:inline-block; padding:10px 15px; border-radius:3px; background:#F0F0F0; color:#333;}
+.page a:hover,
+.page .active{text-decoration:none; background:#D7D7D7;}
+
+/*通用间距*/
+.hr_5{height:5px; overflow:hidden; clear:both;}
+.hr_10{height:10px; overflow:hidden; clear:both;}
+.hr_15{height:15px; overflow:hidden; clear:both;}
+.hr_20{height:20px; overflow:hidden; clear:both;}
+.hr_25{height:25px; overflow:hidden; clear:both;}
+.hr_30{height:30px; overflow:hidden; clear:both;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

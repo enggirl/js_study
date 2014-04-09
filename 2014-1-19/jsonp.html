@@ -1,0 +1,34 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script src="jsonp.js"></script>
+<script>
+window.onload=function()
+{
+	document.getElementById('btn').onclick=function()
+	{
+		//http://suggestion.baidu.com/su?wd=a&cb=jQuery1102013585807289928198_1390097717848
+			jsonp('http://suggestion.baidu.com/su',{
+				
+				wd:'andy'
+					
+			},function(json){
+				
+				alert(json.s);
+					
+			},function(){},'cb',3000);
+			
+	};
+		
+};
+
+</script>
+
+</head>
+
+<body>
+
+<input type="button" value="aaa" id="btn">
+</html>
