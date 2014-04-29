@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<script>
+function getOuterHTML(obj)
+{
+	//return obj.parentNode.innerHTML;
+	
+	var oTmp=document.createElement('div');
+	
+	var oldParent=obj.parentNode;
+	
+	oTmp.appendChild(obj);
+	
+	var str=oTmp.innerHTML;
+	
+	oldParent.appendChild(obj);
+	
+	return str;
+}
+
+window.onload=function ()
+{
+	var oDiv=document.getElementById('div1');
+	
+	alert(getOuterHTML(oDiv));
+};
+</script>
+</head>
+
+<body>
+1111
+<div id="div1">asdfasdf</div>
+<input type="button" value="aaa" />
+</body>
+</html>

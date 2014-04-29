@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<script>
+String.prototype.getByteLength=function ()
+{
+	count=0;
+	
+	for(var i=0;i<this.length;i++)
+	{
+		var c=this.charAt(i);
+		
+		if(c>='\u4e00' && c<='\u9fa5')
+		{
+			count+=3;
+		}
+		else
+		{
+			count++;
+		}
+	}
+	
+	return count;
+};
+
+var str='rqw若反弹地方';
+
+alert(str.getByteLength());
+</script>
+</head>
+
+<body>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<style>
+#div1 {width:300px; height:300px; border:1px solid black; border-radius:50%; margin:10px auto; position:relative;}
+
+#div1 div.hour {width:14px; height:70px; background:black; left:50%; margin-left:-7px; position:absolute; top:80px; -webkit-transform-origin:center bottom;}
+
+#div1 div.min {width:6px; height:100px; background:black; left:50%; margin-left:-3px; position:absolute; top:50px; -webkit-transform-origin:center bottom;}
+#div1 div.sec {width:2px; height:120px; background:black; left:50%; margin-left:-1px; position:absolute; top:30px; -webkit-transform-origin:center bottom;}
+
+#div1 span.scaler {width:2px; height:10px; background:black; position:absolute; left:50%; margin-left:-1px; top:0; -webkit-transform-origin:center 150px;}
+#div1 span.big_scaler {width:6px; height:18px; background:black; position:absolute; left:50%; margin-left:-3px; top:0; -webkit-transform-origin:center 150px;}
+</style>
+<script>
+function setStyle3(obj, name, value)
+{
+	var bigName=name.charAt(0).toUpperCase()+name.substring(1);
+	
+	obj.style['Webkit'+bigName]=value;
+	obj.style['Moz'+bigName]=value;
+	obj.style['ms'+bigName]=value;
+	obj.style['O'+bigName]=value;
+	obj.style[name]=value;
+}
+
+window.onload=function ()
+{
+	var oHour=document.querySelector('#div1 .hour');
+	var oMin=document.querySelector('#div1 .min');
+	var oSec=document.querySelector('#div1 .sec');
+	
+	function tick()
+	{
+		var oDate=new Date();
+		
+		setStyle3(oHour, 'transform', 'rotate('+(oDate.getHours()+oDate.getMinutes()/60)*30+'deg)');
+		setStyle3(oMin, 'transform', 'rotate('+(oDate.getMinutes()+oDate.getSeconds()/60)*6+'deg)');
+		setStyle3(oSec, 'transform', 'rotate('+oDate.getSeconds()*6+'deg)');
+	}
+	
+	tick();
+	setInterval(tick, 1000);
+	
+	//生成刻度
+	var oDiv=document.getElementById('div1');
+	
+	for(var i=0;i<60;i++)
+	{
+		var oS=document.createElement('span');
+		
+		if(i%5)
+		{
+			oS.className='scaler';
+		}
+		else
+		{
+			oS.className='big_scaler';
+		}
+		
+		setStyle3(oS, 'transform', 'rotate('+6*i+'deg)');
+		
+		oDiv.appendChild(oS);
+	}
+};
+</script>
+</head>
+
+<body>
+<div id="div1">
+	<div class="hour"></div>
+    <div class="min"></div>
+    <div class="sec"></div>
+</div>
+</body>
+</html>

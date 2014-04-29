@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<script src="ajax.js"></script>
+<script>
+window.onload=function ()
+{
+	var oUser=document.getElementsByName('user')[0];
+	var oPass=document.getElementsByName('pass')[0];
+	
+	var oBtnLogin=document.getElementById('btn1');
+	var oBtnReg=document.getElementById('btn2');
+	
+	oBtnLogin.onclick=function ()
+	{
+		ajax('/user?act=login&user='+oUser.value+'&pass='+oPass.value+'&t='+Math.random(), function (str){
+			alert(str);
+		});
+	};
+	
+	oBtnReg.onclick=function ()
+	{
+		ajax('/user?act=reg&user='+oUser.value+'&pass='+oPass.value+'&t='+Math.random(), function (str){
+			alert(str);
+		});
+	};
+};
+</script>
+</head>
+
+<body>
+用户：<input type="text" name="user" /><br>
+密码：<input type="password" name="pass" /><br>
+<input type="button" value="登录" id="btn1" />
+<input type="button" value="注册" id="btn2" />
+</body>
+</html>

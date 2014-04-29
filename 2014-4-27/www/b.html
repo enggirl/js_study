@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<script src="cookie.js"></script>
+<script>
+setInterval(function (){
+	var value=location.hash;
+	
+	if(value)
+	{
+		setCookie('abc', value.substring(1), 1);
+	}
+}, 30);
+</script>
+</head>
+
+<body>
+b.html
+</body>
+</html>

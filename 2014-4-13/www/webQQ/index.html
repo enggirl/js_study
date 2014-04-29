@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<script src="js/sea.js"></script>
+<script>
+/*
+seajs.use('common.js', function (mod){
+	//?a=reg&user=用户名&pass=密码&face=头像ID&cb=xxx
+	mod.jsonp('http://zhinengshe.com/exercise/im/api.php', {a: 'reg', user: 'blueerfasef435345', pass: '123456', face: 1}, 'cb', function (json){
+		console.log(json);
+	});
+});
+*/
+
+seajs.use('user.js', function (user){
+	user.reg('bldsfasdfasdfue', '123456', '2', function (json){
+		console.log(json);
+	});
+});
+</script>
+<style>
+
+</style>
+</head>
+
+<body>
+用户：<input type="text" id="txt_user" /><br>
+密码：<input type="password" id="txt_pass" /><br>
+<input type="button" value="注册" id="btn_reg" />
+<input type="button" value="登录" id="btn_lgn" />
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<style>
+* {margin:0; padding:0; list-style:none;}
+
+#div1 {width:816px; margin:10px auto;}
+#div1 ul {float:left; margin:10px; border:1px solid red; width:250px;}
+#div1 ul li {padding:10px 0;}
+#div1 ul li img {width:100%;}
+</style>
+<script src="ajax.js"></script>
+<script>
+window.onload=function ()
+{
+	var oDiv=document.getElementById('div1');
+	var aUl=oDiv.children;
+	
+	var nowPage=1;
+	
+	function getPage()
+	{
+		ajax('/flow?page='+nowPage, function (str){
+			var json=eval('('+str+')');
+			
+			if(json.err)
+			{
+				alert('获取数据出错'+json.msg);
+			}
+			else
+			{
+				//alert(json.data.length);
+				var arr=json.data;
+				
+				for(var i=0;i<arr.length;i++)
+				{
+					var oLi=document.createElement('li');
+					
+					oLi.innerHTML='<img src="img/'+arr[i].src+'" />';
+					
+					//插——最短的
+					var a=[];
+					
+					for(var j=0;j<aUl.length;j++)
+					{
+						a[j]=aUl[j];
+					}
+					
+					a.sort(function (ul1, ul2){
+						return ul1.offsetHeight-ul2.offsetHeight;
+					});
+					
+					a[0].appendChild(oLi);
+					
+					alert('a');
+				}
+			}
+		});
+	}
+	
+	getPage();
+	
+	window.onscroll=window.onresize=function ()
+	{
+		var scrollTop=document.documentElement.scrollTop||document.body.scrollTop;
+		
+		if(scrollTop==document.documentElement.scrollHeight-document.documentElement.clientHeight)
+		{
+			//alert('a');
+			
+			nowPage++;
+			
+			getPage();
+		}
+	};
+};
+</script>
+</head>
+
+<body>
+<div id="div1">
+	<ul></ul>
+	<ul></ul>
+	<ul></ul>
+</div>
+</body>
+</html>

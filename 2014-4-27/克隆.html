@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<script>
+var arr1=[1,2,3,4];
+var arr2=clone(arr1);
+
+arr2.push(5);
+
+alert(arr1+'\n'+arr2);
+
+function clone(obj)
+{
+	//数组
+	var obj2=[];
+	
+	for(var i=0;i<obj.length;i++)
+	{
+		obj2[i]=obj[i];
+	}
+	
+	return obj2;
+}
+</script>
+</head>
+
+<body>
+
+</body>
+</html>

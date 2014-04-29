@@ -1,0 +1,133 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<style>
+* {margin:0; padding:0; list-style:none;}
+
+.my_select {width:120px; height:22px; border:1px solid black; display:inline-block; position:relative;}
+.my_select span {display:block; text-align:center; width:100%; line-height:22px; height:22px;}
+.my_select ul {position:absolute; left:-1px; top:22px; border:1px solid black; width:100%; display:none;}
+.my_select ul li {width:100%; height:30px; line-height:30px; text-align:center;}
+</style>
+<script>
+function MySelect(oSel)
+{
+	this.oSel=oSel;
+	
+	//1.创建元素
+	this._createDOM();
+	
+	//2.添加事件
+	this._addEvent();
+	
+	//隐藏原始select
+	oSel.style.display='none';
+}
+
+MySelect.prototype._createDOM=function ()
+{
+	var oDiv=document.createElement('div');
+	oDiv.className='my_select';
+	
+	this.oSpan=document.createElement('span');
+	this.oSpan.innerHTML=this.oSel.options[this.oSel.selectedIndex].text;
+	oDiv.appendChild(this.oSpan);
+	
+	this.oUl=document.createElement('ul');
+	oDiv.appendChild(this.oUl);
+	
+	for(var i=0;i<this.oSel.options.length;i++)
+	{
+		var oLi=document.createElement('li');
+		
+		oLi.innerHTML=this.oSel.options[i].text;
+		
+		this.oUl.appendChild(oLi);
+	}
+	
+	this.oSel.parentNode.insertBefore(oDiv, this.oSel);
+	
+	//初始状态保存
+	this.selectedIndex=this.oSel.selectedIndex;
+};
+
+MySelect.prototype._addEvent=function ()
+{
+	var _this=this;
+	
+	//span
+	this.oSpan.onclick=function ()
+	{
+		_this.oUl.style.display='block';
+	};
+	
+	//li
+	var aLi=this.oUl.children;
+	for(var i=0;i<aLi.length;i++)
+	{
+		(function (index){
+			aLi[i].onclick=function ()
+			{
+				_this.oSpan.innerHTML=this.innerHTML;
+				
+				_this.oUl.style.display='none';
+				
+				_this.oSel.selectedIndex=index;
+				
+				if(_this.selectedIndex!=_this.oSel.selectedIndex)
+				{
+					_this.value=_this.oSel.value;
+					_this.selectedIndex=_this.oSel.selectedIndex;
+					
+					_this.onchange && _this.onchange();
+				}
+			};
+		})(i);
+	}
+};
+
+window.onload=function ()
+{
+	var oCity=document.getElementsByName('city')[0];
+	/*oCity.onchange=function ()
+	{
+		alert(this.value);
+	};*/
+	
+	var oMyCity=new MySelect(oCity);
+	
+	oMyCity.onchange=function ()
+	{
+		//alert(this.value);
+		alert(this.selectedIndex);
+	};
+	
+	//oMyCity._createDOM();
+};
+</script>
+</head>
+
+<body>
+<form action="http://www.zhinengshe.com" method="get">
+	城市：
+    <!--<div class="my_select">
+    	<span>北京</span>
+        <ul>
+        	<li>北京</li>
+        	<li>上海</li>
+        	<li>成都</li>
+        </ul>
+    </div>-->
+    <select name="city">
+    	<option value="北京">北京</option>
+    	<option value="上海">上海</option>
+    	<option value="成都">成都</option>
+    </select><br>
+    <input type="submit" />
+</form>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<script>
+var arr=[];
+
+arr.length=10;
+
+hash_add(15);
+hash_add(8);
+hash_add(3);
+hash_add(13);
+hash_add(9);
+hash_add(25);
+hash_add(35);
+hash_add(15);
+hash_add(22);
+hash_add(3);
+
+alert(hash_find(7));
+
+function hash_add(n)
+{
+	var pos=n%arr.length;
+	
+	if(!arr[pos])
+	{
+		//没东西
+		arr[pos]=n;
+	}
+	else
+	{
+		while(arr[pos])	//只要不是空的，继续找——找到空的为止
+		{
+			if(arr[pos]==n)	//n已经在数组里了
+			{
+				//重复
+				return;
+			}
+			
+			pos++;
+			if(pos==arr.length)
+			{
+				pos=0;
+			}
+		}
+		
+		//找到空的
+		arr[pos]=n;
+	}
+}
+
+function hash_find(n)
+{
+	var pos=n%arr.length;
+	
+	if(!arr[pos])
+	{
+		return false;
+	}
+	else
+	{
+		if(arr[pos]==n)
+		{
+			return true;
+		}
+		else
+		{
+			while(arr[pos])
+			{
+				if(arr[pos]==n)
+				{
+					return true;
+				}
+				
+				pos++;
+				if(pos==arr.length)
+				{
+					pos=0;
+				}
+			}
+			
+			return false;
+		}
+	}
+}
+</script>
+</head>
+
+<body>
+
+</body>
+</html>

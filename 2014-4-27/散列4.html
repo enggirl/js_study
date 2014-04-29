@@ -1,0 +1,135 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<script>
+var arr=[];
+
+arr.length=10;
+
+var count=0;
+
+hash_add('习近平：使暴恐分子成为“过街老鼠人人喊打”');alert(arr.join(',\n'));
+hash_add('谈秘书工作:别认为靠山硬就有恃无恐');alert(arr.join(',\n'));
+hash_add('入选《时代》全球百位影响力人物');alert(arr.join(',\n'));
+hash_add('舆论关注李克强决策：增强市场“发动机”');alert(arr.join(',\n'));
+hash_add('九方面专项整治实打实');alert(arr.join(',\n'));
+hash_add('新华社:向改革要动力');alert(arr.join(',\n'));
+
+alert(hash_find('新华社:向改革要动力'));
+alert(hash_find('九方面专项整治实打实'));
+alert(hash_find('你好啊'));
+
+function hash_add(n)
+{
+	var num=0;
+	
+	for(var i=0;i<n.length;i++)
+	{
+		num+=n.charCodeAt(i);
+	}
+	
+	var pos=num%arr.length;
+	
+	if(!arr[pos])
+	{
+		//没东西
+		arr[pos]=n;
+		
+		count++;
+	}
+	else
+	{
+		while(arr[pos])	//只要不是空的，继续找——找到空的为止
+		{
+			if(arr[pos]==n)	//n已经在数组里了
+			{
+				//重复
+				return;
+			}
+			
+			pos++;
+			if(pos==arr.length)
+			{
+				pos=0;
+			}
+		}
+		
+		//找到空的
+		arr[pos]=n;
+		
+		count++;
+	}
+	
+	if(count==arr.length)
+	{
+		//满了——2倍
+		
+		//找不到东西
+		//arr.length*=2;
+		
+		//只能——重新插入一遍
+		var oldArr=arr;
+		
+		count=0;
+		arr=[];
+		arr.length=oldArr.length*2;
+		
+		for(var i=0;i<oldArr.length;i++)
+		{
+			hash_add(oldArr[i]);
+		}
+	}
+}
+
+function hash_find(n)
+{
+	var num=0;
+	
+	for(var i=0;i<n.length;i++)
+	{
+		num+=n.charCodeAt(i);
+	}
+	
+	var pos=num%arr.length;
+	
+	if(!arr[pos])
+	{
+		return false;
+	}
+	else
+	{
+		if(arr[pos]==n)
+		{
+			return true;
+		}
+		else
+		{
+			while(arr[pos])
+			{
+				if(arr[pos]==n)
+				{
+					return true;
+				}
+				
+				pos++;
+				if(pos==arr.length)
+				{
+					pos=0;
+				}
+			}
+			
+			return false;
+		}
+	}
+}
+</script>
+</head>
+
+<body>
+
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<script>
+var arr=[12,2,2,1,1,1,1,2,2,2,12,12,12,12,5,5,5,3,3,3,4,4,3,3,2,2,2,1,1,1];
+//12,2,5,3,4
+
+alert(removeDump(arr, 0, arr.length-1));
+
+function removeDump(arr, s, e)
+{
+	if(s>e)
+	{
+		return [];
+	}
+	else if(s==e)
+	{
+		return [arr[s]];
+	}
+	else if(s==e-1)
+	{
+		if(arr[s]==arr[e])
+		{
+			return [arr[s]];
+		}
+		else
+		{
+			return [arr[s], arr[e]];
+		}
+	}
+	
+	var c=parseInt((s+e)/2);
+	
+	//s,c
+	var l=removeDump(arr, s, c);
+	
+	//c+1,e
+	var r=removeDump(arr, c+1, e);
+	
+	var result=l;
+	
+	for(var i=0;i<r.length;i++)
+	{
+		if(result.indexOf(r[i])==-1)
+		{
+			result.push(r[i]);
+		}
+	}
+	
+	return result;
+}
+</script>
+</head>
+
+<body>
+
+</body>
+</html>

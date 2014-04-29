@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<script>
+/*
+节点：
+{
+	value:	值,
+	l:		左子节点,
+	r:		右子节点
+}
+*/
+
+var root=null;
+
+function bst_add(node, n)
+{
+	//第一次
+	if(root==null)
+	{
+		alert('创建根节点'+n);
+		root={value: n, l: null, r: null};
+	}
+	else
+	{
+		alert('要插入：'+n+'，来到：'+node.value);
+		if(node.value==n)
+		{
+			alert(n+'重复了，不要');
+			//重复了
+			return;
+		}
+		else if(node.value<n)	//右边
+		{
+			alert('试图往右走');
+			if(node.r)	//右边有东西
+			{
+				alert('右边有东西，继续');
+				bst_add(node.r, n);
+			}
+			else
+			{
+				alert('右边没了，把'+n+'放在'+node.value+'的右边');
+				node.r={value: n, l: null, r: null};
+			}
+		}
+		else		//左边
+		{
+			alert('试图往左走');
+			if(node.l)	//左边有东西
+			{
+				alert('左边有东西，继续');
+				bst_add(node.l, n);
+			}
+			else
+			{
+				alert('左边没了，把'+n+'放在'+node.value+'的左边');
+				node.l={value: n, l: null, r: null};
+			}
+		}
+	}
+}
+
+bst_add(root, 18);
+bst_add(root, 27);
+bst_add(root, 19);
+bst_add(root, 18);
+bst_add(root, 13);
+bst_add(root, 6);
+bst_add(root, 99);
+bst_add(root, 34);
+</script>
+</head>
+
+<body>
+
+</body>
+</html>

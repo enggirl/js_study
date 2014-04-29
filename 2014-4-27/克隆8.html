@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<script>
+/*var arr1=[1,2,3];
+var arr2=clone(arr1);
+
+arr2.push(5);
+
+console.log(arr1, arr2);*/
+
+var arr1=[{a: 5, b: 44}, 2, 3];
+var arr2=clone(arr1);
+
+arr2[0].a+=6;
+
+console.log(arr1, arr2);
+
+function clone(obj)
+{
+	//1.数组
+	if(obj instanceof Array)
+	{
+		var obj2=[];
+		
+		for(var i=0;i<obj.length;i++)
+		{
+			obj2[i]=clone(obj[i]);
+		}
+		
+		return obj2;
+	}
+	//2.json
+	else if(obj.constructor==Object)
+	{
+		var obj2={};
+		
+		for(var i in obj)
+		{
+			obj2[i]=clone(obj[i]);
+		}
+		
+		return obj2;
+	}
+	//3.基本
+	else if(typeof obj!='object')
+	{
+		return obj;
+	}
+	//4.其他——valueOf
+	else
+	{
+		return new obj.constructor(obj.valueOf());
+	}
+}
+</script>
+</head>
+
+<body>
+
+</body>
+</html>

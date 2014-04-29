@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<script>
+var arr=[1];
+
+for(var i=1;i<1000000;i++)
+{
+	arr[i]=arr[i-1]+parseInt(Math.random()*5)+1;
+}
+
+function findArr1(n)
+{
+	for(var i=0;i<arr.length;i++)
+	{
+		if(arr[i]==n)
+		{
+			return i;
+		}
+	}
+	
+	return -1;
+}
+function findArr2(n, s, e)
+{
+	if(s>e)	//空的
+	{
+		return -1;
+	}
+	//优化
+	else if(s==e)	//就一个数
+	{
+		if(arr[s]==n)
+		{
+			return s;
+		}
+		else
+		{
+			return -1;
+		}
+	}
+	
+	var c=Math.floor((s+e)/2);
+	
+	if(arr[c]==n)
+	{
+		return c;
+	}
+	else
+	{
+		if(arr[c]<n)	//往右看
+		{
+			return findArr2(n, c+1, e);
+		}
+		else			//向左看
+		{
+			return findArr2(n, s, c-1);
+		}
+	}
+}
+
+var start=new Date().getTime();
+
+for(var i=0;i<1000000;i++)
+{
+	var n=Math.random()*arr[arr.length-1];
+	
+	//findArr1(n);						//5300000	3700倍
+	findArr2(n, 0, arr.length-1);		//1410
+}
+
+alert(new Date().getTime()-start);
+</script>
+</head>
+
+<body>
+
+</body>
+</html>

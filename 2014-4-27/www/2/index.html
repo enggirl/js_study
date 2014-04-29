@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<script>
+window.onload=function ()
+{
+	var oF=document.getElementById('f1');
+	var oTxt=document.getElementById('txt1');
+	
+	setInterval(function (){
+		oTxt.value=oF.src;
+	}, 30);
+};
+</script>
+</head>
+
+<body>
+<input type="text" style="width:400px;" id="txt1" /><br>
+<iframe src="a.html" width="400" height="400" id="f1">
+</iframe>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<script>
+var str='fsddaaaseeeeaefeaeeeeerfeqe';
+
+var json={};	//字: 次数
+
+for(var i=0;i<str.length;i++)
+{
+	var c=str.charAt(i);
+	
+	if(!json[c])
+	{
+		json[c]=1;
+	}
+	else
+	{
+		json[c]++;
+	}
+}
+
+var iMax=0;
+var iMaxChar='';
+
+for(var i in json)
+{
+	if(json[i]>iMax)
+	{
+		iMax=json[i];
+		iMaxChar=i;
+	}
+}
+
+alert('出现最多的是：'+iMaxChar+'，出现了：'+iMax);
+</script>
+</head>
+
+<body>
+
+</body>
+</html>

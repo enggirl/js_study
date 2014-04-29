@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<script>
+var json1={a: 12, b: 5};
+var json2=clone(json1);
+
+json2.c=8;
+
+console.log(json1, json2);
+
+function clone(obj)
+{
+	//数组
+	/*
+	var obj2=[];
+	
+	for(var i=0;i<obj.length;i++)
+	{
+		obj2[i]=obj[i];
+	}
+	
+	return obj2;
+	*/
+	
+	//json
+	var obj2={};
+	
+	for(var i in obj)
+	{
+		obj2[i]=obj[i];
+	}
+	
+	return obj2;
+}
+</script>
+</head>
+
+<body>
+
+</body>
+</html>

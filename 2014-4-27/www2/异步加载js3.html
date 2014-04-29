@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<style>
+
+</style>
+<script src="ajax.js"></script>
+<script>
+/*ajax('a.js', function (str){
+	eval(str);
+});*/
+
+var oS=document.createElement('script');
+
+oS.src='a.js';
+
+var oHead=document.getElementsByTagName('head')[0];
+
+oHead.appendChild(oS);
+</script>
+<script>
+alert('b');
+</script>
+</head>
+
+<body>
+
+</body>
+</html>

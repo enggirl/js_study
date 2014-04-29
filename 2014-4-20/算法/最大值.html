@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<script>
+var arr=[12,6,18,99,3,5,129,97,16];
+
+function findMax(s, e)
+{
+	if(s>e)
+	{
+		return NaN;
+	}
+	//优化
+	else if(s==e)
+	{
+		return arr[s];
+	}
+	else if(s==e-1)
+	{
+		if(arr[s]<arr[e])
+		{
+			return arr[e];
+		}
+		else
+		{
+			return arr[s];
+		}
+	}
+	
+	var c=Math.floor((s+e)/2);
+	
+	//左边：s->c
+	var r1=findMax(s, c);
+	
+	//右边：c+1->e
+	var r2=findMax(c+1, e);
+	
+	if(r1<r2)
+	{
+		return r2;
+	}
+	else
+	{
+		return r1;
+	}
+}
+
+alert(findMax(0, arr.length-1));
+</script>
+</head>
+
+<body>
+
+</body>
+</html>
