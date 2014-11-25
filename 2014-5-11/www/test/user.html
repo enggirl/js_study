@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<script src="../js/sea.js"></script>
+<script>
+seajs.use('user.js', function (mod){
+	mod.reg('blue', '123456', '2', function (json){
+		if(json.err)
+		{
+			alert('注册失败：'+json.msg);
+		}
+		else
+		{
+			alert('注册成功');
+		}
+	});
+	
+	mod.lgn('blue', '123456', function (json){
+		if(json.err)
+		{
+			alert('登录失败：'+json.msg);
+		}
+		else
+		{
+			alert('登录成功');
+			
+			alert('现在的token是：'+mod.get_token());
+			
+			mod.get_user_list(function (json){
+				alert(json.data.length);
+			});
+		}
+	});
+});
+</script>
+</head>
+
+<body>
+
+</body>
+</html>

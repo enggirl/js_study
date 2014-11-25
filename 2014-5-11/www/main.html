@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<style>
+* {margin:0; padding:0; list-style:none;}
+
+#msg {width:600px; position:relative; margin:50px auto;}
+#msg .msg {width:400px; height:400px; border:1px solid black;}
+#msg .msg_input {height:100px; width:400px; border:1px solid black; position:relative;}
+
+#msg .msg_input textarea {width:300px; height:100px;}
+#msg .msg_input input {width:100px; height:100px; position:absolute; right:0; top:0;}
+#msg .user_list {height:500px; width:200px; position:absolute; right:0; top:0; border:1px solid black;}
+</style>
+<script src="js/sea.js"></script>
+<script>
+window.onload=function ()
+{
+	seajs.use('user.js', function (modUser){
+		if(!modUser.get_token())
+		{
+			alert('没有登录，请重新登录');
+			window.location='login.html';
+			return;
+		}
+		
+		modUser.get_user_list(function (json){
+			console.log(json);
+//			if(json.data.length);
+		});
+	});
+};
+</script>
+</head>
+
+<body>
+<div id="msg">
+	<ul class="msg">
+    	<li>
+        	<strong>名字</strong><em>2014-1-1 23:11</em>
+            <p>内容内容内容内容</p>
+        </li>
+    </ul>
+    <div class="msg_input">
+    	<textarea></textarea>
+        <input type="button" id="snd_btn" value="发送" />
+    </div>
+    <ul class="user_list">
+    	<li><img src="" /><span>名字</span></li>
+    </ul>
+</div>
+</body>
+</html>

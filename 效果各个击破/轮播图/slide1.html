@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+	<style>
+	*{margin:0;padding:0;}
+	p{text-align:center;}
+		.imgwrap{position:relative;overflow:hidden;width:150px;height:100px;margin:20px auto;border:3px solid blue;}
+		.imglist{position:absolute;top:0;left:0;list-style:none;width:600px;height:100px;}
+		.imglist li{float:left;width:150px;height:100px;}
+		.imglist li img{width:150px;height:100px;}
+	</style>
+	<script src="../jquery.min.js"></script>
+	<script>
+		var img = img || {};
+		;(function(_img,window,undefined){
+			function id(x){
+				if(typeof x == 'string'){
+					return document.getElementById(x);
+				}else{
+					return x;
+				}
+			}
+			
+			_img.init = function(){
+				//初始化
+				var oUl = id("imglist"),
+				    aLi = oUl.children,
+				    liW = $(aLi).eq(0).width(),
+				    ulW = liW * aLi.length; 
+				    _img.slide();
+				    _img.slide2();
+			};
+
+			_img.slide = function(){
+				var oUl = id("imglist"),
+				    liW = $(oUl.children).eq(0).width();
+						var index =0;
+						function fn(){
+							index++;
+							if(index == oUl.children.length){
+								index = 0;
+							}
+							$(oUl).animate({"left":-liW*index},'slow');
+						}
+						setInterval(function(){
+							fn();
+						},1000);
+			};
+			var _img_slide2_index =0;
+			_img.slide2 = function(){
+				var oUl = id("imglist2"),
+				    liW = $(oUl.children).eq(0).width();
+						_img_slide2_index++;
+						if(_img_slide2_index == oUl.children.length){
+							_img_slide2_index = 0;
+						}
+						$(oUl).animate({"left":-liW*_img_slide2_index},'slow');
+						setTimeout(function(){
+							_img.slide2();
+						},1000);
+			};
+
+		})(img,window);
+		$(function(){
+			img.init();
+		});
+	</script>
+</head>
+<body>
+	<p>初级版</p>
+	<div class="imgwrap">
+		<ul id="imglist" class="imglist">
+			<li><img src="images/1.jpg" alt=""></li>
+			<li><img src="images/2.jpg" alt=""></li>
+			<li><img src="images/3.jpg" alt=""></li>
+			<li><img src="images/1.jpg" alt=""></li>
+		</ul>
+	</div>
+	<p>改进版</p>
+	<div class="imgwrap">
+		<ul id="imglist2" class="imglist">
+			<li><img src="images/1.jpg" alt=""></li>
+			<li><img src="images/2.jpg" alt=""></li>
+			<li><img src="images/3.jpg" alt=""></li>
+			<li><img src="images/1.jpg" alt=""></li>
+		</ul>
+	</div>
+</body>
+</html>
