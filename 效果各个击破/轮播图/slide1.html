@@ -10,6 +10,20 @@
 		.imglist{position:absolute;top:0;left:0;list-style:none;width:600px;height:100px;}
 		.imglist li{float:left;width:150px;height:100px;}
 		.imglist li img{width:150px;height:100px;}
+		#imglist3{margin-left:0;}
+		#imglist4{animation:slideLeft 5s infinite 2s alternate;-webkit-animation:slideLeft 5s infinite 2s alternate;}
+		@-webkit-keyframes 'slideLeft'{
+			0%{left:-150px;}
+			40%{left:-300px;}
+			70%{left:-450px;}
+			100%{left:0;}
+		}
+		@keyframes 'slideLeft'{
+			0%{left:-150px;}
+			40%{left:-300px;}
+			70%{left:-450px;}
+			100%{left:0;}
+		}
 	</style>
 	<script src="../jquery.min.js"></script>
 	<script>
@@ -31,6 +45,7 @@
 				    ulW = liW * aLi.length; 
 				    _img.slide();
 				    _img.slide2();
+				    //_img.slide3();
 			};
 
 			_img.slide = function(){
@@ -62,6 +77,17 @@
 						},1000);
 			};
 
+			var _img_slide3_index = 0;
+			setInterval(function(){
+				var oUl = id("imglist3"),
+		    liW = $(oUl.children).eq(0).width();
+				_img_slide3_index++;
+				if(_img_slide3_index == oUl.children.length){
+					_img_slide3_index = 0;
+				}
+				$(oUl).animate({"margin-left":-liW*_img_slide3_index},'slow');
+			},1000);
+
 		})(img,window);
 		$(function(){
 			img.init();
@@ -81,6 +107,24 @@
 	<p>改进版</p>
 	<div class="imgwrap">
 		<ul id="imglist2" class="imglist">
+			<li><img src="images/1.jpg" alt=""></li>
+			<li><img src="images/2.jpg" alt=""></li>
+			<li><img src="images/3.jpg" alt=""></li>
+			<li><img src="images/1.jpg" alt=""></li>
+		</ul>
+	</div>
+	<p>margin版</p>
+	<div class="imgwrap">
+		<ul id="imglist3" class="imglist">
+			<li><img src="images/1.jpg" alt=""></li>
+			<li><img src="images/2.jpg" alt=""></li>
+			<li><img src="images/3.jpg" alt=""></li>
+			<li><img src="images/1.jpg" alt=""></li>
+		</ul>
+	</div>
+	<p>css3版</p>
+	<div class="imgwrap">
+		<ul id="imglist4" class="imglist">
 			<li><img src="images/1.jpg" alt=""></li>
 			<li><img src="images/2.jpg" alt=""></li>
 			<li><img src="images/3.jpg" alt=""></li>
